@@ -69,8 +69,8 @@ class AppointmentController extends Controller
         $validated['status'] = 'pending';
         $validated['duration_minutes'] = 30; // 30-min briefing
         
-        // Generate a mock meeting link dynamically
-        $validated['meeting_link'] = 'https://meet.google.com/pb-' . substr(md5(uniqid()), 0, 8);
+        // Use static recurring meeting link from .env or fallback
+        $validated['meeting_link'] = env('MEETING_LINK', 'https://meet.google.com/pb-mock-link');
 
         $appointment = Appointment::create($validated);
 

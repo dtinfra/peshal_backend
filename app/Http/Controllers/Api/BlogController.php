@@ -208,6 +208,36 @@ class BlogController extends Controller
         ]);
     }
 
+    public function bulkDestroy(Request $request): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'ids' => 'required|array',
+            'ids.*' => 'required|integer|exists:blogs,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $ids = $request->input('ids');
+
+        // Delete associated SEO metadata first to avoid orphans
+        \App\Models\SeoMetadata::where('model_type', Blog::class)
+            ->whereIn('model_id', $ids)
+            ->delete();
+
+        // Delete blogs (cascades tag pivot tables)
+        Blog::whereIn('id', $ids)->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => count($ids) . ' articles deleted successfully.'
+        ]);
+    }
+
     public function categories(): JsonResponse
     {
         $categories = $this->blogService->getCategories();

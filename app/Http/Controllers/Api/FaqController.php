@@ -99,4 +99,28 @@ class FaqController extends Controller
             'message' => 'FAQ deleted successfully.'
         ]);
     }
+
+    public function bulkDestroy(Request $request): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'ids' => 'required|array',
+            'ids.*' => 'required|integer|exists:faqs,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $ids = $request->input('ids');
+
+        Faq::whereIn('id', $ids)->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => count($ids) . ' FAQs deleted successfully.'
+        ]);
+    }
 }

@@ -28,14 +28,20 @@ Route::get('/settings', function() {
     $path = storage_path('app/settings.json');
     $defaultSettings = [
         'gsc_verification' => 'google-site-verification-placeholder',
-        'ga4_id' => 'G-GA4MEASURE',
-        'canonical_base' => 'https://peshalbhattarai.com',
+        'ga4_id' => 'G-GFEBQYX1P4',
+        'canonical_base' => 'https://www.peshalb.com.np',
         'meta_title' => 'Peshal Bhattarai | Technology Leader & Business Consultant',
         'meta_description' => 'Venture Builder, Digital Transformation Consultant, Agile Coach, Product Strategist, and Technology Executive with over 10 years of enterprise IT leadership experience.',
         'whatsapp_number' => '+9779841517234',
         'telegram_link' => 'https://t.me/+9779841517234',
         'contact_email' => 'peshal@intechnexus.com',
-        'contact_phone' => '+977-9841517234'
+        'contact_phone' => '+977-9841517234',
+        'social_linkedin' => 'https://www.linkedin.com/in/peshalbhattarai/',
+        'social_twitter' => '',
+        'social_medium' => '',
+        'social_github' => '',
+        'webmail_url' => 'https://saphire.mysecurecloudserver.com:2096/cpsess0670920787/3rdparty/roundcube/?_task=mail&_mbox=INBOX',
+        'calendar_public_url' => 'http://mail.peshalb.com.np:2079/calendars/hi@peshalb.com.np/calendar'
     ];
 
     if (!file_exists($path)) {
@@ -88,6 +94,7 @@ Route::get('/search', [CommonController::class, 'search']);
 // Protected CRUD Actions (Admin Dashboard Panel write APIs)
 Route::middleware('auth:sanctum')->group(function () {
     // Blogs CRUD
+    Route::post('/blogs/bulk-delete', [BlogController::class, 'bulkDestroy']);
     Route::post('/blogs', [BlogController::class, 'store']);
     Route::put('/blogs/{id}', [BlogController::class, 'update']);
     Route::delete('/blogs/{id}', [BlogController::class, 'destroy']);
@@ -108,6 +115,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/portfolio/{id}', [PortfolioController::class, 'destroy']);
 
     // FAQs CRUD
+    Route::post('/faqs/bulk-delete', [FaqController::class, 'bulkDestroy']);
     Route::post('/faqs', [FaqController::class, 'store']);
     Route::put('/faqs/{id}', [FaqController::class, 'update']);
     Route::delete('/faqs/{id}', [FaqController::class, 'destroy']);
@@ -187,14 +195,20 @@ Route::middleware('auth:sanctum')->group(function () {
         $path = storage_path('app/settings.json');
         $defaultSettings = [
             'gsc_verification' => 'google-site-verification-placeholder',
-            'ga4_id' => 'G-GA4MEASURE',
-            'canonical_base' => 'https://peshalbhattarai.com',
+            'ga4_id' => 'G-GFEBQYX1P4',
+            'canonical_base' => 'https://www.peshalb.com.np',
             'meta_title' => 'Peshal Bhattarai | Technology Leader & Business Consultant',
             'meta_description' => 'Venture Builder, Digital Transformation Consultant, Agile Coach, Product Strategist, and Technology Executive with over 10 years of enterprise IT leadership experience.',
             'whatsapp_number' => '+9779841517234',
             'telegram_link' => 'https://t.me/+9779841517234',
             'contact_email' => 'peshal@intechnexus.com',
-            'contact_phone' => '+977-9841517234'
+            'contact_phone' => '+977-9841517234',
+            'social_linkedin' => 'https://www.linkedin.com/in/peshalbhattarai/',
+            'social_twitter' => '',
+            'social_medium' => '',
+            'social_github' => '',
+            'webmail_url' => 'https://saphire.mysecurecloudserver.com:2096/cpsess0670920787/3rdparty/roundcube/?_task=mail&_mbox=INBOX',
+            'calendar_public_url' => 'http://mail.peshalb.com.np:2079/calendars/hi@peshalb.com.np/calendar'
         ];
 
         if (!file_exists($path)) {
@@ -223,7 +237,13 @@ Route::middleware('auth:sanctum')->group(function () {
             'whatsapp_number' => 'required|string',
             'telegram_link' => 'required|string',
             'contact_email' => 'required|email',
-            'contact_phone' => 'required|string'
+            'contact_phone' => 'required|string',
+            'social_linkedin' => 'nullable|string',
+            'social_twitter' => 'nullable|string',
+            'social_medium' => 'nullable|string',
+            'social_github' => 'nullable|string',
+            'webmail_url' => 'nullable|string',
+            'calendar_public_url' => 'nullable|string'
         ]);
 
         file_put_contents($path, json_encode($validated, JSON_PRETTY_PRINT));

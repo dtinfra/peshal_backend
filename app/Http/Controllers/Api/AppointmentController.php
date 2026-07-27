@@ -74,8 +74,14 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::create($validated);
 
-        // Here we could dispatch an event to email the client and Peshal
-        // event(new AppointmentBooked($appointment));
+        // Send email notification to owner
+        try {
+            $toEmail = env('CONTACT_NOTIFICATION_EMAIL', 'hi@peshalb.com.np');
+            \Illuminate\Support\Facades\Mail::to($toEmail)->send(new \App\Mail\AppointmentBookedMail($appointment));
+            \Illuminate\Support\Facades\Log::info("Notification: Sent appointment scheduled email to {$toEmail}");
+        } catch (\Exception $e) {
+            \Illuminate\Support\Facades\Log::error("Failed to send appointment email notification: " . $e->getMessage());
+        }
 
         return response()->json([
             'success' => true,

@@ -104,7 +104,6 @@ class FaqController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'ids' => 'required|array',
-            'ids.*' => 'required|integer|exists:faqs,id',
         ]);
 
         if ($validator->fails()) {
@@ -115,6 +114,12 @@ class FaqController extends Controller
         }
 
         $ids = $request->input('ids');
+        if (empty($ids)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No FAQ IDs provided.'
+            ], 400);
+        }
 
         Faq::whereIn('id', $ids)->delete();
 

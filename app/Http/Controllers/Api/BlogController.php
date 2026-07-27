@@ -212,7 +212,6 @@ class BlogController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'ids' => 'required|array',
-            'ids.*' => 'required|integer|exists:blogs,id',
         ]);
 
         if ($validator->fails()) {
@@ -223,6 +222,12 @@ class BlogController extends Controller
         }
 
         $ids = $request->input('ids');
+        if (empty($ids)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No article IDs provided.'
+            ], 400);
+        }
 
         // Delete associated SEO metadata first to avoid orphans
         \App\Models\SeoMetadata::where('model_type', Blog::class)

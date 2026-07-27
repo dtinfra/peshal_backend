@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\ContactRequest;
 use App\Models\AuditLog;
+use App\Mail\ContactRequestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 
 class ContactService
@@ -30,6 +32,15 @@ class ContactService
             'user_agent' => request()->userAgent(),
             'payload' => $request->toArray()
         ]);
+
+        // Send email notification to owner
+        try {
+            $toEmail = env('CONTACT_NOTIFICATION_EMAIL', 'hi@peshalb.com.np');
+            Mail::to($toEmail)->send(new ContactRequestMail($request));
+            Log::info("Notification: Sent contact request email to {$toEmail}");
+        } catch (\Exception $e) {
+            Log::error("Failed to send contact request email notification: " . $e->getMessage());
+        }
 
         // Trigger third-party integrations (Mock logs for Hubspot, Zapier, Google Calendar)
         $this->triggerThirdPartyWebhooks($request);

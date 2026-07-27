@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\NewsletterController;
 use App\Http\Controllers\Api\CommonController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AppointmentController;
+use App\Http\Controllers\Api\ResourceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -134,6 +135,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/testimonials', [TestimonialController::class, 'store']);
     Route::put('/testimonials/{id}', [TestimonialController::class, 'update']);
     Route::delete('/testimonials/{id}', [TestimonialController::class, 'destroy']);
+
+    // Resources CRUD
+    Route::get('/admin/resources', [ResourceController::class, 'index']);
+    Route::post('/resources/bulk-delete', [ResourceController::class, 'bulkDestroy']);
+    Route::post('/resources', [ResourceController::class, 'store']);
+    Route::put('/resources/{id}', [ResourceController::class, 'update']);
+    Route::delete('/resources/{id}', [ResourceController::class, 'destroy']);
     
     // Appointments CRUD (Admin Management)
     Route::get('/admin/appointments', [AppointmentController::class, 'index']);

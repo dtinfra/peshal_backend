@@ -69,14 +69,17 @@ class AppointmentController extends Controller
         $validated['status'] = 'pending';
         $validated['duration_minutes'] = 30; // 30-min briefing
         
-        // Use static recurring meeting link from .env or fallback
-        $validated['meeting_link'] = env('MEETING_LINK', 'https://meet.google.com/pb-mock-link');
+        // Read meeting link and notification email dynamically from settings
+        $settingsPath = storage_path('app/settings.json');
+        $settings = file_exists($settingsPath) ? json_decode(file_get_contents($settingsPath), true) : [];
+
+        $validated['meeting_link'] = $settings['meeting_link'] ?? env('MEETING_LINK', 'https://meet.google.com/pb-mock-link');
 
         $appointment = Appointment::create($validated);
 
         // Send email notification to owner
         try {
-            $toEmail = env('CONTACT_NOTIFICATION_EMAIL', 'hi@peshalb.com.np');
+            $toEmail = $settings['notification_email'] ?? env('CONTACT_NOTIFICATION_EMAIL', 'hi@peshalb.com.np');
             \Illuminate\Support\Facades\Mail::to($toEmail)->send(new \App\Mail\AppointmentBookedMail($appointment));
             \Illuminate\Support\Facades\Log::info("Notification: Sent appointment scheduled email to {$toEmail}");
         } catch (\Exception $e) {

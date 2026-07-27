@@ -35,7 +35,10 @@ class ContactService
 
         // Send email notification to owner
         try {
-            $toEmail = env('CONTACT_NOTIFICATION_EMAIL', 'hi@peshalb.com.np');
+            $settingsPath = storage_path('app/settings.json');
+            $settings = file_exists($settingsPath) ? json_decode(file_get_contents($settingsPath), true) : [];
+            $toEmail = $settings['notification_email'] ?? env('CONTACT_NOTIFICATION_EMAIL', 'hi@peshalb.com.np');
+
             Mail::to($toEmail)->send(new ContactRequestMail($request));
             Log::info("Notification: Sent contact request email to {$toEmail}");
         } catch (\Exception $e) {

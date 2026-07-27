@@ -213,6 +213,22 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/admin/seo', [CommonController::class, 'adminSeoIndex']);
     Route::put('/admin/seo/{id}', [CommonController::class, 'adminSeoUpdate']);
 
+    Route::post('/admin/system/seed', function() {
+        try {
+            \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'PriorityBlogsSeeder']);
+            \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'HomepageFaqsSeeder']);
+            return response()->json([
+                'success' => true,
+                'message' => 'System seeders ran successfully! Priority blogs and FAQs have been imported.'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to run seeders: ' . $e->getMessage()
+            ], 500);
+        }
+    });
+
     // Admin Settings Management
     Route::get('/admin/settings', function() {
         $path = storage_path('app/settings.json');

@@ -122,4 +122,41 @@ class CommonController extends Controller
             ]
         ]);
     }
+
+    public function adminSeoIndex(): JsonResponse
+    {
+        $seos = SeoMetadata::where('model_type', 'Page')->get();
+        return response()->json([
+            'success' => true,
+            'data' => $seos
+        ]);
+    }
+
+    public function adminSeoUpdate(Request $request, string $id): JsonResponse
+    {
+        $seo = SeoMetadata::findOrFail($id);
+
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'meta_title' => 'required|string|max:255',
+            'meta_description' => 'required|string',
+            'keywords' => 'nullable|string',
+            'canonical_url' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        $validated = $validator->validated();
+        $seo->update($validated);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Page SEO updated successfully.',
+            'data' => $seo
+        ]);
+    }
 }

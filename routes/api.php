@@ -210,6 +210,9 @@ Route::middleware('auth:sanctum')->group(function () {
         ]);
     });
 
+    Route::get('/admin/seo', [CommonController::class, 'adminSeoIndex']);
+    Route::put('/admin/seo/{id}', [CommonController::class, 'adminSeoUpdate']);
+
     // Admin Settings Management
     Route::get('/admin/settings', function() {
         $path = storage_path('app/settings.json');

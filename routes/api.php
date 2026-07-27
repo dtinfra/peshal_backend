@@ -99,6 +99,7 @@ Route::post('/appointments', [AppointmentController::class, 'store']); // Public
 Route::get('/seo', [CommonController::class, 'pageSeo']);
 Route::get('/timeline', [CommonController::class, 'timeline']);
 Route::get('/resources', [CommonController::class, 'resources']);
+Route::get('/resources/{id}/download', [ResourceController::class, 'download']);
 Route::get('/stats', [CommonController::class, 'stats']);
 Route::get('/search', [CommonController::class, 'search']);
 
@@ -142,6 +143,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/resources', [ResourceController::class, 'store']);
     Route::put('/resources/{id}', [ResourceController::class, 'update']);
     Route::delete('/resources/{id}', [ResourceController::class, 'destroy']);
+    Route::post('/admin/upload', [ResourceController::class, 'uploadFile']);
     
     // Appointments CRUD (Admin Management)
     Route::get('/admin/appointments', [AppointmentController::class, 'index']);

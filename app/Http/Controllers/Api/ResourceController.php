@@ -183,4 +183,65 @@ class ResourceController extends Controller
             'message' => count($ids) . ' resources deleted successfully.'
         ]);
     }
+
+    public function download(string $id)
+    {
+        $resource = Resource::findOrFail($id);
+        
+        // Auto-increment downloaded value
+        $resource->increment('download_count');
+        
+        $filePath = $resource->file_path;
+        
+        if (filter_var($filePath, FILTER_VALIDATE_URL)) {
+            return redirect()->away($filePath);
+        }
+        
+        $cleanPath = ltrim($filePath, '/');
+        $publicFilePath = public_path($cleanPath);
+        if (file_exists($publicFilePath) && is_file($publicFilePath)) {
+            return response()->download($publicFilePath);
+        }
+        
+        if (str_starts_with($filePath, '/storage')) {
+            $storageCleanPath = substr($filePath, 9);
+            $storagePath = storage_path('app/public/' . $storageCleanPath);
+            if (file_exists($storagePath) && is_file($storagePath)) {
+                return response()->download($storagePath);
+            }
+        }
+        
+        return redirect()->away(url($filePath));
+    }
+
+    public function uploadFile(Request $request): JsonResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|file|max:20480',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('uploads', $filename, 'public');
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'File uploaded successfully.',
+                'file_path' => '/storage/' . $path
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'No file uploaded.'
+        ], 400);
+    }
 }

@@ -49,7 +49,9 @@ Route::get('/settings', function() {
         'social_medium' => '',
         'social_github' => '',
         'webmail_url' => 'https://saphire.mysecurecloudserver.com:2096/cpsess0670920787/3rdparty/roundcube/?_task=mail&_mbox=INBOX',
-        'calendar_public_url' => 'http://mail.peshalb.com.np:2079/calendars/hi@peshalb.com.np/calendar'
+        'calendar_public_url' => 'http://mail.peshalb.com.np:2079/calendars/hi@peshalb.com.np/calendar',
+        'meeting_link' => 'https://meet.google.com/pb-mock-link',
+        'notification_email' => 'hi@peshalb.com.np'
     ];
 
     if (!file_exists($path)) {
@@ -216,7 +218,9 @@ Route::middleware('auth:sanctum')->group(function () {
             'social_medium' => '',
             'social_github' => '',
             'webmail_url' => 'https://saphire.mysecurecloudserver.com:2096/cpsess0670920787/3rdparty/roundcube/?_task=mail&_mbox=INBOX',
-            'calendar_public_url' => 'http://mail.peshalb.com.np:2079/calendars/hi@peshalb.com.np/calendar'
+            'calendar_public_url' => 'http://mail.peshalb.com.np:2079/calendars/hi@peshalb.com.np/calendar',
+            'meeting_link' => 'https://meet.google.com/pb-mock-link',
+            'notification_email' => 'hi@peshalb.com.np'
         ];
 
         if (!file_exists($path)) {
@@ -251,7 +255,9 @@ Route::middleware('auth:sanctum')->group(function () {
             'social_medium' => 'nullable|string',
             'social_github' => 'nullable|string',
             'webmail_url' => 'nullable|string',
-            'calendar_public_url' => 'nullable|string'
+            'calendar_public_url' => 'nullable|string',
+            'meeting_link' => 'nullable|string',
+            'notification_email' => 'nullable|email'
         ]);
 
         file_put_contents($path, json_encode($validated, JSON_PRETTY_PRINT));

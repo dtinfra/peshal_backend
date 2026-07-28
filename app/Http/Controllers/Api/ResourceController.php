@@ -216,32 +216,40 @@ class ResourceController extends Controller
 
     public function uploadFile(Request $request): JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'file' => 'required|file|max:20480',
-        ]);
-
-        if ($validator->fails()) {
+        if (!$request->hasFile('file')) {
             return response()->json([
                 'success' => false,
-                'errors' => $validator->errors()
+                'message' => 'No file uploaded or invalid file input.'
+            ], 400);
+        }
+
+        $file = $request->file('file');
+
+        // Verify size manually (Max 20MB)
+        if ($file->getSize() > 20480 * 1024) {
+            return response()->json([
+                'success' => false,
+                'message' => 'The file size must not exceed 20MB.'
             ], 422);
         }
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $filename = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('uploads', $filename, 'public');
-            
+        // Verify extension manually
+        $extension = strtolower($file->getClientOriginalExtension());
+        $allowed = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'pdf', 'zip', 'doc', 'docx', 'xls', 'xlsx'];
+        if (!in_array($extension, $allowed)) {
             return response()->json([
-                'success' => true,
-                'message' => 'File uploaded successfully.',
-                'file_path' => '/storage/' . $path
-            ]);
+                'success' => false,
+                'message' => 'The file extension is not allowed.'
+            ], 422);
         }
 
+        $filename = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('uploads', $filename, 'public');
+        
         return response()->json([
-            'success' => false,
-            'message' => 'No file uploaded.'
-        ], 400);
+            'success' => true,
+            'message' => 'File uploaded successfully.',
+            'file_path' => '/storage/' . $path
+        ]);
     }
 }

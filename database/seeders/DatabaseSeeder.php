@@ -936,11 +936,11 @@ class DatabaseSeeder extends Seeder
         \App\Models\PortfolioProject::create([
             'title' => 'Fonts.com',
             'slug' => 'fonts-com',
-            'client_name' => 'Monotype / UBA Solutions Pvt. Ltd.',
-            'summary' => 'Associated with UBA Solutions. Fonts.com store offers more than 150,000 desktop and Web font products for preview, purchase, and download.',
+            'client_name' => 'Monotype (via UBA Solutions)',
+            'summary' => 'Consulting Senior Engineer & System Architect. Optimized database performance, search indexing, and cart checkout for the global Fonts.com font marketplace.',
             'content' => 'High-frequency e-commerce font portal serving global creative teams. Built with complex search indexing, dynamic desktop font preview panels, web-font rendering engine integrations, and secure cart checkouts.',
             'main_image' => '/assets/images/peshal3.jpg', // Using real uploaded image
-            'technologies' => ['Web Fonts', 'E-commerce', 'Font Previews', 'UBA Solutions', 'API Integrations'],
+            'technologies' => ['System Architecture', 'Search Performance', 'E-commerce Checkout', 'Web Fonts', 'API Integrations'],
             'business_outcomes' => ['Indexed 150k+ font products', 'Streamlined checkout procedures', 'Dynamic CSS webfont previews'],
             'results_summary' => 'Successfully integrated dynamic font preview rendering widgets and streamlined checkout for Monotype.',
             'website_url' => 'https://fonts.com',
@@ -951,11 +951,11 @@ class DatabaseSeeder extends Seeder
         \App\Models\PortfolioProject::create([
             'title' => 'Career Key',
             'slug' => 'career-key',
-            'client_name' => 'Seattleapplab',
-            'summary' => 'Provides a platform to achieve career and college success for discoverers, using Holland\'s science-based theory to match discovery personalities.',
+            'client_name' => 'SeattleAppLab',
+            'summary' => 'Consulting Tech Lead & Backend Engineer. Built Laravel APIs and scoring systems for discovery personality matching based on Holland\'s theory.',
             'content' => 'A career assessment and college guidance platform built to matches candidate traits with college majors. Integrated with interactive personality tests, scoring metrics, database catalogs of universities, and user dashboard telemetry.',
             'main_image' => '/assets/images/peshal4.jpg', // Using real uploaded image
-            'technologies' => ['Personality Tests', 'SaaS platform', 'Holland Theory', 'EduTech', 'Laravel API'],
+            'technologies' => ['Backend Engineering', 'Laravel APIs', 'EduTech SaaS', 'Holland Assessment Metrics'],
             'business_outcomes' => ['Science-based matches deployed', 'Improved student user conversion rates', 'Interactive questionnaires'],
             'results_summary' => 'Delivered a responsive assessment matrix serving thousands of high-school and university discoverers.',
             'website_url' => 'https://careerkey.example.com',

@@ -37,6 +37,7 @@ Route::get('/settings', function() {
     $path = storage_path('app/settings.json');
     $defaultSettings = [
         'gsc_verification' => 'google-site-verification-placeholder',
+        'bing_verification' => '',
         'ga4_id' => 'G-GFEBQYX1P4',
         'canonical_base' => 'https://www.peshalb.com.np',
         'meta_title' => 'Peshal Bhattarai | Technology Leader & Business Consultant',
@@ -234,6 +235,7 @@ Route::middleware('auth:sanctum')->group(function () {
         $path = storage_path('app/settings.json');
         $defaultSettings = [
             'gsc_verification' => 'google-site-verification-placeholder',
+            'bing_verification' => '',
             'ga4_id' => 'G-GFEBQYX1P4',
             'canonical_base' => 'https://www.peshalb.com.np',
             'meta_title' => 'Peshal Bhattarai | Technology Leader & Business Consultant',
@@ -271,6 +273,7 @@ Route::middleware('auth:sanctum')->group(function () {
         
         $validated = $request->validate([
             'gsc_verification' => 'nullable|string',
+            'bing_verification' => 'nullable|string',
             'ga4_id' => 'nullable|string',
             'canonical_base' => 'required|url',
             'meta_title' => 'required|string',

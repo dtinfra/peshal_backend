@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
     'summary',
     'content',
     'featured_image',
+    'featured_image_alt',
     'reading_time',
     'author_id',
     'category_id',

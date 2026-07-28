@@ -21,6 +21,7 @@ class BlogResource extends JsonResource
             'summary' => $this->summary,
             'content' => $this->content,
             'featured_image' => $this->featured_image,
+            'featured_image_alt' => $this->featured_image_alt,
             'reading_time' => $this->reading_time,
             'is_published' => $this->is_published,
             'published_at' => $this->published_at?->toIso8601String(),

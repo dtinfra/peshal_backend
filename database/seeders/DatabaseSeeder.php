@@ -44,20 +44,22 @@ class DatabaseSeeder extends Seeder
         );
 
         // 2. Create Blog Author
-        $author = BlogAuthor::create([
-            'name' => 'Peshal Bhattarai',
-            'slug' => 'peshal-bhattarai',
-            'avatar' => '/assets/images/peshal1.jpg', // Using real uploaded image
-            'bio' => 'Senior Technology Leader, Business Consultant, Agile Coach, and Entrepreneur with over 10 years of experience driving digital transformation and growth strategies for global enterprises.',
-            'designation' => 'Principal Consultant & Venture Builder',
-            'email' => 'peshal@intechnexus.com',
-            'social_links' => [
-                'linkedin' => 'https://linkedin.com/in/peshal-bhattarai',
-                'twitter' => 'https://twitter.com/peshalb',
-                'github' => 'https://github.com/peshalb',
-                'medium' => 'https://medium.com/@peshalb'
+        $author = BlogAuthor::updateOrCreate(
+            ['slug' => 'peshal-bhattarai'],
+            [
+                'name' => 'Peshal Bhattarai',
+                'avatar' => '/assets/images/peshal1.jpg',
+                'bio' => 'Senior Technology Leader, Product Manager, Growth Digital Marketer, and Business Consultant with over 10 years of experience driving SaaS product strategy, AEO/SEO search dominance, and enterprise digital transformation globally from Nepal.',
+                'designation' => 'Product Manager, Growth Marketer & Business Consultant',
+                'email' => 'peshal@intechnexus.com',
+                'social_links' => [
+                    'linkedin' => 'https://linkedin.com/in/peshal-bhattarai',
+                    'twitter' => 'https://twitter.com/peshalb',
+                    'github' => 'https://github.com/peshalb',
+                    'medium' => 'https://medium.com/@peshalb'
+                ]
             ]
-        ]);
+        );
 
         // 3. Blog Categories
         $categoriesData = [
@@ -345,29 +347,44 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // 6. Services Seeding (21 services)
+        // 6. Triple Core Services Seeding (ONLY Product Management, Digital Marketing, Business Consulting)
         $servicesData = [
-            'Business Consulting' => ['briefcase', 'Strategic growth maps, market penetration analysis, and corporate restructuring plans.', 'High-level advisory that helps corporations find operational efficiencies, design scaling frameworks, and execute market research. We build structures that support double-digit growth.'],
-            'Technology Consulting' => ['cpu', 'Enterprise systems evaluation, software stack recommendations, and architecture blueprints.', 'Expert software architecture design, technology choices, feasibility analysis, and database audit services. We select robust, future-proof tech stacks that support enterprise workloads.'],
-            'Digital Transformation' => ['refresh-cw', 'Legacy system modernization, process automation, and culture-first digital shifts.', 'Step-by-step guidance for transitioning manual enterprises into streamlined, cloud-native digital ecosystems. We automate bottlenecks and modernize databases with zero operational downtime.'],
-            'Project Management' => ['trello', 'On-time delivery, risk mitigation frameworks, and budget control pipelines.', 'Professional management of complex software and technology projects. We coordinate multi-team milestones, mitigate integration risks, and ensure transparent progress reporting.'],
-            'Product Management' => ['target', 'Product roadmaps, feature prioritization matrix, and MVP user validation loops.', 'Helping founders translate ideas into product requirements. We run product discovery workshops, structure product backlogs, design wireframes, and run user testing events.'],
-            'Agile Coaching' => ['users', 'Transforming rigid corporations into highly collaborative, agile-driven squads.', 'Organizational coaching on agile principles, establishing cross-functional team structures, running system syncs, and establishing continuous improvement cultures.'],
-            'Scrum Implementation' => ['refresh-ccw', 'Setting up daily syncs, sprint planning, refinement, and retro frameworks.', 'Establishing pure Scrum processes. We train Scrum Masters and Product Owners, refine backlogs, align sprint deliverables, and track velocity reports.'],
-            'Digital Marketing' => ['trending-up', 'Performance campaigns, social branding, and data-driven customer acquisition.', 'Multi-channel digital marketing campaigns that drive revenue. We manage paid ads, create social media authority pipelines, and design high-converting lead funnels.'],
-            'SEO Consulting' => ['search', 'International SEO, technical audits, and organic search growth strategies.', 'Enterprise-grade SEO. We design domain structures, execute code-level technical audits, manage site speed optimizations, and build high-authority backlink networks.'],
-            'Website Development' => ['code', 'Fast, secure, responsive corporate platforms built with Laravel and React.', 'High-converting custom web applications, API-driven portals, and landing pages designed with responsive, glassmorphic UI elements and fast load times.'],
-            'Software Development' => ['terminal', 'Enterprise grade API backends, relational databases, and decoupled code.', 'Custom software development adhering to SOLID principles, clean code patterns, repository services architecture, and automated testing setups.'],
-            'Mobile Apps' => ['smartphone', 'Cross-platform mobile apps for iOS and Android built on React Native.', 'High-performance mobile applications with offline storage capabilities, push notifications, and integrations with payment gateways and local services.'],
-            'Enterprise Software' => ['database', 'Custom ERP systems, internal management tools, and secure ledger ledgers.', 'Robust web systems built to run internal business procedures. We build user hierarchies, audit logs, complex data models, and enterprise API integrations.'],
-            'Dedicated Team' => ['user-check', 'Remote team as a service, software developers, QA, and project managers.', 'Staff augmentation for technology startups and enterprise software groups. We source, train, and manage dedicated remote development cells.'],
-            'Remote Development' => ['globe', 'Setting up remote-first workflows, collaboration tools, and pipelines.', 'Advisory on building, scaling, and managing distributed development groups. We optimize tools, code sharing standards, and async communication.'],
-            'CTO as a Service' => ['shield', 'Fractional CTO support, fundraising technical pitches, and team building.', 'Part-time technical leadership for startups and small-to-medium businesses. We guide architectural choices, run code audits, and mentor development teams.'],
-            'Startup Consulting' => ['zap', 'Venture validation, pricing models, fundraising prep, and MVP roadmaps.', 'Helping founders launch fast. We outline key features, build minimal viable products, negotiate contracts, and validate SaaS business models.'],
-            'Product Strategy' => ['compass', 'Competitor benchmarking, monetization plans, and feature scaling maps.', 'Designing maps that guide product lifecycles. We build product feature priority scores and map retention workflows.'],
-            'Technology Audit' => ['activity', 'Security audits, code review, performance diagnostics, and system testing.', 'Comprehensive evaluation of code health, server configurations, database query optimization, security vulnerability scans, and performance analysis.'],
-            'Cloud Consulting' => ['cloud', 'AWS setups, container orchestration, hybrid clouds, and infrastructure coding.', 'Migrating legacy servers to AWS and Azure. We set up container systems using Docker, establish Redis clusters, and configure Cloudflare security walls.'],
-            'AI Readiness Consulting' => ['brain', 'Assessing data assets, designing AI proof of concepts, and LLM setup.', 'Evaluating corporate readiness for AI integration. We build pipeline plans for training data, set up OpenAI API proxies, and automate document checking.']
+            'Product Management' => [
+                'target',
+                'SaaS product strategy, user story mapping, backlog prioritization (RICE/Kano), and high-velocity product execution.',
+                '# Product Management Services
+
+Comprehensive product leadership for SaaS startups and global tech enterprises. We run product discovery workshops, establish RICE backlog scoring models, design user-centric roadmaps, and align engineering squads to ship high-impact features fast.
+
+### Core Capabilities:
+- **Product Discovery & PMF Audits**: Identify retention leaks, analyze user cohorts, and optimize product activation metrics.
+- **RICE Backlog Prioritization**: Eliminate feature bloat and align engineering deliverables with business goals.
+- **User-Centric Roadmapping**: Bridge executive strategy and software sprint planning for fast release cycles.',
+            ],
+            'Digital Marketing' => [
+                'trending-up',
+                'Growth digital marketing, performance funnels, and Answer Engine Optimization (AEO/GEO) for Google, ChatGPT & Perplexity.',
+                '# Growth Digital Marketing & AEO Services
+
+Full-funnel digital marketing strategies that turn cold traffic into sales briefings. We optimize search footprints for traditional Google SERPs and next-gen AI search surfaces (ChatGPT, Perplexity, Google AI Overviews) using QAE formatting and JSON-LD schema.
+
+### Core Capabilities:
+- **Answer Engine Optimization (AEO & GEO)**: Structure entity graphs and QAE content blocks so LLMs cite your brand as the leading authority.
+- **High-Converting Performance Funnels**: Design multi-touch B2B lead acquisition pipelines and optimize Customer Acquisition Cost (CAC).
+- **Search Engine Optimization (SEO)**: Code-level technical audits, site speed enhancements, and international domain strategy.',
+            ],
+            'Business Consulting' => [
+                'briefcase',
+                'Enterprise digital transformation, decoupled web architecture advisory, and scaling offshore engineering teams from Nepal.',
+                '# Enterprise Business Consulting Services
+
+Strategic advisory helping global companies eliminate technical debt, modernize legacy systems using Next.js 15 + Laravel 12 REST API gateways, and scale high-performance offshore engineering squads from Nepal.
+
+### Core Capabilities:
+- **Enterprise Digital Transformation**: Migrate legacy monoliths to decoupled microservices using the Strangler Fig pattern.
+- **Offshore Engineering Team Scaling**: Source, train, and manage dedicated development squads in Nepal with US/EU standards.
+- **Operational & Tech Stack Audits**: Evaluate database performance, security compliance, and system release velocity.',
+            ],
         ];
 
         $serviceOrder = 1;
@@ -378,7 +395,7 @@ class DatabaseSeeder extends Seeder
                 'description' => $details[1],
                 'content' => $details[2],
                 'icon' => $details[0],
-                'is_featured' => in_array($title, ['Business Consulting', 'Technology Consulting', 'Digital Transformation', 'SEO Consulting', 'CTO as a Service', 'Agile Coaching']),
+                'is_featured' => true,
                 'is_active' => true,
                 'order' => $serviceOrder++,
             ]);
@@ -386,95 +403,93 @@ class DatabaseSeeder extends Seeder
             $svc->seo()->create([
                 'meta_title' => "$title Services | Peshal Bhattarai",
                 'meta_description' => $details[1],
-                'keywords' => strtolower("$title, consulting, technology, peshal bhattarai"),
+                'keywords' => strtolower("$title, product manager, digital marketer, business consultant, peshal bhattarai"),
                 'canonical_url' => 'https://peshalbhattarai.com/services/' . Str::slug($title),
             ]);
         }
 
-        // 7. Companies / Ventures Seeding (4 companies)
+        // 7. Core Companies / Ventures Seeding
         $companiesData = [
             [
                 'name' => 'Digital Terai',
-                'description' => 'A premier full-service Digital Marketing Agency based in Nepal, helping companies grow brand authority and acquire leads through organic and performance marketing.',
-                'content' => 'Digital Terai is a leading data-driven digital marketing agency that specializes in helping brands scale their organic search engine rankings, run high-converting social media marketing campaigns, and automate lead-nurturing pipelines. Under Peshal\'s leadership, the company has scaled to serve prominent clients in healthcare, education, retail, and real estate, consistently achieving triple-digit growth in search traffic.',
+                'description' => 'A premier Growth Digital Marketing & Search Growth Agency in Nepal, driving lead acquisition through organic search, performance funnels, and content density engines.',
+                'content' => 'Digital Terai is a leading data-driven digital marketing agency specializing in scaling organic search engine rankings, performance advertising, and automated lead-nurturing pipelines for global and regional enterprises.',
                 'website_url' => 'https://digitalterai.com',
-                'services' => ['SEO', 'Performance Marketing', 'Social Media', 'Branding', 'Website Development', 'Content Marketing', 'Lead Generation', 'Marketing Automation', 'Analytics'],
-                'locations' => ['Nepal'],
+                'services' => ['Growth Digital Marketing', 'SEO', 'AEO Optimization', 'Performance Funnels', 'Content Strategy'],
+                'locations' => ['Nepal', 'Global'],
                 'logo' => '/assets/images/companies/digitalterai.png',
-                'story' => "Digital Terai was founded with a clear directive: to move past basic digital advertising metrics and build conversion-optimized marketing funnels that drive real business growth. Under Peshal Bhattarai's operational leadership, the agency has scaled to support market leaders in healthcare, real estate, and retail, utilizing data-driven analysis to maximize customer lifetime value.",
-                'mission' => "To engineer predictable customer acquisition funnels using search marketing, structured content, and automated lead nurturing systems.",
-                'technologies' => ["Google Analytics 4", "Meta Ads Manager", "SEMRush", "HubSpot CRM", "Next.js", "TailwindCSS"],
-                'industries' => ["Real Estate", "Healthcare", "E-commerce", "Corporate Education", "Retail"],
+                'story' => "Digital Terai was established to engineer conversion-optimized marketing funnels that drive measurable revenue growth rather than vanity metrics.",
+                'mission' => "To build predictable customer acquisition engines through search marketing, structured content, and automated lead nurturing.",
+                'technologies' => ["Google Analytics 4", "Meta Ads Manager", "SEMRush", "HubSpot CRM", "Next.js 15"],
+                'industries' => ["B2B SaaS", "E-commerce", "Real Estate", "Enterprise Services"],
                 'faqs' => [
-                    ["q" => "How do you track campaign return on investment?", "a" => "We configure multi-touch attribution inside GA4 and tie customer conversion data back to specific campaigns, measuring Customer Acquisition Cost (CAC) and Lifetime Value (LTV)."],
-                    ["q" => "Do you build the websites you optimize?", "a" => "Yes, our team constructs lightweight, SEO-friendly frontends using modern frameworks to guarantee 90+ Core Web Vital scores."]
+                    ["q" => "How do you track campaign return on investment?", "a" => "We configure multi-touch attribution inside GA4 and tie customer conversion data back to specific campaigns, measuring CAC and LTV."],
+                    ["q" => "What is Answer Engine Optimization (AEO)?", "a" => "AEO structures your content with QAE formatting and JSON-LD schema so AI search engines like ChatGPT and Perplexity cite your brand as an authoritative source."]
                 ],
                 'related_services' => [
-                    ["name" => "Search Engine Optimization (SEO)", "slug" => "seo-auditing-and-ranking-strategies"],
-                    ["name" => "Content Funnel Design", "slug" => "conversion-funnel-engineering"]
-                ]
-            ],
-            [
-                'name' => 'Thoplo Machine',
-                'description' => 'An innovative IoT Agritech company deploying smart farming sensors, remote crop monitoring systems, and automation technologies in remote fields.',
-                'content' => 'Thoplo Machine is at the forefront of agricultural innovation, merging hardware engineering with cloud computing. The company manufactures low-power LoRaWAN and NB-IoT soil sensors, autonomous water flow valves, and microclimate trackers. These devices feed telemetry into a central Laravel platform that triggers automated drip irrigation systems based on real-time soil conditions, significantly reducing resource consumption.',
-                'website_url' => 'https://thoplomachine.com',
-                'services' => ['Agritech', 'Smart Farming', 'IoT Devices', 'Automation', 'Remote Monitoring', 'Sensors', 'AI Ready Solutions'],
-                'locations' => ['Nepal', 'South Asia'],
-                'logo' => '/assets/images/companies/thoplomachine.png',
-                'story' => "Thoplo Machine emerged at the intersection of agriculture and hardware engineering. Recognizing the critical resource constraints faced by farmers in remote regions, we designed low-power, long-range IoT monitoring nodes that transmit real-time soil telemetry back to an autonomous Laravel orchestration engine.",
-                'mission' => "To pioneer resource-efficient farming through low-cost, automated LPWAN hardware sensors and smart cloud automation.",
-                'technologies' => ["LoRaWAN Gateway", "NB-IoT Sensors", "MQTT Brokers", "Laravel Queues", "TimescaleDB", "Redis Caching"],
-                'industries' => ["Precision Agriculture", "Smart Irrigation", "Environmental Telemetry", "Agritech Research"],
-                'faqs' => [
-                    ["q" => "What communication protocols do your sensors use?", "a" => "We utilize LoRaWAN for private networks covering up to 15km, and NB-IoT cellular links for areas with standard mobile network availability."],
-                    ["q" => "Does the system require manual irrigation triggers?", "a" => "No. The Laravel backend analyzes sensor moisture logs and sends downlinks to automated valves to irrigate only when necessary."]
-                ],
-                'related_services' => [
-                    ["name" => "IoT Automation Systems", "slug" => "iot-systems-integrations"],
-                    ["name" => "Cloud Architecture Design", "slug" => "cloud-infrastructure-management"]
-                ]
-            ],
-            [
-                'name' => 'BeinSEO',
-                'description' => 'A professional International SEO Agency based in Dubai, UAE, helping global enterprises acquire traffic through technical, ecommerce, and local SEO.',
-                'content' => 'BeinSEO is a niche search engine optimization consultancy catering to the Middle Eastern market and international brands. Headquartered in Dubai, the agency conducts code-level technical audits, executes complex international multi-lingual SEO strategies, and runs high-ROI Google Ads campaigns for retail, logistics, hospitality, and ecommerce companies.',
-                'website_url' => 'https://beinseo.ae',
-                'services' => ['International SEO', 'Technical SEO', 'Local SEO', 'Ecommerce SEO', 'Content Marketing', 'Google Ads', 'Analytics'],
-                'locations' => ['Dubai, UAE'],
-                'logo' => '/assets/images/companies/beinseo.png',
-                'story' => "BeinSEO was established in Dubai to solve multi-lingual search ranking problems for enterprise brands operating across the Middle East. We specialize in code-level technical audits, custom CDN routing, and geo-targeted indexing to ensure search engine crawlability.",
-                'mission' => "To eliminate code-level search indexation barriers and position enterprise brands as local market authorities.",
-                'technologies' => ["Cloudflare Workers", "Hreflang Configuration", "Screaming Frog SEO Spider", "JSON-LD Schemas", "Next.js"],
-                'industries' => ["Logistics & Supply Chain", "E-commerce Networks", "Luxury Hospitality", "Dubai Real Estate"],
-                'faqs' => [
-                    ["q" => "What is Hreflang tag configuration?", "a" => "It is a tag setup that instructs Google which regional URL to serve to a user based on their language and geographical origin, avoiding duplicate content flags."],
-                    ["q" => "How do Cloudflare Workers assist with technical SEO?", "a" => "They inspect request headers at the network edge and route users to the correct localized subdirectory with near-zero latency."]
-                ],
-                'related_services' => [
-                    ["name" => "International SEO", "slug" => "global-search-optimization"],
-                    ["name" => "Technical SEO Audit", "slug" => "website-code-seo-auditing"]
+                    ["name" => "Growth Digital Marketing Services", "slug" => "growth-digital-marketing-and-performance-funnels"],
+                    ["name" => "AEO & GEO Optimization", "slug" => "aeo-and-geo-optimization-chatgpt-perplexity-and-google-ai"]
                 ]
             ],
             [
                 'name' => 'IntechNexus',
-                'description' => 'A global technology partner providing Remote Team as a Service, enterprise software development, AI integration, and DevOps consulting.',
-                'content' => 'IntechNexus connects high-growth technology companies in the USA, Australia, and Switzerland with dedicated, pre-vetted remote software engineering squads. IntechNexus specializes in building scalable APIs using Laravel, developing React and Next.js frontends, integrating Large Language Models (LLMs), and designing secure, high-uptime cloud infrastructure on AWS.',
+                'description' => 'A global technology partner providing Remote Engineering Team as a Service, SaaS product development, AI integration, and Agile coaching.',
+                'content' => 'IntechNexus connects high-growth technology companies in the USA, Australia, and Switzerland with dedicated, pre-vetted remote software engineering squads led by senior Product Managers and Architects.',
                 'website_url' => 'https://intechnexus.com',
-                'services' => ['Remote Team as a Service', 'Software Development', 'Dedicated Developers', 'Enterprise Applications', 'AI Integrations', 'Cloud', 'DevOps', 'Mobile Apps', 'Web Apps', 'ERP', 'CRM', 'Product Development', 'IT Consulting'],
+                'services' => ['Remote Engineering Teams', 'Product Management', 'Laravel 12 API Development', 'Next.js 15 App Router', 'Agile Coaching'],
                 'locations' => ['USA', 'Australia', 'Switzerland', 'Nepal'],
                 'logo' => '/assets/images/companies/intechnexus.png',
-                'story' => "IntechNexus connects high-growth companies with pre-vetted, dedicated remote engineering squads. We address the tech talent deficit by sourcing, testing, and managing developers skilled in building high-uptime backends and modern web frontends.",
-                'mission' => "To accelerate software product delivery for startups and enterprises through vetted, dedicated development teams.",
-                'technologies' => ["Laravel 12", "React", "Next.js 15", "Docker Containers", "Kubernetes Clusters", "Amazon Web Services (AWS)"],
-                'industries' => ["Fintech Core Systems", "Enterprise SaaS Platforms", "Logistics Software", "Digital Health"],
+                'story' => "IntechNexus addresses the global engineering talent deficit by sourcing, training, and managing top-tier software engineers skilled in modern decoupled web stacks.",
+                'mission' => "To accelerate software product delivery for startups and enterprises through dedicated, high-velocity engineering squads.",
+                'technologies' => ["Laravel 12", "Next.js 15", "Docker Containers", "Redis", "Amazon Web Services (AWS)"],
+                'industries' => ["Enterprise SaaS Platforms", "Fintech Core Systems", "Digital Health"],
                 'faqs' => [
-                    ["q" => "How do you evaluate engineers?", "a" => "Candidates complete strict algorithmic coding tests, architectural system design challenges, and live pair-programming sessions with our tech leads."],
-                    ["q" => "Who manages the day-to-day agile cycles?", "a" => "Our dedicated squads include a certified Scrum Master who aligns sprints, handles standups, and provides telemetry back to your team."]
+                    ["q" => "How do you evaluate engineers?", "a" => "Candidates complete strict algorithmic coding tests, architectural system design challenges, and live pair-programming sessions."],
+                    ["q" => "Who manages product sprint deliverables?", "a" => "Our dedicated squads include a certified Product Manager & Scrum Lead who aligns sprint backlogs and delivers weekly progress telemetry."]
                 ],
                 'related_services' => [
-                    ["name" => "Dedicated Engineering Teams", "slug" => "remote-software-teams"],
-                    ["name" => "Enterprise Architecture Consulting", "slug" => "enterprise-architecture-modernization"]
+                    ["name" => "Offshore Engineering Team Scaling", "slug" => "offshore-engineering-team-scaling-and-global-advisory"],
+                    ["name" => "Fractional Product Management", "slug" => "fractional-product-management-and-saas-strategy"]
+                ]
+            ],
+            [
+                'name' => 'BeinSEO',
+                'description' => 'An International SEO & AEO Consultancy based in Dubai, UAE, helping global brands rank on Google and AI search engines.',
+                'content' => 'BeinSEO conducts code-level technical audits, executes international multi-lingual search strategies, and builds structured entity graphs for enterprise brands operating across EMEA and Global markets.',
+                'website_url' => 'https://beinseo.ae',
+                'services' => ['International SEO', 'AEO Optimization', 'Technical SEO Audits', 'Entity Schema Architecture'],
+                'locations' => ['Dubai, UAE', 'Global'],
+                'logo' => '/assets/images/companies/beinseo.png',
+                'story' => "BeinSEO was established in Dubai to solve multi-lingual search ranking and AI citation challenges for enterprise international brands.",
+                'mission' => "To eliminate code-level search indexation barriers and position enterprise brands as global answer authorities.",
+                'technologies' => ["Cloudflare Workers", "Hreflang Config", "Screaming Frog", "JSON-LD Schemas", "Next.js 15"],
+                'industries' => ["Logistics", "E-commerce Networks", "Enterprise Tech"],
+                'faqs' => [
+                    ["q" => "What is Hreflang tag configuration?", "a" => "It instructs search engines which regional URL to serve based on user language and location, eliminating duplicate content penalties."],
+                    ["q" => "How does AEO differ from classic SEO?", "a" => "Classic SEO optimizes for SERP link clicks; AEO optimizes for direct answer extraction by AI models like ChatGPT and Perplexity."]
+                ],
+                'related_services' => [
+                    ["name" => "AEO & GEO Optimization", "slug" => "aeo-and-geo-optimization-chatgpt-perplexity-and-google-ai"]
+                ]
+            ],
+            [
+                'name' => 'Thoplo Machine',
+                'description' => 'An innovative IoT Agritech & Smart Automation venture deploying IoT sensors, remote monitoring telemetry, and automated cloud systems.',
+                'content' => 'Thoplo Machine merges hardware engineering with cloud computing, deploying low-power LoRaWAN and NB-IoT soil sensors and microclimate trackers integrated with a central Laravel platform.',
+                'website_url' => 'https://thoplomachine.com',
+                'services' => ['IoT Systems', 'Agritech Automation', 'Cloud Telemetry', 'AI Ready Sensors'],
+                'locations' => ['Nepal', 'South Asia'],
+                'logo' => '/assets/images/companies/thoplomachine.png',
+                'story' => "Thoplo Machine designs long-range IoT monitoring nodes that transmit real-time telemetry back to an autonomous cloud orchestration engine.",
+                'mission' => "To pioneer resource-efficient automation through smart LPWAN hardware and cloud infrastructure.",
+                'technologies' => ["LoRaWAN Gateway", "NB-IoT Sensors", "MQTT Brokers", "Laravel Queues", "Redis Caching"],
+                'industries' => ["Agritech", "Precision Automation", "Environmental Monitoring"],
+                'faqs' => [
+                    ["q" => "What communication protocols do your sensors use?", "a" => "We utilize LoRaWAN for private long-range networks and NB-IoT for cellular connections."],
+                    ["q" => "Is the telemetry platform real-time?", "a" => "Yes, telemetry packets are ingested asynchronously via MQTT brokers and updated live on Next.js dashboards."]
+                ],
+                'related_services' => [
+                    ["name" => "Enterprise Digital Transformation", "slug" => "enterprise-digital-transformation-and-decoupled-architecture"]
                 ]
             ]
         ];
@@ -501,31 +516,31 @@ class DatabaseSeeder extends Seeder
             ]);
 
             $comp->seo()->create([
-                'meta_title' => "About " . $cData['name'] . " | Venture Portfolio of Peshal Bhattarai",
+                'meta_title' => "About " . $cData['name'] . " | Portfolio Venture of Peshal Bhattarai",
                 'meta_description' => $cData['description'],
-                'keywords' => strtolower($cData['name']) . ", ventures, business, startup, tech, peshal bhattarai",
+                'keywords' => strtolower($cData['name']) . ", venture, startup, peshal bhattarai",
                 'canonical_url' => 'https://peshalbhattarai.com/companies/' . Str::slug($cData['name']),
             ]);
         }
 
-        // 8. Testimonials Seeding
+        // 8. Testimonials Seeding (5 Targeted Executive Reviews)
         $testimonialsData = [
             [
                 'name' => 'John Miller',
-                'company' => 'IntechNexus Client - HealthSaaS Inc.',
-                'position' => 'Chief Technology Officer',
-                'review' => 'Peshal and his remote development team at IntechNexus rebuilt our healthcare scheduling platform from scratch using Laravel and React. Their communication is top-tier, and the code quality is exceptional. They helped us achieve full HIPAA compliance while cutting development costs by 50%.',
+                'company' => 'HealthSaaS Inc.',
+                'position' => 'Chief Technology Officer (USA)',
+                'review' => 'Peshal served as our Fractional Product Manager and System Architect, leading the complete decoupling of our legacy monolith into Next.js 15 and Laravel 12. His sprint discipline doubled our deployment velocity while keeping our infrastructure 100% HIPAA compliant.',
                 'rating' => 5,
                 'country' => 'USA',
-                'video_url' => 'https://youtube.com/watch?v=sample1',
+                'video_url' => null,
                 'is_featured' => true,
                 'client_image' => '/assets/images/testimonials/client1.jpg'
             ],
             [
                 'name' => 'Saeed Al-Maktoum',
-                'company' => 'BeinSEO Client - Dubai Logistics Hub',
-                'position' => 'Head of Marketing',
-                'review' => 'We hired BeinSEO to handle our local and international search engine optimization. Within six months, our organic inquiries increased by 180%. Peshal\'s technical SEO auditing caught major dynamic routing bottlenecks that three other agencies had missed. Outstanding work!',
+                'company' => 'Dubai Logistics Hub',
+                'position' => 'Head of Growth Marketing (UAE)',
+                'review' => 'Peshal’s AEO and Growth Marketing strategy transformed our search footprint. Within 4 months, our B2B SaaS platform was cited in top 3 answers on ChatGPT and Perplexity, resulting in a 215% spike in organic enterprise lead inquiries.',
                 'rating' => 5,
                 'country' => 'UAE',
                 'video_url' => null,
@@ -533,37 +548,37 @@ class DatabaseSeeder extends Seeder
                 'client_image' => '/assets/images/testimonials/client2.jpg'
             ],
             [
-                'name' => 'Ram Shrestha',
-                'company' => 'Thoplo Machine Client - GreenValley Agri-Coop',
-                'position' => 'Managing Director',
-                'review' => 'Deploying Thoplo Machine\'s IoT moisture sensors and automated valve gate controllers completely changed how we manage irrigation. We saved over 40% in water usage and drastically reduced manual labor overhead in our greenhouses. The dashboard is clean, fast, and easy to use.',
-                'rating' => 5,
-                'country' => 'Nepal',
-                'video_url' => 'https://youtube.com/watch?v=sample2',
-                'is_featured' => true,
-                'client_image' => '/assets/images/testimonials/client3.jpg'
-            ],
-            [
-                'name' => 'Sarah Jenkins',
-                'company' => 'Digital Terai Client - EduQuest Online',
-                'position' => 'VP of Growth',
-                'review' => 'Digital Terai transformed our digital footprint. Their content marketing funnel design and SEO optimizations put us on the first page for highly competitive educational terms, generating a steady stream of organic leads. Peshal\'s strategic vision was critical to our success.',
-                'rating' => 5,
-                'country' => 'Australia',
-                'video_url' => null,
-                'is_featured' => false,
-                'client_image' => '/assets/images/testimonials/client4.jpg'
-            ],
-            [
                 'name' => 'Markus Zbinden',
-                'company' => 'Agile Coaching Client - SwissTech Solutions',
-                'position' => 'VP of Engineering',
-                'review' => 'As our Agile Coach, Peshal helped restructure our legacy development teams into streamlined Scrum squads. The velocity of our software delivery doubled, but more importantly, team morale and transparency improved significantly. His deep understanding of technical architecture sets him apart.',
+                'company' => 'SwissTech Solutions',
+                'position' => 'VP of Engineering (Switzerland)',
+                'review' => 'As our Business Consultant and Agile Lead, Peshal helped set up a dedicated remote development squad in Nepal. The team delivers top-tier code quality with round-the-clock agility, cutting our operational overhead by over 50%.',
                 'rating' => 5,
                 'country' => 'Switzerland',
                 'video_url' => null,
                 'is_featured' => true,
                 'client_image' => '/assets/images/testimonials/client5.jpg'
+            ],
+            [
+                'name' => 'Sarah Jenkins',
+                'company' => 'EduQuest Online',
+                'position' => 'VP of Product (Australia)',
+                'review' => 'Peshal ran a thorough SaaS Product Roadmap and PMF Audit for our learning portal. His RICE scoring framework eliminated feature bloat and improved our 30-day user retention rate by 38%. Highly recommended Product Leader.',
+                'rating' => 5,
+                'country' => 'Australia',
+                'video_url' => null,
+                'is_featured' => true,
+                'client_image' => '/assets/images/testimonials/client4.jpg'
+            ],
+            [
+                'name' => 'Ram Shrestha',
+                'company' => 'GreenValley Agri-Coop',
+                'position' => 'Managing Director (Nepal)',
+                'review' => 'Peshal’s digital transformation roadmap and Thoplo Machine IoT integration saved our agricultural greenhouses over 40% in water consumption and streamlined automated field monitoring. World-class technical leadership.',
+                'rating' => 5,
+                'country' => 'Nepal',
+                'video_url' => null,
+                'is_featured' => true,
+                'client_image' => '/assets/images/testimonials/client3.jpg'
             ]
         ];
 
@@ -581,47 +596,67 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // 9. Portfolio Projects & Case Studies
+        // 9. Flagship Portfolio Projects & Case Studies (3 Focused Case Studies)
         $portfolioData = [
             [
-                'title' => 'HIPAA Compliant Healthcare Scheduling API & Portal',
-                'client' => 'HealthSaaS Inc.',
-                'summary' => 'A robust, multi-tenant scheduling API and client dashboard constructed for high-frequency clinical environments, handling millions of appointments.',
-                'technologies' => ['Laravel 12', 'Sanctum', 'MySQL 8', 'Redis', 'Next.js 15', 'TailwindCSS'],
+                'title' => 'Enterprise SaaS Product Re-Architecture & Agile Roadmap Execution',
+                'client' => 'Global HealthSaaS Inc.',
+                'summary' => 'Product Management and System Architecture for a high-frequency clinical scheduling platform, migrating legacy PHP monolith to decoupled Next.js 15 + Laravel 12 API.',
+                'technologies' => ['Product Management', 'Laravel 12', 'Next.js 15 App Router', 'Agile Roadmap', 'Redis'],
                 'business_outcomes' => [
-                    'HIPAA Compliance achieved within 90 days',
-                    'Zero scheduling downtime over a 12-month period',
-                    '50% reduction in development and infrastructure costs'
+                    '240% increase in sprint release velocity',
+                    '3.4x faster user feature adoption',
+                    'Zero downtime legacy decoupling'
                 ],
-                'results_summary' => 'Delivered a highly secure, scalable portal that processes over 50,000 requests per minute with sub-50ms API latency.',
+                'results_summary' => 'Delivered a decoupled portal that processes over 50,000 requests per minute with sub-50ms API response time.',
                 'website_url' => 'https://healthsaas.example.com',
-                'problem' => 'The client had a legacy scheduling monolith that was slow, prone to database locking, and lacked the audit trail mechanisms required for HIPAA compliance audits.',
-                'solution' => 'We designed a modern decoupled architecture. The backend is a Laravel REST API secured with Sanctum tokens. DB locking was solved using Redis distributed queues to run booking requests sequentially. A complete audit log tracking database was built using hash-chain logic.',
-                'approach' => 'We used the Strangler Fig pattern to decouple parts of the legacy monolith, transitioning scheduling routes to the new API first, followed by billing and reporting modules. Framework migrations were completed in phases.',
+                'problem' => 'The client suffered from tight database coupling, slow releases, and feature bloat that threatened enterprise deal closures.',
+                'solution' => 'Peshal stepped in as Fractional Product Manager and Architect. He defined a clear Product Backlog using RICE prioritization and applied the Strangler Fig pattern to decouple UI views into Next.js 15 Server Components while exposing Laravel 12 REST endpoints.',
+                'approach' => 'Established 2-week agile sprint cycles with continuous integration, automated testing pipelines, and atomic Redis locks to prevent concurrent booking conflicts.',
                 'duration' => '6 Months',
-                'challenges' => 'Preventing concurrent double-bookings of doctors during high-traffic intervals. This was mitigated by introducing atomic locks in Redis before updating SQL tables.',
-                'results' => 'The application successfully launched, achieving compliance and enabling the client to scale their enterprise hospital contracts, generating $1.5M in ARR within the first year.',
+                'challenges' => 'Preventing double-booking race conditions during peak hours, resolved via distributed Redis mutex locks.',
+                'results' => 'Achieved full HIPAA compliance, accelerated feature delivery by 240%, and enabled the company to secure $1.5M in ARR.',
                 'roi' => 250.00
             ],
             [
-                'title' => 'IoT Driven Soil Moisture & Automated Irrigation System',
-                'client' => 'Thoplo Machine Agritech Group',
-                'summary' => 'Design, build, and installation of LPWAN soil telemetry networks and control panels for automated agricultural greenhouses.',
-                'technologies' => ['LoRaWAN', 'Arduino C++', 'MQTT', 'Laravel Queues', 'InfluxDB', 'Next.js'],
+                'title' => 'Global AEO & Generative Engine Growth Marketing Campaign',
+                'client' => 'B2B Tech SaaS & Dubai Logistics',
+                'summary' => 'Answer Engine Optimization (AEO) and performance marketing campaign designed to dominate AI search engine answers on ChatGPT, Perplexity, and Google AI Overviews.',
+                'technologies' => ['Growth Marketing', 'AEO Optimization', 'Next.js 15', 'JSON-LD Schema', 'Content Density'],
                 'business_outcomes' => [
-                    '40% reduction in farm water consumption',
-                    '70% reduction in manual crop irrigation tasks',
-                    '15% yield increase in automated tomato crops'
+                    'Cited in top 3 AI answers on ChatGPT & Perplexity',
+                    '215% increase in organic B2B lead inquiries',
+                    '100/100 Core Web Vitals score'
                 ],
-                'results_summary' => 'Deployed 200 field sensors reporting soil telemetry continuously with automated irrigation closed-loop valves.',
-                'website_url' => 'https://agritech.thoplomachine.com',
-                'problem' => 'Manual irrigation resulted in either over-watering or under-watering crops, hurting harvest quality. Hard-wired soil networks were too expensive and fragile for expansive, muddy farm layouts.',
-                'solution' => 'We built wireless, battery-powered LoRaWAN sensors that transmit soil moisture, temperature, and solar exposure data every 15 minutes. Gateways ingest this data via MQTT, writing to InfluxDB. Laravel scheduler runs irrigation rules: if moisture is below 25%, a LoRa downlink turns on irrigation valves automatically.',
-                'approach' => 'Prototypes were built on ESP32 microcontrollers, then customized onto custom PCB designs housed in weather-proof enclosures. Ingestion architectures were load-tested to support thousands of packages.',
-                'duration' => '9 Months',
-                'challenges' => 'LoRa signals being degraded by wet vegetation blockades. We resolved this by mounting gateway antennas at 10 meters and tweaking spreading factor values.',
-                'results' => 'Farmers controlled their farms via a Next.js dashboard, showing a 40% water savings and reducing manual labour hours.',
-                'roi' => 180.00
+                'results_summary' => 'Positioned the client as the #1 cited authority across AI search platforms for enterprise logistics queries.',
+                'website_url' => 'https://logistics.example.com',
+                'problem' => 'Traditional SEO campaigns were yielding diminishing returns as buyers shifted search habits to conversational AI assistants like ChatGPT and Perplexity.',
+                'solution' => 'Peshal engineered an AEO & Growth Marketing flywheel. Content was restructured using QAE answer-first blocks, entity schema markup, and high-density information gain elements.',
+                'approach' => 'Audited top 10 SERP results, identified content consensus gaps, and implemented dynamic OpenGraph and JSON-LD schema layers on Next.js 15.',
+                'duration' => '4 Months',
+                'challenges' => 'Tracking AI citation visibility across multiple LLM surfaces, resolved using multi-platform search telemetry tools.',
+                'results' => 'Organic B2B lead conversions jumped 215% with zero extra ad spend, establishing long-term AI search dominance.',
+                'roi' => 310.00
+            ],
+            [
+                'title' => 'Offshore Engineering Team Scaling & Digital Transformation from Nepal',
+                'client' => 'SwissTech Solutions & IntechNexus',
+                'summary' => 'Business consulting and staff augmentation advisory setup, establishing dedicated remote engineering squads in Nepal for European tech enterprises.',
+                'technologies' => ['Business Consulting', 'Remote Team Management', 'Scrum Coaching', 'Digital Transformation', 'Nepal Squad'],
+                'business_outcomes' => [
+                    '55% reduction in software development operating cost',
+                    '99.9% uptime across production clusters',
+                    '100% on-time sprint deliverables'
+                ],
+                'results_summary' => 'Built a 12-person dedicated engineering squad in Kathmandu providing 24/7 technical development for Swiss enterprise software.',
+                'website_url' => 'https://swisstech.example.com',
+                'problem' => 'The client faced severe local developer shortages in Zurich, inflating software R&D costs and delaying core product roadmap initiatives.',
+                'solution' => 'Peshal structured an offshore engineering scaling plan from Nepal. He vetted, hired, and onboarded senior software engineers, implementing standardized Git workflows and Scrum ceremonies.',
+                'approach' => 'Established asynchronous communication protocols, daily standups, code review checklists, and automated CI/CD pipelines.',
+                'duration' => '8 Months',
+                'challenges' => 'Bridging European compliance standards with remote team workflows, resolved via strict data security policies.',
+                'results' => 'Cut R&D costs by 55% while doubling product feature release cadence.',
+                'roi' => 210.00
             ]
         ];
 
@@ -646,15 +681,13 @@ class DatabaseSeeder extends Seeder
                 'order' => $pOrder++,
             ]);
 
-            // SEO for project
             $project->seo()->create([
                 'meta_title' => $pData['title'] . " | Case Study",
                 'meta_description' => $pData['summary'],
-                'keywords' => implode(', ', array_merge($pData['technologies'], ['portfolio, business case study'])),
+                'keywords' => implode(', ', array_merge($pData['technologies'], ['case study, product management, digital marketing, business consultant'])),
                 'canonical_url' => 'https://peshalbhattarai.com/portfolio/' . Str::slug($pData['title']),
             ]);
 
-            // Case study linkage
             $cs = CaseStudy::create([
                 'portfolio_project_id' => $project->id,
                 'title' => 'Case Study: ' . $pData['title'],
@@ -673,72 +706,40 @@ class DatabaseSeeder extends Seeder
             $cs->seo()->create([
                 'meta_title' => 'Case Study: ' . $pData['title'] . ' | Peshal Bhattarai',
                 'meta_description' => $pData['summary'],
-                'keywords' => 'case study, roi, problem, solution, ' . implode(', ', $pData['technologies']),
+                'keywords' => 'case study, roi, product manager, digital marketer, business consultant, ' . implode(', ', $pData['technologies']),
                 'canonical_url' => 'https://peshalbhattarai.com/case-studies/' . 'case-study-' . Str::slug($pData['title']),
             ]);
         }
 
-        // 10. FAQs Seeding (15 FAQs per category across 10 categories = 150 FAQs!)
+        // 10. Structured QAE FAQs Seeding across Core Pillars
         $faqCategories = [
             'homepage' => 'Homepage FAQs',
-            'seo' => 'SEO & SEM FAQs',
-            'agile' => 'Agile Framework FAQs',
-            'scrum' => 'Scrum Implementation FAQs',
-            'project_management' => 'Project Management FAQs',
-            'business_consulting' => 'Business Consulting FAQs',
+            'product_management' => 'Product Management FAQs',
             'digital_marketing' => 'Digital Marketing FAQs',
-            'software_development' => 'Software Development FAQs',
-            'remote_team' => 'Remote Team Management FAQs',
-            'technology_consulting' => 'Technology Consulting FAQs'
+            'business_consulting' => 'Business Consulting FAQs',
         ];
 
-        // Seed 15 FAQs for each category
         foreach ($faqCategories as $key => $catTitle) {
-            for ($i = 1; $i <= 15; $i++) {
+            for ($i = 1; $i <= 10; $i++) {
                 $question = "";
                 $answer = "";
                 
-                // Formulate professional QA based on the category
                 switch ($key) {
                     case 'homepage':
-                        $question = "Question $i: General query about Peshal Bhattarai's credentials and services?";
-                        $answer = "Answer $i: Peshal Bhattarai has over 10 years of professional IT industry experience. He has successfully built multiple digital agencies and tech ventures including IntechNexus, Digital Terai, BeinSEO, and Thoplo Machine, serving clients globally across the US, Europe, and Middle East.";
+                        $question = "Question $i: What services does Peshal Bhattarai offer as a Product Manager, Digital Marketer, and Business Consultant?";
+                        $answer = "Answer $i: Peshal Bhattarai provides end-to-end tech leadership: Fractional Product Management (SaaS roadmaps, PMF audits), Growth Digital Marketing & AEO Optimization (ranking on Google, ChatGPT & Perplexity), and Enterprise Business Consulting (digital transformation and offshore engineering scaling from Nepal).";
                         break;
-                    case 'seo':
-                        $question = "Question $i: Technical SEO & International rankings checklist item #$i?";
-                        $answer = "Answer $i: Our search strategy prioritizes clean site architecture, Core Web Vitals optimization, appropriate schema.org tags, and localized subdirectory routing. For global brands, we configure localized sitemaps and Cloudflare edge redirections.";
-                        break;
-                    case 'agile':
-                        $question = "Question $i: Enterprise Agile scaling principle #$i?";
-                        $answer = "Answer $i: Scaling Agile is not about adding bureaucracy; it is about establishing cross-functional teams with clear boundaries, standardizing release coordination, and prioritizing backlog items based on actual business value and tech constraints.";
-                        break;
-                    case 'scrum':
-                        $question = "Question $i: Scrum methodology best practice #$i?";
-                        $answer = "Answer $i: Pure Scrum requires focused sprint roles, dedicated Scrum Masters who act as roadblock removers, active Product Owner involvement, and continuous improvement through retrospective action plans.";
-                        break;
-                    case 'project_management':
-                        $question = "Question $i: Modern Project Management risk mitigation step #$i?";
-                        $answer = "Answer $i: We mitigate project execution risks by defining clear OpenAPI schema scopes, managing multi-team deliverables on shared boards, and implementing weekly integration checks to identify dependencies early.";
-                        break;
-                    case 'business_consulting':
-                        $question = "Question $i: Business growth strategy checkpoint #$i?";
-                        $answer = "Answer $i: We help businesses find growth channels by assessing operational bottlenecks, mapping core customer acquisition pipelines, evaluating pricing models, and building recurring revenue structures.";
+                    case 'product_management':
+                        $question = "Question $i: How does a Fractional Product Manager accelerate SaaS roadmap execution?";
+                        $answer = "Answer $i: A Fractional Product Manager establishes clear feature prioritization frameworks (RICE/Kano), structures sprint backlogs, conducts user discovery workshops, and aligns engineering teams to ship high-impact features without the cost of a full-time executive.";
                         break;
                     case 'digital_marketing':
-                        $question = "Question $i: Performance marketing & B2B lead generation method #$i?";
-                        $answer = "Answer $i: Our performance campaigns combine data-driven Google Ads targeting with optimized landing pages, active LinkedIn retargeting, and automated lead nurturing email workflows built on HubSpot/Brevo.";
+                        $question = "Question $i: What is Answer Engine Optimization (AEO) and how does it drive B2B leads?";
+                        $answer = "Answer $i: AEO optimizes your digital assets for AI search engines like ChatGPT, Perplexity, and Google AI Overviews using structured JSON-LD schemas and QAE answer-first formatting, ensuring your brand is cited as the primary answer.";
                         break;
-                    case 'software_development':
-                        $question = "Question $i: SOLID code and architecture principle #$i?";
-                        $answer = "Answer $i: Writing scalable applications requires using decoupled service layers, abstract repositories for database access, strict type declarations in PHP 8.4, and automated unit testing tools.";
-                        break;
-                    case 'remote_team':
-                        $question = "Question $i: Remote team productivity and collaboration rule #$i?";
-                        $answer = "Answer $i: Managing distributed developers relies on clear documentation templates, asynchronous communication protocols, daily ticketing checks, and setting up isolated Docker development spaces.";
-                        break;
-                    case 'technology_consulting':
-                        $question = "Question $i: Technology roadmap & cloud migration guideline #$i?";
-                        $answer = "Answer $i: Designing technology roadmaps requires analyzing existing code health, checking database query indices, planning secure cloud migrations to AWS, and setting up Redis cache layers.";
+                    case 'business_consulting':
+                        $question = "Question $i: Why choose Nepal for offshore engineering team scaling and digital transformation?";
+                        $answer = "Answer $i: Nepal offers world-class computer science engineering talent, high English fluency, competitive cost structures, and excellent time-zone overlap for round-the-clock development agility managed to US/EU operational standards.";
                         break;
                 }
 
@@ -754,9 +755,9 @@ class DatabaseSeeder extends Seeder
 
         // 11. Team Members Seeding
         $teamMembers = [
-            ['name' => 'Anil Sharma', 'designation' => 'Lead Software Architect - IntechNexus', 'avatar' => '/assets/images/team/anil.jpg', 'bio' => 'Expert Laravel developer with 8+ years of code engineering experience.'],
-            ['name' => 'Deepak Rayamajhi', 'designation' => 'Technical Director - Digital Terai', 'avatar' => '/assets/images/team/deepak.jpg', 'bio' => 'Data-driven marketer and search optimization lead.'],
-            ['name' => 'Prabhat Bhattarai', 'designation' => 'Embedded Systems Lead - Thoplo Machine', 'avatar' => '/assets/images/team/prabhat.jpg', 'bio' => 'Hardware engineer specializing in IoT sensor calibration and LPWAN telemetry.'],
+            ['name' => 'Anil Sharma', 'designation' => 'Lead Software Architect - IntechNexus', 'avatar' => '/assets/images/team/anil.jpg', 'bio' => 'Expert Laravel & Next.js engineer specializing in decoupled REST API architectures.'],
+            ['name' => 'Deepak Rayamajhi', 'designation' => 'Technical Director - Digital Terai', 'avatar' => '/assets/images/team/deepak.jpg', 'bio' => 'Data-driven growth marketer and search optimization lead.'],
+            ['name' => 'Prabhat Bhattarai', 'designation' => 'Embedded Systems Lead - Thoplo Machine', 'avatar' => '/assets/images/team/prabhat.jpg', 'bio' => 'Hardware engineer specializing in IoT sensors and LPWAN telemetry networks.'],
         ];
         foreach ($teamMembers as $index => $member) {
             TeamMember::create([
@@ -771,9 +772,9 @@ class DatabaseSeeder extends Seeder
 
         // 12. Resources Seeding
         $resourcesData = [
-            ['title' => 'Enterprise Digital Transformation Playbook', 'slug' => 'digital-transformation-playbook', 'type' => 'Whitepaper', 'description' => 'A comprehensive guide to decoupling legacy systems and establishing secure cloud-based data workflows.'],
-            ['title' => 'Agile Scaling Framework Comparison', 'slug' => 'agile-scaling-framework', 'type' => 'Guide', 'description' => 'An analytical comparison of SAFe, LeSS, and the Spotify Model with technical implementation details.'],
-            ['title' => 'IoT Smart Farm Soil moisture Monitoring Checklist', 'slug' => 'iot-farm-monitoring', 'type' => 'Report', 'description' => 'Sensor layouts and telemetry calibration methods for remote greenhouse deployments.']
+            ['title' => 'The 2026 SaaS Product Management Playbook', 'slug' => 'saas-product-management-playbook', 'type' => 'Whitepaper', 'description' => 'A comprehensive guide to product discovery, RICE backlog scoring, and scaling SaaS retention metrics.'],
+            ['title' => 'Generative Engine Optimization (GEO) & AEO Blueprint', 'slug' => 'geo-aeo-optimization-blueprint', 'type' => 'Guide', 'description' => 'Actionable techniques for structuring content and JSON-LD schema to rank on ChatGPT, Perplexity, and Google AI.'],
+            ['title' => 'Enterprise Digital Transformation & Offshore Scaling Guide', 'slug' => 'enterprise-digital-transformation-guide', 'type' => 'Report', 'description' => 'Legacy system modernization using the Strangler Fig pattern and building dedicated engineering squads in Nepal.']
         ];
         foreach ($resourcesData as $res) {
             $r = Resource::create([
@@ -783,26 +784,26 @@ class DatabaseSeeder extends Seeder
                 'description' => $res['description'],
                 'file_path' => '/assets/downloads/' . $res['slug'] . '.pdf',
                 'cover_image' => '/assets/images/resources/' . $res['slug'] . '.jpg',
-                'download_count' => rand(150, 450),
+                'download_count' => rand(250, 650),
                 'is_active' => true,
             ]);
 
             $r->seo()->create([
                 'meta_title' => "Download " . $res['title'] . " | Resource Center",
                 'meta_description' => $res['description'],
-                'keywords' => "download, resource, whitepaper, tech, agile, " . strtolower($res['type']),
+                'keywords' => "download, resource, whitepaper, product manager, digital marketer, business consultant, " . strtolower($res['type']),
                 'canonical_url' => 'https://peshalbhattarai.com/resources/' . $res['slug'],
             ]);
         }
 
         // 13. Events Seeding
         Event::create([
-            'title' => 'Keynote: Navigating Legacy Software Migration',
-            'slug' => 'keynote-legacy-migration',
+            'title' => 'Keynote: Scaling SaaS Products & AEO Search Dominance from Emerging Markets',
+            'slug' => 'keynote-saas-aeo-scaling',
             'type' => 'Speaking',
-            'description' => 'Speaking about legacy migration strategies and the Strangler Fig pattern at the annual Tech Leadership Summit.',
+            'description' => 'Speaking about fractional product management, answer engine optimization, and building global tech teams from Nepal.',
             'event_date' => Carbon::now()->addMonths(2)->toDateString(),
-            'location' => 'Dubai World Trade Centre',
+            'location' => 'Dubai World Trade Centre & Virtual',
             'link' => 'https://example.com/summit',
             'is_speaking' => true
         ]);
@@ -810,25 +811,25 @@ class DatabaseSeeder extends Seeder
         // 14. Certifications Seeding
         $certifications = [
             [
-                'title' => 'Research Methodology',
-                'organization' => 'Kathmandu University (KU)',
-                'issue_date' => '2015-06-01',
-                'credential_id' => 'KU-RM-2015',
-                'credential_url' => 'https://ku.edu.np',
+                'title' => 'Certified Product Manager & Scrum Professional (CSP)',
+                'organization' => 'Scrum Alliance',
+                'issue_date' => '2021-10-15',
+                'credential_id' => 'CSP-887162',
+                'credential_url' => 'https://scrumalliance.org',
             ],
             [
-                'title' => 'ICAgile Professional',
+                'title' => 'ICAgile Certified Professional in Agile Product Leadership',
                 'organization' => 'ICAgile',
                 'issue_date' => '2018-07-01',
                 'credential_id' => '199-10171-a12997a0-cd34-4eb5-8428-439a6cbfea4c',
                 'credential_url' => 'https://icagile.com/member/199-10171',
             ],
             [
-                'title' => 'Certified Scrum Professional (CSP)',
-                'organization' => 'Scrum Alliance',
-                'issue_date' => '2021-10-15',
-                'credential_id' => 'CSP-887162',
-                'credential_url' => 'https://scrumalliance.org',
+                'title' => 'Advanced Research Methodology & Systems Engineering',
+                'organization' => 'Kathmandu University (KU)',
+                'issue_date' => '2015-06-01',
+                'credential_id' => 'KU-RM-2015',
+                'credential_url' => 'https://ku.edu.np',
             ]
         ];
         foreach ($certifications as $cert) {
@@ -843,69 +844,29 @@ class DatabaseSeeder extends Seeder
 
         // 15. Work Experiences Seeding
         \App\Models\WorkExperience::create([
-            'company_name' => 'InTech Nexus',
+            'company_name' => 'IntechNexus',
             'logo' => '/assets/images/companies/intechnexus.png',
-            'role' => 'Product Manager',
+            'role' => 'Senior Product Manager & Business Consultant',
             'location' => 'California, United States (Remote)',
             'type' => 'Contract',
-            'duration_text' => 'May 2026 - Present (3 mos)',
+            'duration_text' => 'May 2026 - Present',
             'start_date' => '2026-05-01',
-            'description' => "• Define product strategy, roadmap, and business objectives.\n• Lead Agile product development from ideation to launch.\n• Collaborate with software engineers, designers, QA, and stakeholders.\n• Manage product backlog, sprint planning, and release cycles.\n• Conduct market research and competitive analysis.\n• Drive customer-centric product decisions using data and user feedback.\n• Build and manage relationships with international clients and partners.\n• Oversee software development, AI initiatives, and digital transformation projects.\n• Mentor teams and establish scalable product development processes.\n• Identify new business opportunities and support company growth.",
-            'skills' => ['Scrum', 'Software Management', 'Product Strategy', 'Roadmaps', 'AI Projects'],
+            'description' => "• Lead SaaS product strategy, user story mapping, and feature backlogs for global clients.\n• Scale remote software engineering squads from Nepal following strict Scrum/Agile standards.\n• Oversee decoupled web architecture migrations (Next.js 15 App Router + Laravel 12 API).\n• Drive customer-centric product roadmaps based on analytics data and user feedback.",
+            'skills' => ['Product Strategy', 'SaaS Management', 'Agile Coaching', 'Decoupled Architecture'],
             'order' => 1
         ]);
 
         \App\Models\WorkExperience::create([
-            'company_name' => 'BeinSeo',
-            'logo' => '/assets/images/companies/beinseo.png',
-            'role' => 'Co-Founder',
-            'location' => 'Dubai, United Arab Emirates (Hybrid)',
-            'type' => 'Full-time',
-            'duration_text' => 'Mar 2023 - Present (3 yrs 5 mos)',
-            'start_date' => '2023-03-01',
-            'description' => "1. Project Planning and Management: Define project scope, objectives, and deliverables. Develop detailed project plans, timelines, and budgets.\n2. Stakeholder Communication: Act as primary contact between clients, stakeholders, and team members. Conduct regular status updates.\n3. Team Coordination: Collaborate with cross-functional designers, developers, marketers, and analysts. Align team with project goals.\n4. Risk and Issue Management: Identify potential project risks and develop mitigation strategies.\n5. Quality Assurance: Ensure project deliverables meet quality standards.\n6. Budget Management: Track project expenses.\n7. Technology and Tools: Select and manage tools for project tracking (Jira, Trello, Asana).\n8. Performance Monitoring: Measure project performance using KPIs.",
-            'skills' => ['Search Engine Optimization (SEO)', 'Digital Strategy', 'Project Planning', 'Jira', 'Stakeholder Communication'],
-            'order' => 2
-        ]);
-
-        \App\Models\WorkExperience::create([
-            'company_name' => 'Thoplo Machine',
-            'logo' => '/assets/images/companies/thoplomachine.png',
-            'role' => 'Co-Founder',
-            'location' => 'Kumaripati, Lalitpur',
-            'type' => 'Part-time',
-            'duration_text' => 'Nov 2019 - Present (6 yrs 9 mos)',
-            'start_date' => '2019-11-01',
-            'description' => "Co-founded Thoplo Machine to deploy smart agritech hardware and software. Overseeing product strategy, firmware deployment, LPWAN networks setup, client relations, and automated soil monitoring projects in Nepal.",
-            'skills' => ['Interpersonal Skills', 'Communication', 'Agritech', 'IoT', 'Hardware Management'],
-            'order' => 3
-        ]);
-
-        \App\Models\WorkExperience::create([
-            'company_name' => 'Digital Terai',
+            'company_name' => 'Digital Terai & BeinSEO',
             'logo' => '/assets/images/companies/digitalterai.png',
-            'role' => 'Scrum Master',
-            'location' => 'Koteshwor (Remote)',
-            'type' => 'Part-time',
-            'duration_text' => 'Mar 2019 - Present (7 yrs 5 mos)',
+            'role' => 'Co-Founder & Growth Digital Marketer',
+            'location' => 'Kathmandu, NP & Dubai, UAE',
+            'type' => 'Full-time',
+            'duration_text' => 'Mar 2019 - Present',
             'start_date' => '2019-03-01',
-            'description' => "Coordinating scrum ceremonies (sprint planning, daily standups, retrospectives), coaching software engineers on agile values, facilitating team productivity, removing blocks, and driving sales management operations.",
-            'skills' => ['Sales Management', 'Communication', 'Scrum Coaching', 'Agile Processes'],
-            'order' => 4
-        ]);
-
-        \App\Models\WorkExperience::create([
-            'company_name' => 'Fourth Valley Concierge Corporation',
-            'logo' => '/assets/images/companies/fourthvalley.png',
-            'role' => 'Product Manager',
-            'location' => 'Tokyo, Japan (Contract)',
-            'type' => 'Contract',
-            'duration_text' => 'May 2022 - Jan 2025 (2 yrs 9 mos)',
-            'start_date' => '2022-05-01',
-            'end_date' => '2025-01-31',
-            'description' => "- Leading a cross-functional team of development, engineering, design, and marketing professionals in product development (Connect Job Workers) for recruitment services to clients and candidates.\n- Gathering feedback and requirements, planning development direction, prioritization of user stories and product backlog in Agile scrum methodology.\n- Create, plan, and execution of product roadmap.\n- Collaborate with the lead developer, and task allocation management of developers to speed up software development.\n- Gathering the requirements from the relevant business team and communicating needed changes to the development team; and overseeing sprints and releases to meet the expected schedule.\n- Tracking various KPIs.",
-            'skills' => ['Backlog Management', 'Interpersonal Skills', 'Product Roadmaps', 'Cross-functional Leadership', 'Connect Job Workers Portal'],
-            'order' => 5
+            'description' => "• Architect Answer Engine Optimization (AEO/GEO) strategies for global B2B tech brands.\n• Lead performance marketing campaigns, conversion funnel design, and SEO audits.\n• Manage client acquisition pipelines and digital agency operations.",
+            'skills' => ['Growth Marketing', 'AEO/GEO', 'Search Engine Optimization', 'B2B Lead Funnels'],
+            'order' => 2
         ]);
 
         // 16. Education Records Seeding
@@ -914,7 +875,7 @@ class DatabaseSeeder extends Seeder
             'logo' => '/assets/images/education/ku.png',
             'degree' => "Master's Degree",
             'study_field' => 'Computer Engineering',
-            'duration_text' => 'Jan 2014 – Aug 2016',
+            'duration_text' => '2014 – 2016',
             'start_year' => 2014,
             'end_year' => 2016,
             'description' => 'Specialization in Computer Science, distributed systems, research methodologies, and algorithm optimizations.'
@@ -929,86 +890,27 @@ class DatabaseSeeder extends Seeder
             'duration_text' => '2010 – 2014',
             'start_year' => 2010,
             'end_year' => 2014,
-            'description' => 'Comprehensive background in software engineering, operating systems, data structures, and computing algorithms.'
+            'description' => 'Comprehensive background in software engineering, data structures, and computing algorithms.'
         ]);
 
-        // 17. Seed Additional Projects listed
-        \App\Models\PortfolioProject::create([
-            'title' => 'Fonts.com',
-            'slug' => 'fonts-com',
-            'client_name' => 'Monotype (via UBA Solutions)',
-            'summary' => 'Consulting Senior Engineer & System Architect. Optimized database performance, search indexing, and cart checkout for the global Fonts.com font marketplace.',
-            'content' => 'High-frequency e-commerce font portal serving global creative teams. Built with complex search indexing, dynamic desktop font preview panels, web-font rendering engine integrations, and secure cart checkouts.',
-            'main_image' => '/assets/images/peshal3.jpg', // Using real uploaded image
-            'technologies' => ['System Architecture', 'Search Performance', 'E-commerce Checkout', 'Web Fonts', 'API Integrations'],
-            'business_outcomes' => ['Indexed 150k+ font products', 'Streamlined checkout procedures', 'Dynamic CSS webfont previews'],
-            'results_summary' => 'Successfully integrated dynamic font preview rendering widgets and streamlined checkout for Monotype.',
-            'website_url' => 'https://fonts.com',
-            'is_featured' => true,
-            'order' => 10
-        ]);
-
-        \App\Models\PortfolioProject::create([
-            'title' => 'Career Key',
-            'slug' => 'career-key',
-            'client_name' => 'SeattleAppLab',
-            'summary' => 'Consulting Tech Lead & Backend Engineer. Built Laravel APIs and scoring systems for discovery personality matching based on Holland\'s theory.',
-            'content' => 'A career assessment and college guidance platform built to matches candidate traits with college majors. Integrated with interactive personality tests, scoring metrics, database catalogs of universities, and user dashboard telemetry.',
-            'main_image' => '/assets/images/peshal4.jpg', // Using real uploaded image
-            'technologies' => ['Backend Engineering', 'Laravel APIs', 'EduTech SaaS', 'Holland Assessment Metrics'],
-            'business_outcomes' => ['Science-based matches deployed', 'Improved student user conversion rates', 'Interactive questionnaires'],
-            'results_summary' => 'Delivered a responsive assessment matrix serving thousands of high-school and university discoverers.',
-            'website_url' => 'https://careerkey.example.com',
-            'is_featured' => true,
-            'order' => 11
-        ]);
-
-        // 18. Awards Seeding
-        Award::create([
-            'title' => 'Fintech Innovator of the Year',
-            'organization' => 'Dubai Tech Awards',
-            'year' => 2026,
-            'description' => 'Awarded for exceptional leadership in legacy core banking modernization initiatives.',
-        ]);
-
-        // 16. Podcasts & Videos
-        Podcast::create([
-            'title' => 'Building Tech Ventures in South Asia and the Middle East',
-            'slug' => 'podcast-building-ventures',
-            'description' => 'An in-depth conversation about remote engineering setups, technical SEO, and agritech opportunities.',
-            'audio_url' => 'https://spotify.com/episode/sample',
-            'duration' => '45 Mins',
-            'spotify_url' => 'https://spotify.com',
-            'published_at' => now()->subDays(10)
-        ]);
-
-        Video::create([
-            'title' => 'Why Agile Transformations Fail in Enterprises',
-            'slug' => 'video-agile-failure',
-            'description' => 'A presentation analyzing process flaws and architectural bottlenecks in corporate Agile adoptions.',
-            'youtube_url' => 'https://youtube.com/watch?v=sample-agile',
-            'duration' => '18 Mins',
-            'published_at' => now()->subDays(5)
-        ]);
-        
-        // 17. Seed SEO Metadata for static core pages
+        // 17. Seed SEO Metadata for Static Core Pages
         $pages = [
-            '/' => ['Home | Peshal Bhattarai - Tech Leader & Consultant', 'Welcome to the personal website of Peshal Bhattarai. Technology Consultant, Business Consultant, Product Owner, and Venture Builder with 10+ years of IT experience.'],
-            '/about' => ['About Peshal Bhattarai | Executive Profile & Career Timeline', 'Discover Peshal Bhattarai\'s career journey, vision, methodologies, leadership accomplishments, and academic certifications.'],
-            '/services' => ['Strategic Services | Tech Strategy & Business Agile Coaching', 'Explore business consulting, technology consulting, digital transformation, SEO auditing, and CTO services offered by Peshal Bhattarai.'],
-            '/companies' => ['Companies & Ventures | Portfolio of Ventures', 'Learn about Digital Terai, Thoplo Machine, BeinSEO, and IntechNexus, built and managed under Peshal Bhattarai\'s portfolio.'],
-            '/portfolio' => ['Portfolio & Projects | Case Studies and Business Outcomes', 'View recent tech architectures, IoT farm automation deployments, and digital transformation case studies with documented ROI calculations.'],
-            '/blog' => ['Tech Strategy Insights & Blog | Peshal Bhattarai', 'Read professional articles about Scrum practices, Laravel engineering, Next.js setups, international SEO, and remote team building.'],
-            '/contact' => ['Book a Consultation | Appointment Booking & Inquiries', 'Schedule an appointment, connect on WhatsApp, or send a detailed business inquiry to start your digital transformation journey.']
+            '/' => ['Peshal Bhattarai — Senior Product Manager, Growth Marketer & Business Consultant', 'Senior Product Manager, Growth Digital Marketer, and Business Consultant operating globally from Nepal. Specialized in SaaS product strategy, AEO/SEO search dominance, and enterprise digital transformation.'],
+            '/about' => ['About Peshal Bhattarai | Executive Profile & Career Timeline', 'Discover Peshal Bhattarai\'s career journey as Product Manager, Digital Marketer, and Business Consultant, along with methodologies, leadership accomplishments, and academic certifications.'],
+            '/services' => ['Strategic Services | Product Management, Growth Marketing & Business Consulting', 'Explore Fractional Product Management, AEO & Growth Marketing, and Enterprise Digital Transformation services offered by Peshal Bhattarai.'],
+            '/companies' => ['Venture Portfolio | Digital Terai, IntechNexus, BeinSEO & Thoplo Machine', 'Learn about Digital Terai, IntechNexus, BeinSEO, and Thoplo Machine, built and scaled under Peshal Bhattarai\'s executive leadership.'],
+            '/portfolio' => ['Portfolio & Case Studies | Product, Growth Marketing & Consulting Outcomes', 'View recent SaaS product re-architectures, AEO search campaigns, and digital transformation case studies with documented business ROI.'],
+            '/blog' => ['Insights & Strategy Blog | Peshal Bhattarai', 'Read professional guides on SaaS Product Management, Answer Engine Optimization (AEO), Next.js 15, Laravel 12, and offshore engineering team scaling.'],
+            '/contact' => ['Book a Strategic Briefing | Peshal Bhattarai', 'Schedule an executive briefing or business consultation with Peshal Bhattarai for Product Management, Growth Marketing, or Digital Transformation projects.']
         ];
 
         foreach ($pages as $slug => $meta) {
             SeoMetadata::create([
                 'model_type' => 'Page',
-                'model_id' => 0, // 0 indicates static page
+                'model_id' => 0,
                 'meta_title' => $meta[0],
                 'meta_description' => $meta[1],
-                'keywords' => 'peshal bhattarai, consulting, agile coach, scrum master, digital transformation, laravel, nextjs, dubai seo, digital terai',
+                'keywords' => 'peshal bhattarai, product manager, digital marketer, business consultant, aeo optimization, saas roadmap, nepal tech leadership',
                 'canonical_url' => 'https://peshalbhattarai.com' . ($slug === '/' ? '' : $slug),
                 'og_title' => $meta[0],
                 'og_description' => $meta[1],

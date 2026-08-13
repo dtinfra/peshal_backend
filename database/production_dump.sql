@@ -1,5 +1,13 @@
 SET FOREIGN_KEY_CHECKS=0;
 
+ALTER TABLE `blogs` ADD COLUMN IF NOT EXISTS `featured_image_alt` VARCHAR(255) NULL;
+ALTER TABLE `companies` ADD COLUMN IF NOT EXISTS `story` TEXT NULL;
+ALTER TABLE `companies` ADD COLUMN IF NOT EXISTS `mission` TEXT NULL;
+ALTER TABLE `companies` ADD COLUMN IF NOT EXISTS `technologies` TEXT NULL;
+ALTER TABLE `companies` ADD COLUMN IF NOT EXISTS `industries` TEXT NULL;
+ALTER TABLE `companies` ADD COLUMN IF NOT EXISTS `faqs` TEXT NULL;
+ALTER TABLE `companies` ADD COLUMN IF NOT EXISTS `related_services` TEXT NULL;
+
 TRUNCATE TABLE `users`;
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES ('1', 'Peshal Bhattarai', 'admin@peshal.com', '2026-08-13 06:27:10', '$2y$12$p3CV.tjyIF04jhiD1jAWC.iSRhoH6rzjGGwNFyBnAV1yoGv6F0Wx.', NULL, '2026-08-13 06:27:10', '2026-08-13 06:27:10');
 

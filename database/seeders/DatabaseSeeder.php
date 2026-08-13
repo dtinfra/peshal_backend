@@ -917,5 +917,13 @@ Strategic advisory helping global companies eliminate technical debt, modernize 
                 'og_image' => '/assets/images/peshal-og-home.jpg',
             ]);
         }
+
+        // Call modular seeders
+        $this->call([
+            HomepageFaqsSeeder::class,
+            PriorityBlogsSeeder::class,
+            FastTrackBlogsSeeder::class,
+            PillarsAndClustersSeeder::class,
+        ]);
     }
 }

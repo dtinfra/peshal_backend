@@ -12,6 +12,9 @@ use App\Http\Controllers\Api\CommonController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AppointmentController;
 use App\Http\Controllers\Api\ResourceController;
+use App\Http\Controllers\Api\VentureController;
+use App\Http\Controllers\Api\TimelineController;
+use App\Http\Controllers\Api\NowPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -98,7 +101,11 @@ Route::post('/newsletter', [NewsletterController::class, 'store']);
 Route::post('/appointments', [AppointmentController::class, 'store']); // Public Booking
 
 Route::get('/seo', [CommonController::class, 'pageSeo']);
-Route::get('/timeline', [CommonController::class, 'timeline']);
+Route::get('/timeline', [TimelineController::class, 'index']);
+Route::get('/journey-timeline', [TimelineController::class, 'index']);
+Route::get('/ventures', [VentureController::class, 'index']);
+Route::get('/ventures/{slug}', [VentureController::class, 'show']);
+Route::get('/now', [NowPageController::class, 'show']);
 Route::get('/resources', [CommonController::class, 'resources']);
 Route::get('/resources/{id}/download', [ResourceController::class, 'download']);
 Route::get('/stats', [CommonController::class, 'stats']);
@@ -121,6 +128,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/companies', [CompanyController::class, 'store']);
     Route::put('/companies/{id}', [CompanyController::class, 'update']);
     Route::delete('/companies/{id}', [CompanyController::class, 'destroy']);
+
+    // Ventures CRUD
+    Route::post('/ventures', [VentureController::class, 'store']);
+    Route::put('/ventures/{id}', [VentureController::class, 'update']);
+    Route::delete('/ventures/{id}', [VentureController::class, 'destroy']);
+
+    // Timeline CRUD
+    Route::post('/timeline', [TimelineController::class, 'store']);
+    Route::put('/timeline/{id}', [TimelineController::class, 'update']);
+    Route::delete('/timeline/{id}', [TimelineController::class, 'destroy']);
+
+    // Now Page Admin CRUD
+    Route::put('/admin/now', [NowPageController::class, 'update']);
 
     // Portfolio CRUD
     Route::post('/portfolio', [PortfolioController::class, 'store']);

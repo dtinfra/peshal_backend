@@ -898,6 +898,7 @@ Strategic advisory helping global companies eliminate technical debt, modernize 
             PublishNewMasterBlogsSeeder::class,
             PublishBatch2MasterBlogsSeeder::class,
             PublishBatch3MasterBlogsSeeder::class,
+            PurgeUnwantedBlogsSeeder::class,
         ]);
     }
 }

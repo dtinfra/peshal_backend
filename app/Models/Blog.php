@@ -27,6 +27,17 @@ class Blog extends Model
 
     protected $table = 'blogs';
 
+    protected static function booted(): void
+    {
+        static::saved(function () {
+            \Illuminate\Support\Facades\Cache::flush();
+        });
+
+        static::deleted(function () {
+            \Illuminate\Support\Facades\Cache::flush();
+        });
+    }
+
     protected function casts(): array
     {
         return [

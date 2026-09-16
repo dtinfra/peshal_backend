@@ -19,27 +19,40 @@ class BlogService
 
     public function getPaginatedBlogs(int $perPage = 10): LengthAwarePaginator
     {
-        return $this->blogRepository->paginate($perPage);
+        $page = request()->get('page', 1);
+        return Cache::remember("blogs_page_{$page}_per_{$perPage}", 3600, function () use ($perPage) {
+            return $this->blogRepository->paginate($perPage);
+        });
     }
 
     public function getBlogBySlug(string $slug): ?Blog
     {
-        return $this->blogRepository->findBySlug($slug);
+        return Cache::remember("blog_slug_{$slug}", 3600, function () use ($slug) {
+            return $this->blogRepository->findBySlug($slug);
+        });
     }
 
     public function getRelatedBlogs(Blog $blog, int $limit = 3): Collection
     {
-        return $this->blogRepository->getRelated($blog, $limit);
+        return Cache::remember("blog_related_{$blog->id}_limit_{$limit}", 3600, function () use ($blog, $limit) {
+            return $this->blogRepository->getRelated($blog, $limit);
+        });
     }
 
     public function getBlogsByCategory(string $categorySlug, int $perPage = 10): LengthAwarePaginator
     {
-        return $this->blogRepository->getByCategory($categorySlug, $perPage);
+        $page = request()->get('page', 1);
+        return Cache::remember("blogs_cat_{$categorySlug}_page_{$page}_per_{$perPage}", 3600, function () use ($categorySlug, $perPage) {
+            return $this->blogRepository->getByCategory($categorySlug, $perPage);
+        });
     }
 
     public function getBlogsByTag(string $tagSlug, int $perPage = 10): LengthAwarePaginator
     {
-        return $this->blogRepository->getByTag($tagSlug, $perPage);
+        $page = request()->get('page', 1);
+        return Cache::remember("blogs_tag_{$tagSlug}_page_{$page}_per_{$perPage}", 3600, function () use ($tagSlug, $perPage) {
+            return $this->blogRepository->getByTag($tagSlug, $perPage);
+        });
     }
 
     public function searchBlogs(string $term, int $perPage = 10): LengthAwarePaginator
@@ -49,11 +62,15 @@ class BlogService
 
     public function getCategories(): Collection
     {
-        return $this->blogRepository->getCategories();
+        return Cache::remember("blog_categories_all", 3600, function () {
+            return $this->blogRepository->getCategories();
+        });
     }
 
     public function getTags(): Collection
     {
-        return $this->blogRepository->getTags();
+        return Cache::remember("blog_tags_all", 3600, function () {
+            return $this->blogRepository->getTags();
+        });
     }
 }

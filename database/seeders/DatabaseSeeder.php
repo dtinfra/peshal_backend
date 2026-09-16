@@ -316,36 +316,7 @@ class DatabaseSeeder extends Seeder
             'Agritech ROI: Pitching IoT smart farming solutions to enterprise cooperatives'
         ];
 
-        // Seed the other 94 blog posts as drafts/metadata records
-        foreach ($moreBlogTitles as $index => $title) {
-            $catName = 'Agile';
-            if ($index >= 20 && $index < 40) $catName = 'Business';
-            if ($index >= 40 && $index < 60) $catName = 'SEO';
-            if ($index >= 60 && $index < 80) $catName = 'Software Development';
-            if ($index >= 80) $catName = 'IoT';
-
-            $cat = $categories[$catName] ?? $categories['Agile'];
-            $draftBlog = Blog::create([
-                'title' => $title,
-                'slug' => Str::slug($title),
-                'summary' => "Expert thoughts on '$title'. Read the roadmap, best practices, and integration strategies.",
-                'content' => "# $title\n\nFull article coming soon. This content is managed through the Laravel Admin Panel.",
-                'featured_image' => '/assets/images/blogs/placeholder.jpg',
-                'reading_time' => 5,
-                'author_id' => $author->id,
-                'category_id' => $cat->id,
-                'is_published' => false,
-                'published_at' => null,
-            ]);
-
-            // Add draft SEO Metadata
-            $draftBlog->seo()->create([
-                'meta_title' => "$title | Peshal Bhattarai",
-                'meta_description' => "Insights on $title by Technology & Business Consultant Peshal Bhattarai.",
-                'keywords' => strtolower("$catName, consulting, peshal bhattarai"),
-                'canonical_url' => 'https://peshalbhattarai.com/blog/' . Str::slug($title),
-            ]);
-        }
+        // 5b. (Skipped 94 draft placeholders to ensure 100% long-form practitioner articles on the website)
 
         // 6. Triple Core Services Seeding (ONLY Product Management, Digital Marketing, Business Consulting)
         $servicesData = [

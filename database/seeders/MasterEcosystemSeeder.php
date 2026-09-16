@@ -159,18 +159,18 @@ Nepal Trip Packages is a specialized travel venture dedicated to delivering unfo
         $timelineData = [
             [
                 'year' => '2014',
-                'title' => 'Computer Engineering & Tech Foundations',
+                'title' => "Engineer's Degree in Computer Science (VTU)",
                 'category' => 'education',
-                'description' => 'Graduated with a Bachelor of Computer Engineering degree in Nepal, establishing deep technical foundations in software engineering, algorithms, and database systems.',
-                'content' => 'Commenced full-time technology career, writing backend code and building relational database architectures for enterprise software projects.',
+                'description' => "Earned an Engineer's Degree in Computer Science & Engineering from Visvesvaraya Technological University (VTU), building core foundations in data structures, algorithms, and software engineering.",
+                'content' => 'Commenced software engineering career, architecting database schemas and building high-throughput web service architectures.',
                 'order' => 1,
             ],
             [
                 'year' => '2016',
-                'title' => 'Product Management & Agile Practice',
-                'category' => 'product',
-                'description' => 'Shifted into technical Product Management and Agile Scrum coaching, leading multi-disciplinary squads across SaaS product backlogs, sprint planning, and user experience.',
-                'content' => 'Fostered high-velocity product engineering practices, helping startups validate MVPs and improve release cadence.',
+                'title' => 'M.Eng. in Computer Engineering (Kathmandu University)',
+                'category' => 'education',
+                'description' => 'Completed Master of Engineering (M.Eng.) in Computer Engineering at Kathmandu University (KU), specializing in distributed systems, algorithm optimization, and mobile ad-hoc network (MANET) protocol research.',
+                'content' => 'Co-authored published research on energy-efficient routing protocols with KU faculty while stepping into technical Product Management and Agile Scrum squad leadership.',
                 'order' => 2,
             ],
             [

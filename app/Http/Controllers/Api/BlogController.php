@@ -31,9 +31,10 @@ class BlogController extends Controller
         } else {
             // Support fetching draft posts for admin list
             if ($request->has('admin_list')) {
+                $perPage = (int) $request->get('per_page', 200);
                 $blogs = Blog::with(['author', 'category', 'tags', 'seo'])
                     ->orderBy('created_at', 'desc')
-                    ->paginate(15);
+                    ->paginate($perPage);
             } else {
                 $blogs = $this->blogService->getPaginatedBlogs();
             }

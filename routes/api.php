@@ -13,6 +13,8 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AppointmentController;
 use App\Http\Controllers\Api\ResourceController;
 use App\Http\Controllers\Api\VentureController;
+use App\Http\Controllers\Api\LandingPageController;
+use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\TimelineController;
 use App\Http\Controllers\Api\NowPageController;
 use Illuminate\Support\Facades\Route;
@@ -105,6 +107,10 @@ Route::get('/timeline', [TimelineController::class, 'index']);
 Route::get('/journey-timeline', [TimelineController::class, 'index']);
 Route::get('/ventures', [VentureController::class, 'index']);
 Route::get('/ventures/{slug}', [VentureController::class, 'show']);
+Route::get('/landing-pages', [LandingPageController::class, 'index']);
+Route::get('/landing-pages/lookup', [LandingPageController::class, 'showByPath']);
+Route::get('/menus', [MenuController::class, 'index']);
+Route::get('/menus/all', [MenuController::class, 'allMenus']);
 Route::get('/now', [NowPageController::class, 'show']);
 Route::get('/resources', [CommonController::class, 'resources']);
 Route::get('/resources/{id}/download', [ResourceController::class, 'download']);
@@ -133,6 +139,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/ventures', [VentureController::class, 'store']);
     Route::put('/ventures/{id}', [VentureController::class, 'update']);
     Route::delete('/ventures/{id}', [VentureController::class, 'destroy']);
+
+    // Landing Pages CRUD
+    Route::post('/landing-pages', [LandingPageController::class, 'store']);
+    Route::put('/landing-pages/{id}', [LandingPageController::class, 'update']);
+    Route::delete('/landing-pages/{id}', [LandingPageController::class, 'destroy']);
+
+    // Menus CRUD
+    Route::put('/menus', [MenuController::class, 'updateMenus']);
 
     // Timeline CRUD
     Route::post('/timeline', [TimelineController::class, 'store']);

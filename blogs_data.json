@@ -1,0 +1,289 @@
+[
+    {
+        "id": 1,
+        "title": "Scaling Agile Frameworks in Enterprise Software Architecture",
+        "slug": "scaling-agile-frameworks-in-enterprise-software-architecture",
+        "category": "Agile",
+        "summary": "A comprehensive playbook on how to align SAFe methodologies with modern microservices architectures and remote engineering teams."
+    },
+    {
+        "id": 2,
+        "title": "The Blueprint for Legacy Application Migration to Laravel 12",
+        "slug": "the-blueprint-for-legacy-application-migration-to-laravel-12",
+        "category": "Software Development",
+        "summary": "A step-by-step roadmap for migrating legacy PHP 7.x codebases to Laravel 12 and PHP 8.4, detailing repository patterns, caching strategies, and safety audits."
+    },
+    {
+        "id": 3,
+        "title": "International SEO Architecture: Building for Multi-Country Markets",
+        "slug": "international-seo-architecture-building-for-multi-country-markets",
+        "category": "SEO",
+        "summary": "Discover how to architect a domain strategy, implement hreflang tags, configure Cloudflare routing, and optimize content for worldwide search engines."
+    },
+    {
+        "id": 4,
+        "title": "Smart Agritech: Scaling IoT Automation in Remote Farm Monitoring",
+        "slug": "smart-agritech-scaling-iot-automation-in-remote-farm-monitoring",
+        "category": "Agritech",
+        "summary": "An inspection of sensor telemetry networks, edge AI compute, low-power cellular protocols, and dashboards built for high-scale agricultural automation."
+    },
+    {
+        "id": 5,
+        "title": "Digital Transformation in Fintech: Architecture for Legacy Modernization",
+        "slug": "digital-transformation-in-fintech-architecture-for-legacy-modernization",
+        "category": "Digital Transformation",
+        "summary": "A guide for CTOs looking to modernise legacy banking cores, build compliant APIs, and scale secure transaction pipelines with zero operational downtime."
+    },
+    {
+        "id": 6,
+        "title": "Building a High-Performance Next.js 15 App Router Frontend",
+        "slug": "building-a-high-performance-nextjs-15-app-router-frontend",
+        "category": "Agile",
+        "summary": "Learn how to leverage React Server Components, TanStack Query, and TailwindCSS to create an Apple-level clean frontend that scores 100 on PageSpeed."
+    },
+    {
+        "id": 101,
+        "title": "What Does a Fractional CTO Do? A Complete Guide for Startups in 2026",
+        "slug": "what-does-a-fractional-cto-do-startup-guide",
+        "category": "Technology",
+        "summary": "Not sure if your startup needs a fractional CTO? This 2026 guide explains what a fractional CTO does, when to hire one, what it costs, and how to choose the right fit."
+    },
+    {
+        "id": 102,
+        "title": "How to Hire a Dedicated Remote Development Team (Without the Risk)",
+        "slug": "how-to-hire-a-dedicated-remote-development-team",
+        "category": "Remote Teams",
+        "summary": "A risk-free guide to vetting, hiring, onboarding, and managing a dedicated remote development team across international hubs."
+    },
+    {
+        "id": 103,
+        "title": "Scrum Master vs Agile Coach: Which Does Your Team Actually Need?",
+        "slug": "scrum-master-vs-agile-coach-team-guide",
+        "category": "Agile",
+        "summary": "Analyze the differences in scope, outcomes, and business impact between Scrum Masters and Agile Coaches to choose the right fit."
+    },
+    {
+        "id": 104,
+        "title": "HIPAA-Compliant Laravel Architecture: A Developer's Checklist",
+        "slug": "hipaa-compliant-laravel-architecture-developer-checklist",
+        "category": "Software Development",
+        "summary": "A complete security checklist for Laravel developers building applications that process Protected Health Information (PHI)."
+    },
+    {
+        "id": 105,
+        "title": "How I Built an IoT Agritech Company in Nepal: Lessons from Thoplo Machine",
+        "slug": "how-i-built-an-iot-agritech-company-nepal-thoplo-machine",
+        "category": "Agritech",
+        "summary": "A personal case study of hardware integration, low-power telemetry design, and business validation challenges building Thoplo Machine."
+    },
+    {
+        "id": 106,
+        "title": "Digital Transformation Roadmap: The 4-Step Framework I Use With Clients",
+        "slug": "digital-transformation-roadmap-4-step-framework",
+        "category": "Digital Transformation",
+        "summary": "A proven, step-by-step digital transformation roadmap to modernize legacy software systems and automate operations."
+    },
+    {
+        "id": 107,
+        "title": "How to Run a Sprint Retrospective That Actually Changes Things",
+        "slug": "how-to-run-a-sprint-retrospective-guide",
+        "category": "Scrum",
+        "summary": "Run productive, action-oriented retrospectives that resolve team roadblocks and improve overall velocity."
+    },
+    {
+        "id": 108,
+        "title": "Building a SaaS Product Roadmap: From Idea to Launch in 90 Days",
+        "slug": "building-a-saas-product-roadmap-90-days",
+        "category": "Product Management",
+        "summary": "A 90-day execution roadmap for startups looking to build, validate, and launch a software-as-a-service (SaaS) product."
+    },
+    {
+        "id": 109,
+        "title": "Why Most Software Startups Fail at Product-Market Fit (And How to Avoid It)",
+        "slug": "why-most-software-startups-fail-at-product-market-fit",
+        "category": "Startup",
+        "summary": "Understand the core technical and strategic reasons why startups fail to achieve product-market fit, and learn how to align product delivery."
+    },
+    {
+        "id": 110,
+        "title": "The Strangler Fig Pattern: Migrating Legacy Monoliths Without Downtime",
+        "slug": "the-strangler-fig-pattern-migrating-legacy-monoliths-without-downtime",
+        "category": "Software Development",
+        "summary": "A guide for system architects migrating legacy application monoliths to cloud-native microservices using the Strangler Fig pattern."
+    },
+    {
+        "id": 111,
+        "title": "Remote Team Management: 12 Tools I Use Across US, Nepal, and UAE Teams",
+        "slug": "remote-team-management-tools-checklist",
+        "category": "Remote Teams",
+        "summary": "A review of the 12 essential tools and configurations to manage distributed developers across US, Nepal, and UAE offices."
+    },
+    {
+        "id": 112,
+        "title": "How to Prepare a Technical Pitch Deck for Series A Investors",
+        "slug": "how-to-prepare-a-technical-pitch-deck-for-series-a-investors",
+        "category": "Startup",
+        "summary": "A guide for technical founders preparing technology architecture, compliance, and product scaling slides for Series A funding."
+    },
+    {
+        "id": 113,
+        "title": "Enterprise Digital Transformation Playbook 2026: Scaling Decoupled Systems with Next.js 15 & Laravel 12",
+        "slug": "enterprise-digital-transformation-playbook-2026",
+        "category": "Enterprise Transformation",
+        "summary": "A comprehensive guide on legacy system modernization, decoupled REST API architecture, Next.js 15 App Router, and agile product team scaling."
+    },
+    {
+        "id": 114,
+        "title": "How to Hire & Manage Remote Software Developers in Nepal: A Practitioner's Guide",
+        "slug": "how-to-hire-and-manage-remote-software-developers-in-nepal",
+        "category": "Software Development",
+        "summary": "A practical guide for CTOs, product managers, and founders on sourcing, vetting, and managing high-performing remote software engineering squads in Nepal with 65-75% cost savings."
+    },
+    {
+        "id": 115,
+        "title": "Answer Engine Optimization (AEO) Playbook: How to Rank in ChatGPT, Perplexity & Google AI Overviews",
+        "slug": "answer-engine-optimization-aeo-playbook-2026",
+        "category": "SEO",
+        "summary": "An empirical practitioner guide on Answer Engine Optimization (AEO\/GEO). Learn how to structure QAE content blocks, schema entity graphs, and direct answer snippets so LLM search engines cite your brand as an authority."
+    },
+    {
+        "id": 116,
+        "title": "Dubai Real Estate Investment Guide for International Founders & Property Investors",
+        "slug": "dubai-real-estate-investment-guide-for-founders",
+        "category": "Real Estate",
+        "summary": "An executive breakdown of Dubai property investment for global founders, tech leaders, and investors. Details gross rental yields (6.5-8.5%), AED 2M Golden Visa rules, tax benefits, and 360Castle advisory."
+    },
+    {
+        "id": 117,
+        "title": "Private Everest Base Camp Helicopter Expedition Guide: Luxury Altitude Operations",
+        "slug": "private-everest-base-camp-helicopter-expedition-guide",
+        "category": "Travel",
+        "summary": "A comprehensive operational guide to private Everest Base Camp helicopter fly-overs, Kala Patthar landings (5,545m), and gourmet breakfast at Hotel Everest View via Nepal Trip Packages."
+    },
+    {
+        "id": 118,
+        "title": "Nepal FDI & Tech Market Entry Guide 2026: FITTA Laws, Tax Concessions & Repatriation",
+        "slug": "nepal-fdi-and-tech-market-entry-guide-2026",
+        "category": "Business",
+        "summary": "An executive practitioner guide on foreign direct investment (FDI) in Nepal under FITTA 2019. Details 10-15% IT corporate tax concessions, 100% profit repatriation rights, and Single Window clearance."
+    },
+    {
+        "id": 119,
+        "title": "Digital Growth & AEO ROI Benchmarks: Performance Marketing Across Nepal, Dubai & SaaS",
+        "slug": "digital-marketing-and-aeo-roi-benchmarks-nepal-dubai",
+        "category": "SEO",
+        "summary": "Empirical marketing performance data, CPC benchmarks, and Customer Acquisition Cost (CAC) metrics across South Asia, GCC (Dubai), and global B2B SaaS campaigns driven by Digital Terai."
+    },
+    {
+        "id": 120,
+        "title": "SaaS Product Architecture & Scalable Microservices: A Technical CTO Blueprint",
+        "slug": "saas-product-architecture-microservices-cto-guide",
+        "category": "Software Development",
+        "summary": "A technical architecture guide for CTOs building scalable SaaS applications. Details decoupled Next.js 15 SSR, Laravel 12 REST\/GraphQL APIs, Redis caching (<18ms latency), and multi-tenant database isolation."
+    },
+    {
+        "id": 121,
+        "title": "High-Yield Dubai Off-Plan Real Estate vs. Ready Villas: Financial Modeling & Exit Strategies",
+        "slug": "dubai-off-plan-vs-ready-villas-financial-model",
+        "category": "Real Estate",
+        "summary": "An empirical cash-flow analysis comparing capital appreciation of Dubai off-plan developments (18-24% IRR) vs immediate rental yield ready villas (6.5-8.5%), structured by 360Castle."
+    },
+    {
+        "id": 122,
+        "title": "Helicopter & High-Altitude Expeditions in Nepal: VIP Travel Operations & Aviation Safety Blueprint",
+        "slug": "nepal-helicopter-expedition-aviation-safety-blueprint",
+        "category": "Travel",
+        "summary": "A comprehensive operational blueprint for VIP travelers, luxury agency operators, and aviation enthusiasts. Explains high-altitude Airbus H125 flight dynamics, Everest Base Camp landings, oxygen management, and luxury ground handling."
+    },
+    {
+        "id": 123,
+        "title": "The Executive Guide to IT Project Outsourcing: Risk Mitigation, Vendor Selection & Cost Optimization",
+        "slug": "executive-guide-to-it-project-outsourcing",
+        "category": "Software Development",
+        "summary": "A comprehensive practitioner guide for CEOs, CTOs, and Product Leaders on IT project outsourcing. Details risk mitigation frameworks, vendor selection criteria, contract models, and 65-75% cost savings via dedicated squads."
+    },
+    {
+        "id": 124,
+        "title": "The Executive Guide to IT Project Outsourcing: Vendor Selection, IP Protection & Risk Mitigation",
+        "slug": "executive-it-outsourcing-blueprint-vendor-selection",
+        "category": "Business",
+        "summary": "A comprehensive practitioner guide for CTOs, VPs of Engineering, and SaaS founders on outsourcing IT projects. Learn how to audit vendor engineering squads, select contract structures, enforce strict IP protections, and prevent milestone friction."
+    },
+    {
+        "id": 125,
+        "title": "How to Scale Offshore Development Squads in Nepal: Salary Benchmarks, Tax Concessions & Engineering Culture",
+        "slug": "scale-offshore-development-squads-nepal-guide",
+        "category": "Software Development",
+        "summary": "An operational management blueprint for global tech executives looking to build high-performance offshore software engineering squads in Nepal. Includes 2026 developer salary benchmarks, FITTA legal frameworks, and retention playbooks."
+    },
+    {
+        "id": 126,
+        "title": "SaaS Backlog Prioritization for Executive Founders: RICE vs Kano vs MoSCoW Frameworks",
+        "slug": "saas-backlog-prioritization-frameworks-rice-kano-moscow",
+        "category": "Business",
+        "summary": "A practical product management leadership guide on pruning feature bloat, scoring user requests with RICE matrix, aligning product roadmaps with CAC\/LTV economics, and running 5-day discovery sprints."
+    },
+    {
+        "id": 127,
+        "title": "Cross-Border Real Estate & Tech Wealth Diversification: Dubai Off-Plan Assets vs. Kathmandu Commercial Property",
+        "slug": "cross-border-real-estate-tech-wealth-dubai-kathmandu",
+        "category": "Real Estate",
+        "summary": "An executive investment analysis guide for tech founders, entrepreneurs, and international investors comparing Dubai off-plan real estate assets (7-10% net yield, 0% capital tax) with Kathmandu commercial land appreciation."
+    },
+    {
+        "id": 128,
+        "title": "Generative Engine Optimization (GEO) Strategy for B2B SaaS: How to Rank in ChatGPT, Perplexity & Claude Answers",
+        "slug": "generative-engine-optimization-geo-strategy-b2b-saas",
+        "category": "SEO",
+        "summary": "An empirical practitioner guide on Generative Engine Optimization (GEO) and Answer Engine Optimization (AEO) for B2B SaaS. Learn how to optimize for AI search engine citations, build brand entity graphs, and structure high-information-gain content."
+    },
+    {
+        "id": 129,
+        "title": "Fractional CTO vs. Full-Time VP of Engineering: Cost, Scope & Equity Benchmarks for Scaling Startups",
+        "slug": "fractional-cto-vs-fulltime-vp-engineering-guide",
+        "category": "Business",
+        "summary": "A financial and strategic comparison guide for startup founders evaluating Fractional CTO advisory versus hiring a full-time VP of Engineering. Includes compensation benchmarks, scope boundaries, and transition playbooks."
+    },
+    {
+        "id": 130,
+        "title": "How to Audit an Outsourced Codebase: A CTO Blueprint for Evaluating Debt, Security & Scalability",
+        "slug": "how-to-audit-outsourced-codebase-cto-guide",
+        "category": "Software Development",
+        "summary": "A comprehensive technical due diligence guide for CTOs and founders on auditing an outsourced software codebase. Learn how to inspect repository health, detect security vulnerabilities, quantify technical debt, and eliminate vendor locks."
+    },
+    {
+        "id": 131,
+        "title": "Digital Marketing ROI Benchmarks in 2026: Organic SEO vs. Paid Ads vs. AEO for B2B Growth",
+        "slug": "digital-marketing-roi-benchmarks-2026-seo-paid-aeo",
+        "category": "SEO",
+        "summary": "A financial modeling and performance benchmark guide for B2B marketing executives comparing Customer Acquisition Cost (CAC), Return on Ad Spend (ROAS), and long-term compounding ROI across Organic SEO, Paid Ads, and AEO."
+    },
+    {
+        "id": 132,
+        "title": "The Entrepreneur's Playbook for Bootstrapping Multi-Venture Ecosystems: From Tech Agency to Real Estate & Travel",
+        "slug": "entrepreneurs-playbook-bootstrapping-multi-venture-ecosystems",
+        "category": "Business",
+        "summary": "A practical business leadership blueprint for serial entrepreneurs on building and bootstrapping a multi-venture ecosystem. Learn how to use cash flows from core digital services to fund high-upside ventures without external equity dilution."
+    },
+    {
+        "id": 133,
+        "title": "How to Launch & Scale a Tech Subsidiary in Nepal: Legal Structuring, Banking & Offshore Operation",
+        "slug": "launch-scale-tech-subsidiary-nepal-guide",
+        "category": "Business",
+        "summary": "A step-by-step corporate expansion guide for international entrepreneurs on registering, banking, and scaling a technology subsidiary in Nepal under the FITTA 2019 legal framework with 100% profit repatriation rights."
+    },
+    {
+        "id": 134,
+        "title": "International Brand Building & Authority Marketing: Scaling Digital Terai across Nepal & Dubai",
+        "slug": "international-brand-building-authority-marketing-guide",
+        "category": "SEO",
+        "summary": "A B2B marketing strategy playbook on scaling a regional digital agency into an international authority. Learn how to establish topic authority, win enterprise monthly retainers, and execute multi-region brand expansion."
+    },
+    {
+        "id": 135,
+        "title": "Luxury Tourism & Adventure Operations Management: Operating Everest Base Camp Helicopter Expeditions",
+        "slug": "luxury-tourism-adventure-operations-everest-helicopter-guide",
+        "category": "Travel",
+        "summary": "An operational management blueprint for luxury travel entrepreneurs on managing high-margin adventure tourism, high-altitude helicopter expeditions, VIP guest logistics, and CAAN aviation compliance in Nepal."
+    }
+]

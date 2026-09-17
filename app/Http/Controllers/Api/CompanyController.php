@@ -163,8 +163,16 @@ class CompanyController extends Controller
 
     public function destroy(string $id): JsonResponse
     {
-        $company = Company::findOrFail($id);
+        $company = Company::where('id', $id)->orWhere('slug', $id)->first();
+        if (!$company) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Company venture not found.'
+            ], 404);
+        }
+
         $company->delete();
+        \Illuminate\Support\Facades\Cache::flush();
 
         return response()->json([
             'success' => true,

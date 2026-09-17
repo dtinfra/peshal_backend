@@ -12,13 +12,18 @@ class VentureController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $query = Venture::where('is_active', true)->orderBy('order', 'asc');
+        $query = Venture::query();
 
-        if ($request->has('category')) {
+        // If explicitly requested active only for public front-end
+        if ($request->has('active_only')) {
+            $query->where('is_active', true);
+        }
+
+        if ($request->filled('category')) {
             $query->where('category', $request->get('category'));
         }
 
-        $ventures = $query->get();
+        $ventures = $query->orderBy('order', 'asc')->get();
 
         return response()->json([
             'success' => true,
@@ -28,7 +33,7 @@ class VentureController extends Controller
 
     public function show(string $slug): JsonResponse
     {
-        $venture = Venture::where('slug', $slug)->with('seo')->firstOrFail();
+        $venture = Venture::where('slug', $slug)->orWhere('id', $slug)->firstOrFail();
 
         return response()->json([
             'success' => true,
@@ -62,6 +67,7 @@ class VentureController extends Controller
         }
 
         $venture = Venture::create($validated);
+        \Illuminate\Support\Facades\Cache::flush();
 
         return response()->json([
             'success' => true,
@@ -72,7 +78,7 @@ class VentureController extends Controller
 
     public function update(Request $request, string $id): JsonResponse
     {
-        $venture = Venture::findOrFail($id);
+        $venture = Venture::where('id', $id)->orWhere('slug', $id)->firstOrFail();
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -94,6 +100,7 @@ class VentureController extends Controller
         ]);
 
         $venture->update($validated);
+        \Illuminate\Support\Facades\Cache::flush();
 
         return response()->json([
             'success' => true,
@@ -104,8 +111,16 @@ class VentureController extends Controller
 
     public function destroy(string $id): JsonResponse
     {
-        $venture = Venture::findOrFail($id);
+        $venture = Venture::where('id', $id)->orWhere('slug', $id)->first();
+        if (!$venture) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Venture not found.'
+            ], 404);
+        }
+
         $venture->delete();
+        \Illuminate\Support\Facades\Cache::flush();
 
         return response()->json([
             'success' => true,

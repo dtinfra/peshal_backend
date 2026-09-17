@@ -14,6 +14,7 @@ class NowPageSetting extends Model
         'exploring',
         'learning',
         'reading',
+        'history',
         'current_focus',
         'last_updated_at',
     ];
@@ -23,6 +24,7 @@ class NowPageSetting extends Model
         'exploring' => 'array',
         'learning' => 'array',
         'reading' => 'array',
+        'history' => 'array',
         'last_updated_at' => 'datetime',
     ];
 }

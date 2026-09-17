@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\LandingPageController;
 use App\Http\Controllers\Api\MenuController;
 use App\Http\Controllers\Api\TimelineController;
 use App\Http\Controllers\Api\NowPageController;
+use App\Http\Controllers\Api\WorkExperienceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -125,6 +126,7 @@ Route::post('/appointments', [AppointmentController::class, 'store']); // Public
 Route::get('/seo', [CommonController::class, 'pageSeo']);
 Route::get('/timeline', [TimelineController::class, 'index']);
 Route::get('/journey-timeline', [TimelineController::class, 'index']);
+Route::get('/work-experiences', [WorkExperienceController::class, 'index']);
 Route::get('/ventures', [VentureController::class, 'index']);
 Route::get('/ventures/{slug}', [VentureController::class, 'show']);
 Route::get('/landing-pages', [LandingPageController::class, 'index']);
@@ -172,6 +174,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/timeline', [TimelineController::class, 'store']);
     Route::put('/timeline/{id}', [TimelineController::class, 'update']);
     Route::delete('/timeline/{id}', [TimelineController::class, 'destroy']);
+
+    // Work Experiences CRUD
+    Route::post('/work-experiences', [WorkExperienceController::class, 'store']);
+    Route::put('/work-experiences/{id}', [WorkExperienceController::class, 'update']);
+    Route::delete('/work-experiences/{id}', [WorkExperienceController::class, 'destroy']);
 
     // Now Page Admin CRUD
     Route::put('/admin/now', [NowPageController::class, 'update']);

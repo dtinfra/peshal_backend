@@ -15,13 +15,50 @@ class NowPageController extends Controller
             ['id' => 1],
             [
                 'building' => [
-                    'Scaling IntechNexus remote dev squads',
-                    'Expanding AEO Search optimization inside Digital Terai',
-                    'Developing 360Castle Dubai property matching tools'
+                    'Scaling IntechNexus remote software engineering squads for US & EU SaaS companies',
+                    'Expanding Answer Engine Optimization (AEO/GEO) capabilities inside Digital Terai',
+                    'Refining 360Castle Dubai property matching system for international buyers',
                 ],
-                'exploring' => ['Nepal business market entry frameworks', 'Dubai venture expansion opportunities'],
-                'learning' => ['Next.js 15 App Router Edge optimization', 'LLM fine-tuning pipelines'],
-                'reading' => ['The Lean Startup', 'Zero to One', 'High Output Management'],
+                'exploring' => [
+                    'Nepal market entry frameworks for foreign founders and tech companies',
+                    'Dubai business ecosystem growth and cross-border tech ventures',
+                    'AI-assisted workflow automation for software engineering teams',
+                ],
+                'learning' => [
+                    'Next.js 15 App Router server actions & edge caching patterns',
+                    'LLM fine-tuning techniques for domain-specific answer engines',
+                ],
+                'reading' => [
+                    'The Lean Startup by Eric Ries',
+                    'Zero to One by Peter Thiel',
+                    'High Output Management by Andrew Grove',
+                ],
+                'history' => [
+                    [
+                        'period' => 'Q1 2026',
+                        'title' => 'Launched Master SEO & AEO Ecosystem',
+                        'category' => 'Milestone',
+                        'description' => 'Published 10 priority AEO hubs and integrated AI answer citation engines across Digital Terai and BeinSEO Dubai.'
+                    ],
+                    [
+                        'period' => '2025',
+                        'title' => 'Scaled IntechNexus Remote Squads',
+                        'category' => 'Expansion',
+                        'description' => 'Built dedicated agile development squads in Kathmandu for US, Swiss, and Australian B2B SaaS clients.'
+                    ],
+                    [
+                        'period' => '2022',
+                        'title' => 'Expanded Operations to Dubai, UAE',
+                        'category' => 'Venture',
+                        'description' => 'Established BeinSEO Dubai and 360Castle real estate advisory footprint in the Middle East.'
+                    ],
+                    [
+                        'period' => '2019',
+                        'title' => 'Founded Digital Terai Agency',
+                        'category' => 'Venture',
+                        'description' => 'Built premier performance search marketing agency in Nepal, scaling organic SEO and B2B growth.'
+                    ]
+                ],
                 'current_focus' => 'Building businesses across technology, digital growth, travel, and real estate.',
                 'last_updated_at' => now(),
             ]
@@ -42,6 +79,7 @@ class NowPageController extends Controller
             'exploring' => 'nullable|array',
             'learning' => 'nullable|array',
             'reading' => 'nullable|array',
+            'history' => 'nullable|array',
             'current_focus' => 'required|string',
         ]);
 

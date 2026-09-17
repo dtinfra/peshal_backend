@@ -86,7 +86,9 @@ class BlogRepository implements RepositoryInterface
 
     public function getCategories(): Collection
     {
-        return BlogCategory::withCount(['blogs' => function ($q) {
+        return BlogCategory::whereHas('blogs', function ($q) {
+            $q->where('is_published', true);
+        })->withCount(['blogs' => function ($q) {
             $q->where('is_published', true);
         }])->orderBy('order')->get();
     }

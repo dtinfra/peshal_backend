@@ -22,12 +22,16 @@ class BlogController extends Controller
 
     public function index(Request $request): JsonResponse
     {
-        if ($request->has('search')) {
-            $blogs = $this->blogService->searchBlogs($request->get('search'));
-        } elseif ($request->has('category')) {
-            $blogs = $this->blogService->getBlogsByCategory($request->get('category'));
-        } elseif ($request->has('tag')) {
-            $blogs = $this->blogService->getBlogsByTag($request->get('tag'));
+        $categoryParam = $request->get('category');
+        $searchParam = $request->get('search');
+        $tagParam = $request->get('tag');
+
+        if ($request->filled('search')) {
+            $blogs = $this->blogService->searchBlogs($searchParam);
+        } elseif ($request->filled('category') && $categoryParam !== 'all' && $categoryParam !== 'null') {
+            $blogs = $this->blogService->getBlogsByCategory($categoryParam);
+        } elseif ($request->filled('tag')) {
+            $blogs = $this->blogService->getBlogsByTag($tagParam);
         } else {
             // Support fetching draft posts for admin list
             if ($request->has('admin_list')) {

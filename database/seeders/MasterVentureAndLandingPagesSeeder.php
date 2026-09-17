@@ -929,6 +929,17 @@ class MasterVentureAndLandingPagesSeeder extends Seeder
             ['menu_key' => 'footer_legal', 'label' => 'Now', 'url' => '/now', 'order' => 4],
         ];
 
+        SiteMenu::where('menu_key', 'services_dropdown')
+            ->whereNotIn('label', [
+                'Business Consulting',
+                'Digital Growth Hub',
+                'Dubai Advisory Hub',
+                'Technology Engineering',
+                'Start Business in Dubai',
+                'Start Business in Nepal'
+            ])
+            ->delete();
+
         foreach ($menus as $m) {
             SiteMenu::updateOrCreate(['label' => $m['label'], 'menu_key' => $m['menu_key']], $m);
         }

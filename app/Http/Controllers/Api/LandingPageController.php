@@ -66,12 +66,30 @@ class LandingPageController extends Controller
             'content' => 'nullable|string',
             'primary_keyword' => 'nullable|string',
             'secondary_keywords' => 'nullable|array',
+            'search_intent' => 'nullable|string',
+            'target_location' => 'nullable|string',
+            'parent_topic' => 'nullable|string',
             'seo_title' => 'nullable|string',
             'meta_description' => 'nullable|string',
             'canonical_url' => 'nullable|string',
-            'status' => 'required|string|in:draft,published',
+            'og_title' => 'nullable|string',
+            'og_description' => 'nullable|string',
+            'og_image' => 'nullable|string',
+            'schema_type' => 'nullable|string',
+            'status' => 'required|string|in:draft,review,published,archived',
+            'related_ventures' => 'nullable|array',
+            'related_case_studies' => 'nullable|array',
+            'related_articles' => 'nullable|array',
+            'internal_links' => 'nullable|array',
+            'sections' => 'nullable|array',
+            'redirect_url' => 'nullable|string',
+            'faqs' => 'nullable|array',
             'published' => 'boolean',
         ]);
+
+        if (isset($validated['status'])) {
+            $validated['published'] = ($validated['status'] === 'published');
+        }
 
         $page = LandingPage::create($validated);
 
@@ -97,12 +115,30 @@ class LandingPageController extends Controller
             'content' => 'nullable|string',
             'primary_keyword' => 'nullable|string',
             'secondary_keywords' => 'nullable|array',
+            'search_intent' => 'nullable|string',
+            'target_location' => 'nullable|string',
+            'parent_topic' => 'nullable|string',
             'seo_title' => 'nullable|string',
             'meta_description' => 'nullable|string',
             'canonical_url' => 'nullable|string',
-            'status' => 'sometimes|required|string|in:draft,published',
+            'og_title' => 'nullable|string',
+            'og_description' => 'nullable|string',
+            'og_image' => 'nullable|string',
+            'schema_type' => 'nullable|string',
+            'status' => 'sometimes|required|string|in:draft,review,published,archived',
+            'related_ventures' => 'nullable|array',
+            'related_case_studies' => 'nullable|array',
+            'related_articles' => 'nullable|array',
+            'internal_links' => 'nullable|array',
+            'sections' => 'nullable|array',
+            'redirect_url' => 'nullable|string',
+            'faqs' => 'nullable|array',
             'published' => 'boolean',
         ]);
+
+        if (isset($validated['status'])) {
+            $validated['published'] = ($validated['status'] === 'published');
+        }
 
         $page->update($validated);
 

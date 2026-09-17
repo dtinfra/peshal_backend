@@ -20,6 +20,9 @@ class LandingPage extends Model
         'content',
         'primary_keyword',
         'secondary_keywords',
+        'search_intent',
+        'target_location',
+        'parent_topic',
         'seo_title',
         'meta_description',
         'canonical_url',
@@ -31,6 +34,9 @@ class LandingPage extends Model
         'related_ventures',
         'related_case_studies',
         'related_articles',
+        'internal_links',
+        'sections',
+        'redirect_url',
         'faqs',
         'published',
     ];
@@ -40,6 +46,8 @@ class LandingPage extends Model
         'related_ventures' => 'array',
         'related_case_studies' => 'array',
         'related_articles' => 'array',
+        'internal_links' => 'array',
+        'sections' => 'array',
         'faqs' => 'array',
         'published' => 'boolean',
     ];

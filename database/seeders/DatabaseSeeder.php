@@ -49,8 +49,8 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Peshal Bhattarai',
                 'avatar' => '/assets/images/peshal1.jpg',
-                'bio' => 'Senior Technology Leader, Product Manager, Growth Digital Marketer, and Business Consultant with over 10 years of experience driving SaaS product strategy, AEO/SEO search dominance, and enterprise digital transformation globally from Nepal.',
-                'designation' => 'Product Manager, Growth Marketer & Business Consultant',
+                'bio' => 'Product Manager, Technology Leader, Digital Growth Marketer, Business Consultant, and Venture Builder with over 10 years of experience driving SaaS product strategy, AEO/SEO search dominance, and enterprise digital transformation globally.',
+                'designation' => 'Technology Leader, Product Manager, Digital Growth & Venture Builder',
                 'email' => 'peshal@intechnexus.com',
                 'social_links' => [
                     'linkedin' => 'https://linkedin.com/in/peshal-bhattarai',

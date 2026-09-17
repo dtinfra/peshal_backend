@@ -488,7 +488,17 @@ Route::get('/settings', function() {
         'webmail_url' => 'https://saphire.mysecurecloudserver.com:2096/cpsess0670920787/3rdparty/roundcube/?_task=mail&_mbox=INBOX',
         'calendar_public_url' => 'http://mail.peshalb.com.np:2079/calendars/hi@peshalb.com.np/calendar',
         'meeting_link' => 'https://meet.google.com/pb-mock-link',
-        'notification_email' => 'hi@peshalb.com.np'
+        'notification_email' => 'hi@peshalb.com.np',
+        'hero_badge_text' => 'Nepal • Dubai • Global Markets',
+        'hero_heading' => 'Building Businesses Across Technology, Travel & Real Estate.',
+        'hero_subheading' => 'I\'m Peshal Bhattarai, an entrepreneur and business builder creating high-growth ventures across software technology, digital marketing, adventure travel, and real estate in Nepal, Dubai, and worldwide.',
+        'about_years_exp' => '10+ Years',
+        'about_active_ventures' => '4 Flagship',
+        'about_projects_delivered' => '85+ Global',
+        'about_primary_hubs' => 'Nepal • Dubai',
+        'contact_address' => 'Kathmandu, Nepal / Dubai, UAE',
+        'contact_operating_hours' => 'Mon - Fri: 9:00 AM - 6:00 PM (NPT / GST)',
+        'footer_tagline' => 'Technology Leader, Business Strategist, and Venture Builder. Driving operational excellence and digital transformations for global companies.',
     ];
 
     if (!file_exists($path)) {
@@ -721,7 +731,17 @@ Route::middleware('auth:sanctum')->group(function () {
             'webmail_url' => 'https://saphire.mysecurecloudserver.com:2096/cpsess0670920787/3rdparty/roundcube/?_task=mail&_mbox=INBOX',
             'calendar_public_url' => 'http://mail.peshalb.com.np:2079/calendars/hi@peshalb.com.np/calendar',
             'meeting_link' => 'https://meet.google.com/pb-mock-link',
-            'notification_email' => 'hi@peshalb.com.np'
+            'notification_email' => 'hi@peshalb.com.np',
+            'hero_badge_text' => 'Nepal • Dubai • Global Markets',
+            'hero_heading' => 'Building Businesses Across Technology, Travel & Real Estate.',
+            'hero_subheading' => 'I\'m Peshal Bhattarai, an entrepreneur and business builder creating high-growth ventures across software technology, digital marketing, adventure travel, and real estate in Nepal, Dubai, and worldwide.',
+            'about_years_exp' => '10+ Years',
+            'about_active_ventures' => '4 Flagship',
+            'about_projects_delivered' => '85+ Global',
+            'about_primary_hubs' => 'Nepal • Dubai',
+            'contact_address' => 'Kathmandu, Nepal / Dubai, UAE',
+            'contact_operating_hours' => 'Mon - Fri: 9:00 AM - 6:00 PM (NPT / GST)',
+            'footer_tagline' => 'Technology Leader, Business Strategist, and Venture Builder. Driving operational excellence and digital transformations for global companies.',
         ];
 
         if (!file_exists($path)) {
@@ -759,7 +779,17 @@ Route::middleware('auth:sanctum')->group(function () {
             'webmail_url' => 'nullable|string',
             'calendar_public_url' => 'nullable|string',
             'meeting_link' => 'nullable|string',
-            'notification_email' => 'nullable|email'
+            'notification_email' => 'nullable|email',
+            'hero_badge_text' => 'nullable|string',
+            'hero_heading' => 'nullable|string',
+            'hero_subheading' => 'nullable|string',
+            'about_years_exp' => 'nullable|string',
+            'about_active_ventures' => 'nullable|string',
+            'about_projects_delivered' => 'nullable|string',
+            'about_primary_hubs' => 'nullable|string',
+            'contact_address' => 'nullable|string',
+            'contact_operating_hours' => 'nullable|string',
+            'footer_tagline' => 'nullable|string',
         ]);
 
         file_put_contents($path, json_encode($validated, JSON_PRETTY_PRINT));

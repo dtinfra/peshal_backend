@@ -225,6 +225,13 @@ class ResourceController extends Controller
 
         $file = $request->file('file');
 
+        if (!$file->isValid()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Uploaded file is invalid or corrupted.'
+            ], 422);
+        }
+
         // Verify size manually (Max 20MB)
         if ($file->getSize() > 20480 * 1024) {
             return response()->json([
@@ -234,22 +241,31 @@ class ResourceController extends Controller
         }
 
         // Verify extension manually
-        $extension = strtolower($file->getClientOriginalExtension());
+        $extension = strtolower($file->getClientOriginalExtension() ?: $file->extension() ?: 'png');
         $allowed = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'pdf', 'zip', 'doc', 'docx', 'xls', 'xlsx'];
         if (!in_array($extension, $allowed)) {
             return response()->json([
                 'success' => false,
-                'message' => 'The file extension is not allowed.'
+                'message' => 'The file extension .' . $extension . ' is not allowed.'
             ], 422);
         }
 
-        $filename = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $slugifiedName = Str::slug($originalName) ?: 'file';
+        $filename = time() . '_' . $slugifiedName . '.' . $extension;
+        
+        $destinationDir = storage_path('app/public/uploads');
+        if (!file_exists($destinationDir)) {
+            mkdir($destinationDir, 0755, true);
+        }
+
         $path = $file->storeAs('uploads', $filename, 'public');
         
         return response()->json([
             'success' => true,
             'message' => 'File uploaded successfully.',
-            'file_path' => '/storage/' . $path
+            'file_path' => '/storage/' . $path,
+            'url' => url('/storage/' . $path)
         ]);
     }
 }

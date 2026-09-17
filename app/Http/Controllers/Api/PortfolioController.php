@@ -65,17 +65,16 @@ class PortfolioController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
-            'client_name' => 'required|string|max:255',
-            'summary' => 'required|string',
-            'content' => 'required|string',
-            'website_url' => 'nullable|url',
-            'technologies' => 'required|array',
-            'business_outcomes' => 'required|array',
-            'results_summary' => 'required|string',
-            'is_featured' => 'required|boolean',
+            'client_name' => 'nullable|string|max:255',
+            'summary' => 'nullable|string',
+            'content' => 'nullable|string',
+            'website_url' => 'nullable|string',
+            'technologies' => 'nullable|array',
+            'business_outcomes' => 'nullable|array',
+            'results_summary' => 'nullable|string',
+            'is_featured' => 'nullable|boolean',
             'order' => 'nullable|integer',
             'seo' => 'nullable|array',
-            // Optional case study parameters
             'case_study' => 'nullable|array',
         ]);
 
@@ -88,6 +87,18 @@ class PortfolioController extends Controller
 
         $validated = $validator->validated();
         $validated['slug'] = Str::slug($validated['title']);
+        $validated['client_name'] = $validated['client_name'] ?? 'Venture Case Study';
+        $validated['summary'] = $validated['summary'] ?? ($validated['title'] . ' case study and system architecture.');
+        $validated['content'] = $validated['content'] ?? ($validated['summary'] ?? '');
+        $validated['results_summary'] = $validated['results_summary'] ?? 'Delivered on time and within scope.';
+        $validated['technologies'] = $validated['technologies'] ?? [];
+        $validated['business_outcomes'] = $validated['business_outcomes'] ?? [];
+        $validated['is_featured'] = isset($validated['is_featured']) ? (bool)$validated['is_featured'] : true;
+        $validated['order'] = $validated['order'] ?? 0;
+
+        if (empty($validated['website_url'])) {
+            $validated['website_url'] = null;
+        }
 
         if (PortfolioProject::where('slug', $validated['slug'])->exists()) {
             $validated['slug'] .= '-' . rand(10, 99);
@@ -104,21 +115,19 @@ class PortfolioController extends Controller
             ]);
         }
 
-        if (!empty($validated['case_study'])) {
-            CaseStudy::create([
-                'portfolio_project_id' => $project->id,
-                'title' => 'Case Study: ' . $project->title,
-                'slug' => 'case-study-' . $project->slug,
-                'problem' => $validated['case_study']['problem'] ?? $project->summary,
-                'solution' => $validated['case_study']['solution'] ?? $project->content,
-                'technology' => $project->technologies,
-                'approach' => $validated['case_study']['approach'] ?? '',
-                'timeline_duration' => $validated['case_study']['timeline_duration'] ?? '3 Months',
-                'challenges' => $validated['case_study']['challenges'] ?? '',
-                'results' => $validated['case_study']['results'] ?? '',
-                'roi_percentage' => $validated['case_study']['roi_percentage'] ?? null,
-            ]);
-        }
+        CaseStudy::create([
+            'portfolio_project_id' => $project->id,
+            'title' => 'Case Study: ' . $project->title,
+            'slug' => 'case-study-' . $project->slug,
+            'problem' => $validated['case_study']['problem'] ?? $project->summary,
+            'solution' => $validated['case_study']['solution'] ?? $project->content,
+            'technology' => $project->technologies,
+            'approach' => $validated['case_study']['approach'] ?? '',
+            'timeline_duration' => $validated['case_study']['timeline_duration'] ?? '3 Months',
+            'challenges' => $validated['case_study']['challenges'] ?? '',
+            'results' => $validated['case_study']['results'] ?? $project->results_summary,
+            'roi_percentage' => $validated['case_study']['roi_percentage'] ?? null,
+        ]);
 
         return response()->json([
             'success' => true,
@@ -132,15 +141,15 @@ class PortfolioController extends Controller
         $project = PortfolioProject::findOrFail($id);
 
         $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
-            'client_name' => 'required|string|max:255',
-            'summary' => 'required|string',
-            'content' => 'required|string',
-            'website_url' => 'nullable|url',
-            'technologies' => 'required|array',
-            'business_outcomes' => 'required|array',
-            'results_summary' => 'required|string',
-            'is_featured' => 'required|boolean',
+            'title' => 'sometimes|required|string|max:255',
+            'client_name' => 'nullable|string|max:255',
+            'summary' => 'nullable|string',
+            'content' => 'nullable|string',
+            'website_url' => 'nullable|string',
+            'technologies' => 'nullable|array',
+            'business_outcomes' => 'nullable|array',
+            'results_summary' => 'nullable|string',
+            'is_featured' => 'nullable|boolean',
             'order' => 'nullable|integer',
             'seo' => 'nullable|array',
             'case_study' => 'nullable|array',
@@ -154,10 +163,15 @@ class PortfolioController extends Controller
         }
 
         $validated = $validator->validated();
-        $validated['slug'] = Str::slug($validated['title']);
+        if (isset($validated['title'])) {
+            $validated['slug'] = Str::slug($validated['title']);
+            if (PortfolioProject::where('slug', $validated['slug'])->where('id', '!=', $project->id)->exists()) {
+                $validated['slug'] .= '-' . rand(10, 99);
+            }
+        }
 
-        if (PortfolioProject::where('slug', $validated['slug'])->where('id', '!=', $project->id)->exists()) {
-            $validated['slug'] .= '-' . rand(10, 99);
+        if (array_key_exists('website_url', $validated) && empty($validated['website_url'])) {
+            $validated['website_url'] = null;
         }
 
         $project->update($validated);
@@ -174,23 +188,21 @@ class PortfolioController extends Controller
             );
         }
 
-        if (isset($validated['case_study'])) {
-            CaseStudy::updateOrCreate(
-                ['portfolio_project_id' => $project->id],
-                [
-                    'title' => 'Case Study: ' . $project->title,
-                    'slug' => 'case-study-' . $project->slug,
-                    'problem' => $validated['case_study']['problem'] ?? $project->summary,
-                    'solution' => $validated['case_study']['solution'] ?? $project->content,
-                    'technology' => $project->technologies,
-                    'approach' => $validated['case_study']['approach'] ?? '',
-                    'timeline_duration' => $validated['case_study']['timeline_duration'] ?? '3 Months',
-                    'challenges' => $validated['case_study']['challenges'] ?? '',
-                    'results' => $validated['case_study']['results'] ?? '',
-                    'roi_percentage' => $validated['case_study']['roi_percentage'] ?? null,
-                ]
-            );
-        }
+        CaseStudy::updateOrCreate(
+            ['portfolio_project_id' => $project->id],
+            [
+                'title' => 'Case Study: ' . $project->title,
+                'slug' => 'case-study-' . $project->slug,
+                'problem' => $validated['case_study']['problem'] ?? $project->summary,
+                'solution' => $validated['case_study']['solution'] ?? $project->content,
+                'technology' => $project->technologies,
+                'approach' => $validated['case_study']['approach'] ?? '',
+                'timeline_duration' => $validated['case_study']['timeline_duration'] ?? '3 Months',
+                'challenges' => $validated['case_study']['challenges'] ?? '',
+                'results' => $validated['case_study']['results'] ?? $project->results_summary,
+                'roi_percentage' => $validated['case_study']['roi_percentage'] ?? null,
+            ]
+        );
 
         return response()->json([
             'success' => true,

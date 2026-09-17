@@ -24,16 +24,29 @@ class WorkExperienceController extends Controller
         $validated = $request->validate([
             'company_name' => 'required|string|max:255',
             'logo' => 'nullable|string|max:255',
-            'role' => 'required|string|max:255',
+            'role' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
             'type' => 'nullable|string|max:100',
-            'duration_text' => 'required|string|max:100',
+            'duration_text' => 'nullable|string|max:100',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
-            'description' => 'required|string',
-            'skills' => 'nullable|array',
+            'description' => 'nullable|string',
+            'skills' => 'nullable',
             'order' => 'nullable|integer',
         ]);
+
+        $validated['role'] = $validated['role'] ?? 'Executive Role';
+        $validated['duration_text'] = $validated['duration_text'] ?? '2024 – Present';
+        $validated['description'] = $validated['description'] ?? ($validated['role'] . ' at ' . $validated['company_name']);
+        $validated['type'] = $validated['type'] ?? 'Full-time';
+        $validated['location'] = $validated['location'] ?? 'Nepal / Remote';
+        $validated['order'] = $validated['order'] ?? 0;
+
+        if (is_string($request->input('skills'))) {
+            $validated['skills'] = array_values(array_filter(array_map('trim', explode(',', $request->input('skills')))));
+        } else {
+            $validated['skills'] = $validated['skills'] ?? [];
+        }
 
         $experience = WorkExperience::create($validated);
 
@@ -49,18 +62,22 @@ class WorkExperienceController extends Controller
         $experience = WorkExperience::findOrFail($id);
 
         $validated = $request->validate([
-            'company_name' => 'required|string|max:255',
+            'company_name' => 'sometimes|required|string|max:255',
             'logo' => 'nullable|string|max:255',
-            'role' => 'required|string|max:255',
+            'role' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
             'type' => 'nullable|string|max:100',
-            'duration_text' => 'required|string|max:100',
+            'duration_text' => 'nullable|string|max:100',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
-            'description' => 'required|string',
-            'skills' => 'nullable|array',
+            'description' => 'nullable|string',
+            'skills' => 'nullable',
             'order' => 'nullable|integer',
         ]);
+
+        if (is_string($request->input('skills'))) {
+            $validated['skills'] = array_values(array_filter(array_map('trim', explode(',', $request->input('skills')))));
+        }
 
         $experience->update($validated);
 

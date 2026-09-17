@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\LandingPage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LandingPageController extends Controller
 {
@@ -57,8 +58,8 @@ class LandingPageController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:landing_pages,slug',
-            'path' => 'required|string|max:255|unique:landing_pages,path',
+            'slug' => 'nullable|string|max:255',
+            'path' => 'nullable|string|max:255',
             'category' => 'required|string',
             'heading' => 'nullable|string',
             'subheading' => 'nullable|string',
@@ -87,6 +88,28 @@ class LandingPageController extends Controller
             'published' => 'boolean',
         ]);
 
+        if (empty($validated['slug'])) {
+            $baseSlug = Str::slug($validated['title']);
+            $slug = $baseSlug;
+            $count = 1;
+            while (LandingPage::where('slug', $slug)->exists()) {
+                $slug = $baseSlug . '-' . $count++;
+            }
+            $validated['slug'] = $slug;
+        }
+
+        if (empty($validated['path'])) {
+            $cat = trim($validated['category'] ?? 'business-consulting', '/');
+            if ($cat === 'standalone' || $cat === 'custom' || empty($cat)) {
+                $basePath = '/' . $validated['slug'] . '/';
+            } else {
+                $basePath = '/' . $cat . '/' . $validated['slug'] . '/';
+            }
+            $validated['path'] = $basePath;
+        } else {
+            $validated['path'] = '/' . trim($validated['path'], '/') . '/';
+        }
+
         if (isset($validated['status'])) {
             $validated['published'] = ($validated['status'] === 'published');
         }
@@ -106,8 +129,8 @@ class LandingPageController extends Controller
 
         $validated = $request->validate([
             'title' => 'sometimes|required|string|max:255',
-            'slug' => 'sometimes|required|string|max:255|unique:landing_pages,slug,' . $id,
-            'path' => 'sometimes|required|string|max:255|unique:landing_pages,path,' . $id,
+            'slug' => 'nullable|string|max:255',
+            'path' => 'nullable|string|max:255',
             'category' => 'sometimes|required|string',
             'heading' => 'nullable|string',
             'subheading' => 'nullable|string',
@@ -135,6 +158,14 @@ class LandingPageController extends Controller
             'faqs' => 'nullable|array',
             'published' => 'boolean',
         ]);
+
+        if (array_key_exists('slug', $validated) && empty($validated['slug']) && !empty($validated['title'])) {
+            $validated['slug'] = Str::slug($validated['title']);
+        }
+
+        if (array_key_exists('path', $validated) && !empty($validated['path'])) {
+            $validated['path'] = '/' . trim($validated['path'], '/') . '/';
+        }
 
         if (isset($validated['status'])) {
             $validated['published'] = ($validated['status'] === 'published');

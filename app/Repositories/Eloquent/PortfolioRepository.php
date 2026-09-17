@@ -11,14 +11,16 @@ class PortfolioRepository implements RepositoryInterface
 {
     public function all(): Collection
     {
-        return PortfolioProject::orderBy('order')
+        return PortfolioProject::orderBy('order', 'asc')
+            ->orderBy('id', 'desc')
             ->get();
     }
 
     public function getFeatured(): Collection
     {
         return PortfolioProject::where('is_featured', true)
-            ->orderBy('order')
+            ->orderBy('order', 'asc')
+            ->orderBy('id', 'desc')
             ->get();
     }
 

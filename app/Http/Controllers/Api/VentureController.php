@@ -47,23 +47,40 @@ class VentureController extends Controller
             'name' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255',
             'tagline' => 'nullable|string|max:255',
-            'category' => 'required|string|max:100',
+            'category' => 'nullable|string|max:100',
             'logo' => 'nullable|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'content' => 'nullable|string',
-            'website_url' => 'nullable|url',
+            'website_url' => 'nullable|string',
             'my_role' => 'nullable|string|max:255',
             'locations' => 'nullable|array',
             'technologies' => 'nullable|array',
             'industries' => 'nullable|array',
             'faqs' => 'nullable|array',
             'order' => 'nullable|integer',
-            'is_featured' => 'boolean',
-            'is_active' => 'boolean',
+            'is_featured' => 'nullable|boolean',
+            'is_active' => 'nullable|boolean',
         ]);
 
+        $validated['category'] = $validated['category'] ?? 'technology';
+        $validated['description'] = $validated['description'] ?? ($validated['name'] . ' venture and business operation.');
+        $validated['my_role'] = $validated['my_role'] ?? 'Founder';
+        $validated['is_active'] = isset($validated['is_active']) ? (bool)$validated['is_active'] : true;
+        $validated['is_featured'] = isset($validated['is_featured']) ? (bool)$validated['is_featured'] : true;
+        $validated['order'] = $validated['order'] ?? 0;
+
+        if (empty($validated['website_url'])) {
+            $validated['website_url'] = null;
+        }
+
         if (empty($validated['slug'])) {
-            $validated['slug'] = Str::slug($validated['name']);
+            $baseSlug = Str::slug($validated['name']);
+            $slug = $baseSlug;
+            $count = 1;
+            while (Venture::where('slug', $slug)->exists()) {
+                $slug = $baseSlug . '-' . $count++;
+            }
+            $validated['slug'] = $slug;
         }
 
         $venture = Venture::create($validated);
@@ -81,23 +98,31 @@ class VentureController extends Controller
         $venture = Venture::where('id', $id)->orWhere('slug', $id)->firstOrFail();
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'sometimes|required|string|max:255',
             'slug' => 'nullable|string|max:255',
             'tagline' => 'nullable|string|max:255',
-            'category' => 'required|string|max:100',
+            'category' => 'nullable|string|max:100',
             'logo' => 'nullable|string|max:255',
-            'description' => 'required|string',
+            'description' => 'nullable|string',
             'content' => 'nullable|string',
-            'website_url' => 'nullable|url',
+            'website_url' => 'nullable|string',
             'my_role' => 'nullable|string|max:255',
             'locations' => 'nullable|array',
             'technologies' => 'nullable|array',
             'industries' => 'nullable|array',
             'faqs' => 'nullable|array',
             'order' => 'nullable|integer',
-            'is_featured' => 'boolean',
-            'is_active' => 'boolean',
+            'is_featured' => 'nullable|boolean',
+            'is_active' => 'nullable|boolean',
         ]);
+
+        if (array_key_exists('website_url', $validated) && empty($validated['website_url'])) {
+            $validated['website_url'] = null;
+        }
+
+        if (isset($validated['name']) && empty($validated['slug'])) {
+            $validated['slug'] = Str::slug($validated['name']);
+        }
 
         $venture->update($validated);
         \Illuminate\Support\Facades\Cache::flush();

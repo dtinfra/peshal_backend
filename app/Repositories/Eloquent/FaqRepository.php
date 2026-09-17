@@ -21,6 +21,7 @@ class FaqRepository implements RepositoryInterface
     public function getByCategory(string $categoryKey): Collection
     {
         return Faq::where('category_key', $categoryKey)
+            ->orWhere('page_slug', $categoryKey)
             ->orderBy('order')
             ->get();
     }
@@ -28,6 +29,7 @@ class FaqRepository implements RepositoryInterface
     public function getByPage(string $pageSlug): Collection
     {
         return Faq::where('page_slug', $pageSlug)
+            ->orWhere('category_key', $pageSlug)
             ->orderBy('order')
             ->get();
     }

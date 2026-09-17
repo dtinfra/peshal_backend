@@ -74,17 +74,36 @@ class NowPageController extends Controller
     {
         $now = NowPageSetting::firstOrCreate(['id' => 1]);
 
-        $validated = $request->validate([
-            'building' => 'nullable|array',
-            'exploring' => 'nullable|array',
-            'learning' => 'nullable|array',
-            'reading' => 'nullable|array',
-            'history' => 'nullable|array',
-            'current_focus' => 'required|string',
-        ]);
+        $input = $request->all();
 
-        $validated['last_updated_at'] = now();
-        $now->update($validated);
+        foreach (['building', 'exploring', 'learning', 'reading'] as $field) {
+            if (isset($input[$field])) {
+                if (is_string($input[$field])) {
+                    $input[$field] = array_values(array_filter(array_map('trim', explode("\n", $input[$field]))));
+                } elseif (is_array($input[$field])) {
+                    $input[$field] = array_values(array_filter(array_map('trim', $input[$field])));
+                }
+            }
+        }
+
+        if (isset($input['history'])) {
+            if (is_string($input['history'])) {
+                $decoded = json_decode($input['history'], true);
+                if (is_array($decoded)) {
+                    $input['history'] = $decoded;
+                }
+            }
+        }
+
+        $now->update([
+            'building' => $input['building'] ?? $now->building ?? [],
+            'exploring' => $input['exploring'] ?? $now->exploring ?? [],
+            'learning' => $input['learning'] ?? $now->learning ?? [],
+            'reading' => $input['reading'] ?? $now->reading ?? [],
+            'history' => $input['history'] ?? $now->history ?? [],
+            'current_focus' => $input['current_focus'] ?? $now->current_focus ?? 'Building digital ecosystems in Nepal & Dubai.',
+            'last_updated_at' => now(),
+        ]);
 
         return response()->json([
             'success' => true,

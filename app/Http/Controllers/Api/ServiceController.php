@@ -63,11 +63,11 @@ class ServiceController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'content' => 'required|string',
-            'icon' => 'required|string',
-            'is_featured' => 'required|boolean',
-            'is_active' => 'required|boolean',
+            'description' => 'nullable|string',
+            'content' => 'nullable|string',
+            'icon' => 'nullable|string',
+            'is_featured' => 'nullable|boolean',
+            'is_active' => 'nullable|boolean',
             'order' => 'nullable|integer',
             'seo' => 'nullable|array',
         ]);
@@ -80,6 +80,11 @@ class ServiceController extends Controller
         }
 
         $validated = $validator->validated();
+        $validated['description'] = $validated['description'] ?? $validated['title'];
+        $validated['content'] = $validated['content'] ?? $validated['description'];
+        $validated['icon'] = $validated['icon'] ?? 'briefcase';
+        $validated['is_featured'] = $validated['is_featured'] ?? false;
+        $validated['is_active'] = $validated['is_active'] ?? true;
         $validated['slug'] = Str::slug($validated['title']) . '-' . rand(10, 99);
 
         $service = Service::create($validated);
@@ -102,15 +107,21 @@ class ServiceController extends Controller
 
     public function update(Request $request, string $id): JsonResponse
     {
-        $service = Service::findOrFail($id);
+        $service = Service::where('id', $id)->orWhere('slug', $id)->first();
+        if (!$service) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Service not found.'
+            ], 404);
+        }
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'content' => 'required|string',
-            'icon' => 'required|string',
-            'is_featured' => 'required|boolean',
-            'is_active' => 'required|boolean',
+            'description' => 'nullable|string',
+            'content' => 'nullable|string',
+            'icon' => 'nullable|string',
+            'is_featured' => 'nullable|boolean',
+            'is_active' => 'nullable|boolean',
             'order' => 'nullable|integer',
             'seo' => 'nullable|array',
         ]);
@@ -152,7 +163,15 @@ class ServiceController extends Controller
 
     public function destroy(string $id): JsonResponse
     {
-        $service = Service::findOrFail($id);
+        $service = Service::where('id', $id)->orWhere('slug', $id)->first();
+        if (!$service) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Service not found.'
+            ], 404);
+        }
+
+        $service->seo()->delete();
         $service->delete();
 
         return response()->json([

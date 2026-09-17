@@ -17,9 +17,10 @@ class BlogService
         $this->blogRepository = $blogRepository;
     }
 
-    public function getPaginatedBlogs(int $perPage = 10): LengthAwarePaginator
+    public function getPaginatedBlogs(int $perPage = 50): LengthAwarePaginator
     {
         $page = request()->get('page', 1);
+        $perPage = (int) request()->get('per_page', $perPage);
         return Cache::remember("blogs_page_{$page}_per_{$perPage}", 3600, function () use ($perPage) {
             return $this->blogRepository->paginate($perPage);
         });
@@ -39,24 +40,27 @@ class BlogService
         });
     }
 
-    public function getBlogsByCategory(string $categorySlug, int $perPage = 10): LengthAwarePaginator
+    public function getBlogsByCategory(string $categorySlug, int $perPage = 50): LengthAwarePaginator
     {
         $page = request()->get('page', 1);
+        $perPage = (int) request()->get('per_page', $perPage);
         return Cache::remember("blogs_cat_{$categorySlug}_page_{$page}_per_{$perPage}", 3600, function () use ($categorySlug, $perPage) {
             return $this->blogRepository->getByCategory($categorySlug, $perPage);
         });
     }
 
-    public function getBlogsByTag(string $tagSlug, int $perPage = 10): LengthAwarePaginator
+    public function getBlogsByTag(string $tagSlug, int $perPage = 50): LengthAwarePaginator
     {
         $page = request()->get('page', 1);
+        $perPage = (int) request()->get('per_page', $perPage);
         return Cache::remember("blogs_tag_{$tagSlug}_page_{$page}_per_{$perPage}", 3600, function () use ($tagSlug, $perPage) {
             return $this->blogRepository->getByTag($tagSlug, $perPage);
         });
     }
 
-    public function searchBlogs(string $term, int $perPage = 10): LengthAwarePaginator
+    public function searchBlogs(string $term, int $perPage = 50): LengthAwarePaginator
     {
+        $perPage = (int) request()->get('per_page', $perPage);
         return $this->blogRepository->search($term, $perPage);
     }
 

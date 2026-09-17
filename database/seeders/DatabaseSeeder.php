@@ -683,43 +683,48 @@ Strategic advisory helping global companies eliminate technical debt, modernize 
         }
 
         // 10. Structured QAE FAQs Seeding across Core Pillars
-        $faqCategories = [
-            'homepage' => 'Homepage FAQs',
-            'product_management' => 'Product Management FAQs',
-            'digital_marketing' => 'Digital Marketing FAQs',
-            'business_consulting' => 'Business Consulting FAQs',
+        $allCategoryFaqs = [
+            'homepage' => [
+                ['q' => 'What is Peshal Bhattarai\'s core business model and multi-venture ecosystem?', 'a' => 'Peshal Bhattarai operates an integrated multi-venture ecosystem across technology, growth marketing, real estate, and luxury tourism. Key ventures include IntechNexus (global remote software engineering & SaaS development), Digital Terai (organic search, performance marketing & AEO growth agency), 360Castle Dubai (Dubai real estate advisory & Golden Visa structuring), and Nepal Trip Packages (luxury Everest helicopter expeditions & adventure operations).'],
+                ['q' => 'How do your dedicated remote engineering squads in Nepal achieve 55–65% cost reduction without sacrificing quality?', 'a' => 'Through IntechNexus, we source top-tier computer science talent in Kathmandu, pairing developers with certified Agile Scrum Masters and Senior Product Architects. Clients operate with full operational overlap, direct GitHub repository access, strict CI/CD pipelines, and US/EU quality standards at 55–65% lower overhead than domestic hiring in North America or Western Europe.'],
+                ['q' => 'What legal and tax incentives support setting up a tech subsidiary or remote team in Nepal under FITTA 2019?', 'a' => 'Nepal’s Foreign Investment and Technology Transfer Act (FITTA 2019) allows 100% foreign ownership for technology companies, guaranteed 100% profit repatriation in foreign currency, and tax concessions for export IT services (10–15% corporate tax rate). We assist international companies with Special Foreign Currency (FCY) bank account setup, NRB approvals, and full compliance.'],
+                ['q' => 'How does Answer Engine Optimization (AEO/GEO) differ from traditional SEO, and why is it essential for B2B brands?', 'a' => 'Traditional SEO focuses on earning organic blue link clicks on search engines like Google. AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization) structure content using QAE (Question-Answer-Evidence) formatting, schema graph markups, and high information-density content so that AI search platforms (ChatGPT, Perplexity, Claude, Google AI Overviews) extract and cite your brand as the primary authority for high-intent customer queries.'],
+                ['q' => 'What investment returns and Golden Visa benefits does Dubai real estate offer international buyers?', 'a' => 'Dubai real estate delivers 7–10% net rental yields—among the highest globally—with 0% property tax, 0% capital gains tax, and 100% foreign freehold ownership in prime zones. Investing AED 2,000,000 (~$545,000 USD) or more in ready or off-plan residential real estate qualifies investors and their families for the renewable 10-Year UAE Golden Visa.'],
+                ['q' => 'How do you protect Intellectual Property (IP), code security, and NDA compliance for global client software projects?', 'a' => 'Intellectual Property (IP) assignment is legally bound to the client from line one of code commit. All remote engineers sign binding international Non-Disclosure Agreements (NDAs). Code is hosted directly in client-owned repositories (GitHub, GitLab, AWS Bitbucket) with strict role-based access control (RBAC), multi-factor authentication, and zero third-party code sharing.'],
+                ['q' => 'What engagement models are available for working with Peshal Bhattarai?', 'a' => 'Engagement models include: (1) Fractional CTO / CPO Retainers for SaaS roadmap strategy and product architecture, (2) Remote Team as a Service (RTaaS) for dedicated engineering squads, (3) Performance & AEO Growth Marketing Retainers via Digital Terai, and (4) Strategic Board Advisory for venture scaling and cross-border expansion in UAE and Nepal.'],
+                ['q' => 'What safety protocols and luxury standards govern Everest helicopter expeditions at Nepal Trip Packages?', 'a' => 'Luxury tourism operations at Nepal Trip Packages utilize Airbus AS350 B3e high-altitude helicopters piloted by senior high-altitude aviators. Expeditions include supplementary oxygen systems, real-time satellite tracking, weather radar clearance protocols, certified emergency medical response, and luxury lodge accommodations at Everest Base Camp and Syangboche.'],
+            ],
+            'product_management' => [
+                ['q' => 'What is the role of a Fractional Product Manager (CPO) in a SaaS company?', 'a' => 'A Fractional Product Manager provides high-level executive product leadership on a retainer basis. We establish product strategy, run customer discovery interviews, optimize user activation funnels, prioritize feature backlogs using frameworks like RICE or Kano, and align engineering squads to ship high-impact features without the equity or salary overhead of a full-time CPO.'],
+                ['q' => 'How do you prioritize feature roadmaps when engineering bandwidth is limited?', 'a' => 'We apply quantitative RICE scoring (Reach x Impact x Confidence / Effort) and Kano model analysis. This separates high-leverage business capabilities from feature bloat, ensuring engineering teams ship features that drive ARR, user retention, and customer acquisition.'],
+                ['q' => 'How do you transition a monolithic application into a modern decoupled microservices stack?', 'a' => 'We execute the Strangler Fig migration pattern. Instead of a high-risk full rewrite, we isolate domain boundaries and deploy a decoupled API backend (Laravel 12 REST/GraphQL) paired with an edge-rendered frontend (Next.js 15 App Router). Routes are migrated incrementally with zero downtime.'],
+                ['q' => 'How do you ensure product releases stay on schedule across distributed remote squads?', 'a' => 'We run strict 2-week Agile Scrum sprints supported by daily asynchronous standups, clear acceptance criteria (Definition of Done), automated CI/CD testing pipelines, and real-time velocity tracking telemetry on Jira/Linear.'],
+                ['q' => 'What metrics do you track to measure Product-Market Fit (PMF)?', 'a' => 'We track Cohort Retention Curves (Day 1, 7, 30), Net Promoter Score (NPS), Customer Acquisition Cost (CAC) to Lifetime Value (LTV) ratios (targeting 3:1+), Feature Activation Velocity, and Monthly Recurring Revenue (MRR) expansion rates.'],
+            ],
+            'digital_marketing' => [
+                ['q' => 'What is Answer Engine Optimization (AEO) and how does Digital Terai execute it?', 'a' => 'AEO optimizes website content to be extracted by AI conversational engines like ChatGPT, Perplexity, Claude, and Google AI Overviews. Digital Terai implements QAE (Question-Answer-Evidence) content structures, JSON-LD Schema markup, and high information-density content graphs that establish your brand as the canonical entity source for LLMs.'],
+                ['q' => 'How do performance marketing funnels integrate with organic search growth?', 'a' => 'We build full-funnel search strategies: paid performance ads (Google Search & LinkedIn Ads) capture immediate high-intent BOFU (Bottom of Funnel) buyers, while structured SEO and AEO build organic MOFU/TOFU domain authority, reducing overall Customer Acquisition Cost (CAC) over time.'],
+                ['q' => 'How do you track multi-touch B2B lead attribution in GA4?', 'a' => 'We configure server-side Google Analytics 4 (GA4) with custom event parameters and CRM integrations (HubSpot, Salesforce). This tracks customer touchpoints from initial search entry and whitepaper download to final booking and closed-won revenue.'],
+                ['q' => 'What technical SEO factors are critical for Next.js 15 and Laravel web platforms?', 'a' => 'Key factors include 100/100 Core Web Vitals (LCP < 1.2s, CLS 0, INP < 100ms), dynamic OpenGraph/Twitter card generation, SSR/ISR page revalidation, properly nested heading hierarchies (H1-H4), XML sitemaps, and automated canonical URL mapping.'],
+                ['q' => 'How long does it take to see measurable ROI from an AEO and SEO campaign?', 'a' => 'Initial technical SEO fixes and AEO schema deployments show indexation improvements within 2–4 weeks. Significant organic lead volume and AI answer citation dominance typically compound within 60 to 90 days.'],
+            ],
+            'business_consulting' => [
+                ['q' => 'How does your business consulting service help enterprises scale offshore operations in Nepal?', 'a' => 'We provide end-to-end operational setup: candidate sourcing, technical testing, legal compliance under Nepal’s FITTA 2019 act, Special FCY bank account clearance, HR/payroll administration, and agile delivery management aligned to European and US corporate standards.'],
+                ['q' => 'What are the tax advantages and profit repatriation rules for foreign companies operating in Nepal?', 'a' => 'Foreign companies enjoy 100% legal ownership of IT export subsidiaries in Nepal, reduced corporate tax rates (10–15% for IT services exports), zero tax on foreign dividend repatriations when routed through Nepal Rastra Bank (NRB) channels, and favorable currency exchange operations.'],
+                ['q' => 'How do you assist investors in navigating the Dubai business and real estate ecosystem?', 'a' => 'Through 360Castle Dubai, we provide market intelligence for off-plan and ready residential investments, commercial property acquisition, trade license setup in Dubai Free Zones (IFZA, DMCC, DDA), corporate tax registration, and 10-Year UAE Golden Visa processing.'],
+                ['q' => 'What is Remote Team as a Service (RTaaS) and how does it differ from traditional outsourcing?', 'a' => 'Unlike traditional outsourcing vendor houses that assign shared, unvetted resources, RTaaS provides dedicated engineering squads that work exclusively for your company, fully integrated into your Slack/Jira workflows, tools, and company culture, managed by a dedicated Technical Lead.'],
+                ['q' => 'How do you conduct a business process automation audit for legacy enterprises?', 'a' => 'We analyze internal operational bottlenecks, manual data entry points, and legacy software dependencies. We then architect automated workflows utilizing custom REST APIs, cloud queues (Redis/RabbitMQ), ERP integrations, and custom dashboards that reduce operational costs by 35–50%.'],
+            ]
         ];
 
-        foreach ($faqCategories as $key => $catTitle) {
-            for ($i = 1; $i <= 10; $i++) {
-                $question = "";
-                $answer = "";
-                
-                switch ($key) {
-                    case 'homepage':
-                        $question = "Question $i: What services does Peshal Bhattarai offer as a Product Manager, Digital Marketer, and Business Consultant?";
-                        $answer = "Answer $i: Peshal Bhattarai provides end-to-end tech leadership: Fractional Product Management (SaaS roadmaps, PMF audits), Growth Digital Marketing & AEO Optimization (ranking on Google, ChatGPT & Perplexity), and Enterprise Business Consulting (digital transformation and offshore engineering scaling from Nepal).";
-                        break;
-                    case 'product_management':
-                        $question = "Question $i: How does a Fractional Product Manager accelerate SaaS roadmap execution?";
-                        $answer = "Answer $i: A Fractional Product Manager establishes clear feature prioritization frameworks (RICE/Kano), structures sprint backlogs, conducts user discovery workshops, and aligns engineering teams to ship high-impact features without the cost of a full-time executive.";
-                        break;
-                    case 'digital_marketing':
-                        $question = "Question $i: What is Answer Engine Optimization (AEO) and how does it drive B2B leads?";
-                        $answer = "Answer $i: AEO optimizes your digital assets for AI search engines like ChatGPT, Perplexity, and Google AI Overviews using structured JSON-LD schemas and QAE answer-first formatting, ensuring your brand is cited as the primary answer.";
-                        break;
-                    case 'business_consulting':
-                        $question = "Question $i: Why choose Nepal for offshore engineering team scaling and digital transformation?";
-                        $answer = "Answer $i: Nepal offers world-class computer science engineering talent, high English fluency, competitive cost structures, and excellent time-zone overlap for round-the-clock development agility managed to US/EU operational standards.";
-                        break;
-                }
-
+        foreach ($allCategoryFaqs as $key => $items) {
+            foreach ($items as $index => $item) {
                 Faq::create([
-                    'question' => $question,
-                    'answer' => $answer,
+                    'question' => $item['q'],
+                    'answer' => $item['a'],
                     'category_key' => $key,
                     'page_slug' => $key === 'homepage' ? '/' : "/blog/category/$key",
-                    'order' => $i
+                    'order' => $index + 1
                 ]);
             }
         }

@@ -31,6 +31,9 @@ Route::get('/clear-route-cache', function() {
     \Illuminate\Support\Facades\Artisan::call('route:clear');
     \Illuminate\Support\Facades\Artisan::call('config:clear');
     \Illuminate\Support\Facades\Artisan::call('cache:clear');
+    if (function_exists('opcache_reset')) {
+        @opcache_reset();
+    }
     return 'All caches cleared successfully!';
 });
 
@@ -113,6 +116,9 @@ PHP;
         \Illuminate\Support\Facades\Artisan::call('config:clear');
         \Illuminate\Support\Facades\Artisan::call('cache:clear');
         \Illuminate\Support\Facades\Artisan::call('route:clear');
+        if (function_exists('opcache_reset')) {
+            @opcache_reset();
+        }
         return response()->json([
             'success' => true,
             'message' => 'Production backend updated successfully!',

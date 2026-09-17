@@ -447,24 +447,7 @@ PHP;
 Route::get('/run-master-seeder', function() {
     try {
         \App\Models\SiteMenu::where('menu_key', 'services_dropdown')->delete();
-        \Illuminate\Support\Facades\Artisan::call('db:seed', [
-            '--class' => 'MasterVentureAndLandingPagesSeeder',
-            '--force' => true
-        ]);
-        \Illuminate\Support\Facades\Cache::flush();
-        return response()->json([
-            'success' => true,
-            'message' => 'MasterVentureAndLandingPagesSeeder executed and cache cleared successfully!'
-        ]);
-    } catch (\Throwable $e) {
-        return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
-    }
-});
-
-Route::get('/run-menu-fix', function() {
-    try {
-        \App\Models\SiteMenu::where('menu_key', 'services_dropdown')->delete();
-        $items = [
+        $dropdownItems = [
             ['menu_key' => 'services_dropdown', 'label' => 'Business Consulting', 'url' => '/business-consulting', 'order' => 1, 'is_visible' => true],
             ['menu_key' => 'services_dropdown', 'label' => 'Digital Growth Hub', 'url' => '/digital-growth', 'order' => 2, 'is_visible' => true],
             ['menu_key' => 'services_dropdown', 'label' => 'Dubai Advisory Hub', 'url' => '/dubai', 'order' => 3, 'is_visible' => true],
@@ -472,13 +455,18 @@ Route::get('/run-menu-fix', function() {
             ['menu_key' => 'services_dropdown', 'label' => 'Start Business in Dubai', 'url' => '/start-business-in-dubai', 'order' => 5, 'is_visible' => true],
             ['menu_key' => 'services_dropdown', 'label' => 'Start Business in Nepal', 'url' => '/start-business-in-nepal', 'order' => 6, 'is_visible' => true],
         ];
-        foreach ($items as $item) {
-            \App\Models\SiteMenu::create($item);
+        foreach ($dropdownItems as $dItem) {
+            \App\Models\SiteMenu::create($dItem);
         }
+
+        \Illuminate\Support\Facades\Artisan::call('db:seed', [
+            '--class' => 'MasterVentureAndLandingPagesSeeder',
+            '--force' => true
+        ]);
         \Illuminate\Support\Facades\Cache::flush();
         return response()->json([
             'success' => true,
-            'message' => 'services_dropdown menu fixed and restored successfully!'
+            'message' => 'MasterVentureAndLandingPagesSeeder and services_dropdown menu restored successfully!'
         ]);
     } catch (\Throwable $e) {
         return response()->json(['success' => false, 'error' => $e->getMessage()], 500);

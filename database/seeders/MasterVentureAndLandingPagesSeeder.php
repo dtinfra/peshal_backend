@@ -908,6 +908,14 @@ class MasterVentureAndLandingPagesSeeder extends Seeder
             ['menu_key' => 'main_nav', 'label' => 'Insights', 'url' => '/insights', 'order' => 7],
             ['menu_key' => 'main_nav', 'label' => 'Contact', 'url' => '/contact', 'order' => 8],
 
+            // Services Dropdown Menu
+            ['menu_key' => 'services_dropdown', 'label' => 'Business Consulting', 'url' => '/business-consulting', 'order' => 1],
+            ['menu_key' => 'services_dropdown', 'label' => 'Digital Growth Hub', 'url' => '/digital-growth', 'order' => 2],
+            ['menu_key' => 'services_dropdown', 'label' => 'Dubai Advisory Hub', 'url' => '/dubai', 'order' => 3],
+            ['menu_key' => 'services_dropdown', 'label' => 'Technology Engineering', 'url' => '/technology', 'order' => 4],
+            ['menu_key' => 'services_dropdown', 'label' => 'Start Business in Dubai', 'url' => '/start-business-in-dubai', 'order' => 5],
+            ['menu_key' => 'services_dropdown', 'label' => 'Start Business in Nepal', 'url' => '/start-business-in-nepal', 'order' => 6],
+
             // Footer Ventures
             ['menu_key' => 'footer_ventures', 'label' => 'Digital Terai', 'url' => '/ventures/digital-terai', 'order' => 1],
             ['menu_key' => 'footer_ventures', 'label' => 'IntechNexus', 'url' => '/ventures/intechnexus', 'order' => 2],

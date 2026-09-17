@@ -41,6 +41,73 @@ Route::get('/git-pull-deploy', function() {
         return response()->json(['success' => false, 'message' => 'Unauthorized key'], 401);
     }
     try {
+        $blogServicePath = base_path('app/Services/BlogService.php');
+        $blogServiceContent = <<<'PHP'
+<?php
+
+namespace App\Services;
+
+use App\Models\Blog;
+use App\Repositories\Eloquent\BlogRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
+
+class BlogService
+{
+    protected BlogRepository $blogRepository;
+
+    public function __construct(BlogRepository $blogRepository)
+    {
+        $this->blogRepository = $blogRepository;
+    }
+
+    public function getPaginatedBlogs(int $perPage = 50): LengthAwarePaginator
+    {
+        $perPage = (int) request()->get('per_page', $perPage);
+        return $this->blogRepository->paginate($perPage);
+    }
+
+    public function getBlogBySlug(string $slug): ?Blog
+    {
+        return $this->blogRepository->findBySlug($slug);
+    }
+
+    public function getRelatedBlogs(Blog $blog, int $limit = 3): Collection
+    {
+        return $this->blogRepository->getRelated($blog, $limit);
+    }
+
+    public function getBlogsByCategory(string $categorySlug, int $perPage = 50): LengthAwarePaginator
+    {
+        $perPage = (int) request()->get('per_page', $perPage);
+        return $this->blogRepository->getByCategory($categorySlug, $perPage);
+    }
+
+    public function getBlogsByTag(string $tagSlug, int $perPage = 50): LengthAwarePaginator
+    {
+        $perPage = (int) request()->get('per_page', $perPage);
+        return $this->blogRepository->getByTag($tagSlug, $perPage);
+    }
+
+    public function searchBlogs(string $term, int $perPage = 50): LengthAwarePaginator
+    {
+        $perPage = (int) request()->get('per_page', $perPage);
+        return $this->blogRepository->search($term, $perPage);
+    }
+
+    public function getCategories(): Collection
+    {
+        return $this->blogRepository->getCategories();
+    }
+
+    public function getTags(): Collection
+    {
+        return $this->blogRepository->getTags();
+    }
+}
+PHP;
+        file_put_contents($blogServicePath, $blogServiceContent);
+
         $gitOutput = shell_exec('cd ' . base_path() . ' && git pull origin main 2>&1');
         \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
         \Illuminate\Support\Facades\Artisan::call('config:clear');

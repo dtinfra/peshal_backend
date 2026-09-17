@@ -34,6 +34,32 @@ Route::get('/clear-route-cache', function() {
     return 'All caches cleared successfully!';
 });
 
+// Helper Git Pull & Deploy Trigger
+Route::get('/git-pull-deploy', function() {
+    $key = request()->query('key');
+    if ($key !== 'PeshalDeploy2026') {
+        return response()->json(['success' => false, 'message' => 'Unauthorized key'], 401);
+    }
+    try {
+        $gitOutput = shell_exec('cd ' . base_path() . ' && git pull origin main 2>&1');
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        \Illuminate\Support\Facades\Artisan::call('config:clear');
+        \Illuminate\Support\Facades\Artisan::call('cache:clear');
+        \Illuminate\Support\Facades\Artisan::call('route:clear');
+        return response()->json([
+            'success' => true,
+            'message' => 'Production backend updated successfully!',
+            'git_output' => trim($gitOutput),
+            'artisan_output' => trim(\Illuminate\Support\Facades\Artisan::output())
+        ]);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage()
+        ], 500);
+    }
+});
+
 // Helper Production Seeder Trigger
 Route::get('/run-master-seeder', function() {
     try {

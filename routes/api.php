@@ -446,11 +446,12 @@ PHP;
 // Helper Production Seeder Trigger
 Route::get('/run-master-seeder', function() {
     try {
+        \App\Models\SiteMenu::where('menu_key', 'services_dropdown')->delete();
         \Illuminate\Support\Facades\Artisan::call('db:seed', [
             '--class' => 'MasterVentureAndLandingPagesSeeder',
             '--force' => true
         ]);
-        \Illuminate\Support\Facades\Artisan::call('cache:clear');
+        \Illuminate\Support\Facades\Cache::flush();
         return response()->json([
             'success' => true,
             'message' => 'MasterVentureAndLandingPagesSeeder executed and cache cleared successfully!'

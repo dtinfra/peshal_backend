@@ -696,13 +696,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/admin/system/seed', function() {
         try {
-            \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'PriorityBlogsSeeder']);
-            \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'HomepageFaqsSeeder']);
+            \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'MasterVentureAndLandingPagesSeeder', '--force' => true]);
+            \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'PriorityBlogsSeeder', '--force' => true]);
+            \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'HomepageFaqsSeeder', '--force' => true]);
+            \Illuminate\Support\Facades\Cache::flush();
             return response()->json([
                 'success' => true,
-                'message' => 'System seeders ran successfully! Priority blogs and FAQs have been imported.'
+                'message' => 'System seeders ran successfully! Master Landing Pages, Services, Priority Blogs, and FAQs have been imported and cache flushed.'
             ]);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to run seeders: ' . $e->getMessage()

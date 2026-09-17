@@ -925,6 +925,7 @@ class MasterVentureAndLandingPagesSeeder extends Seeder
             SiteMenu::updateOrCreate(['label' => $m['label'], 'menu_key' => $m['menu_key']], $m);
         }
 
+        \Illuminate\Support\Facades\Cache::flush();
         $this->command->info("MasterVentureAndLandingPagesSeeder executed successfully!");
     }
 }

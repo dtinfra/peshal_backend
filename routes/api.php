@@ -33,6 +33,26 @@ Route::get('/clear-route-cache', function() {
     return 'All caches cleared successfully!';
 });
 
+// Helper Production Seeder Trigger
+Route::get('/run-master-seeder', function() {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('db:seed', [
+            '--class' => 'MasterVentureAndLandingPagesSeeder',
+            '--force' => true
+        ]);
+        \Illuminate\Support\Facades\Artisan::call('cache:clear');
+        return response()->json([
+            'success' => true,
+            'message' => 'MasterVentureAndLandingPagesSeeder executed and cache cleared successfully!'
+        ]);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'success' => false,
+            'message' => $e->getMessage()
+        ], 500);
+    }
+});
+
 // Auth Endpoints
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');

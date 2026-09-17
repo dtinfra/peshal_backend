@@ -40,7 +40,11 @@ class BlogController extends Controller
                     ->orderBy('created_at', 'desc')
                     ->paginate($perPage);
             } else {
-                $blogs = $this->blogService->getPaginatedBlogs();
+                $perPage = (int) $request->get('per_page', 50);
+                $blogs = Blog::where('is_published', true)
+                    ->with(['author', 'category', 'tags', 'seo'])
+                    ->orderBy('published_at', 'desc')
+                    ->paginate($perPage);
             }
         }
 

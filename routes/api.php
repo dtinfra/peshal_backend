@@ -111,6 +111,35 @@ class BlogService
 PHP;
         file_put_contents($blogServicePath, $blogServiceContent);
 
+        $blogControllerPath = base_path('app/Http/Controllers/Api/BlogController.php');
+        if (file_exists($blogControllerPath)) {
+            $controllerContent = file_get_contents($blogControllerPath);
+            if (str_contains($controllerContent, '$this->blogService->getPaginatedBlogs()')) {
+                $replacement = <<<'PHP'
+            } else {
+                $perPage = (int) $request->get('per_page', 50);
+                $blogs = Blog::where('is_published', true)
+                    ->with(['author', 'category', 'tags', 'seo'])
+                    ->orderBy('published_at', 'desc')
+                    ->paginate($perPage);
+            }
+        }
+PHP;
+                $controllerContent = str_replace(
+                    "            } else {\n                \$blogs = \$this->blogService->getPaginatedBlogs();\n            }\n        }",
+                    $replacement,
+                    $controllerContent
+                );
+                file_put_contents($blogControllerPath, $controllerContent);
+            }
+        }
+
+        // Wipe disk cache directory completely
+        $cacheDir = storage_path('framework/cache/data');
+        if (is_dir($cacheDir)) {
+            @shell_exec('rm -rf ' . escapeshellarg($cacheDir) . '/*');
+        }
+
         $gitOutput = shell_exec('cd ' . base_path() . ' && git pull origin main 2>&1');
         \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
         \Illuminate\Support\Facades\Artisan::call('config:clear');

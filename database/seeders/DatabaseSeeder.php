@@ -864,33 +864,9 @@ Strategic advisory helping global companies eliminate technical debt, modernize 
             'description' => 'Comprehensive background in software engineering, data structures, and computing algorithms.'
         ]);
 
-        // 17. Seed SEO Metadata for Static Core Pages
-        $pages = [
-            '/' => ['Peshal Bhattarai — Senior Product Manager, Growth Marketer & Business Consultant', 'Senior Product Manager, Growth Digital Marketer, and Business Consultant operating globally from Nepal. Specialized in SaaS product strategy, AEO/SEO search dominance, and enterprise digital transformation.'],
-            '/about' => ['About Peshal Bhattarai | Executive Profile & Career Timeline', 'Discover Peshal Bhattarai\'s career journey as Product Manager, Digital Marketer, and Business Consultant, along with methodologies, leadership accomplishments, and academic certifications.'],
-            '/services' => ['Strategic Services | Product Management, Growth Marketing & Business Consulting', 'Explore Fractional Product Management, AEO & Growth Marketing, and Enterprise Digital Transformation services offered by Peshal Bhattarai.'],
-            '/companies' => ['Venture Portfolio | Digital Terai, IntechNexus, BeinSEO & Thoplo Machine', 'Learn about Digital Terai, IntechNexus, BeinSEO, and Thoplo Machine, built and scaled under Peshal Bhattarai\'s executive leadership.'],
-            '/portfolio' => ['Portfolio & Case Studies | Product, Growth Marketing & Consulting Outcomes', 'View recent SaaS product re-architectures, AEO search campaigns, and digital transformation case studies with documented business ROI.'],
-            '/blog' => ['Insights & Strategy Blog | Peshal Bhattarai', 'Read professional guides on SaaS Product Management, Answer Engine Optimization (AEO), Next.js 15, Laravel 12, and offshore engineering team scaling.'],
-            '/contact' => ['Book a Strategic Briefing | Peshal Bhattarai', 'Schedule an executive briefing or business consultation with Peshal Bhattarai for Product Management, Growth Marketing, or Digital Transformation projects.']
-        ];
-
-        foreach ($pages as $slug => $meta) {
-            SeoMetadata::create([
-                'model_type' => 'Page',
-                'model_id' => 0,
-                'meta_title' => $meta[0],
-                'meta_description' => $meta[1],
-                'keywords' => 'peshal bhattarai, product manager, digital marketer, business consultant, aeo optimization, saas roadmap, nepal tech leadership',
-                'canonical_url' => 'https://peshalbhattarai.com' . ($slug === '/' ? '' : $slug),
-                'og_title' => $meta[0],
-                'og_description' => $meta[1],
-                'og_image' => '/assets/images/peshal-og-home.jpg',
-            ]);
-        }
-
         // Call modular seeders
         $this->call([
+            PublishStaticPageSeoSeeder::class,
             HomepageFaqsSeeder::class,
             PriorityBlogsSeeder::class,
             FastTrackBlogsSeeder::class,

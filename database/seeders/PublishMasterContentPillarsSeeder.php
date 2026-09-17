@@ -105,7 +105,7 @@ Eliminate generic, repetitive introductory text. AI models ignore consensus fluf
 ## 5. Strategic Ecosystem & Related Growth Links
 
 Explore search engineering and digital growth services across our network:
-- **Explore Digital Terai Services:** [View Growth Services](/ventures/digitalterai)
+- **Explore Digital Terai Services:** [View Growth Services](/ventures/digital-terai)
 - **Read Digital Growth Benchmarks:** [AEO & Growth Metrics](/insights/digital-marketing-and-aeo-roi-benchmarks-nepal-dubai)
 - **Read Market Expansion Blueprint:** [Start Business in Dubai](/start-business-in-dubai)
 - **Schedule Growth Consultation:** [Request SEO/AEO Audit](/contact?category=digital_growth)
@@ -309,7 +309,7 @@ MARKDOWN
 > - **High Gross Yields:** Dubai residential real estate delivers average annual rental yields of **6.5% to 8.5%**, outperforming London (3.8-4.5%) and New York (3.5-4.2%).
 > - **10-Year Golden Visa:** Property purchases of **AED 2,000,000 (~$545,000 USD)** or higher (ready or off-plan) qualify international buyers for a renewable 10-Year UAE Golden Visa.
 > - **Zero Tax Burden:** UAE charges **0% personal income tax, 0% capital gains tax, and 0% annual property tax**.
-> - **Advisor Integration:** Through [360Castle](/ventures/360castle), we match international founders and buyers with pre-vetted off-plan developments and luxury villa portfolios.
+> - **Advisor Integration:** Through [360Castle](/ventures/beinseo-dubai), we match international founders and buyers with pre-vetted off-plan developments and luxury villa portfolios.
 
 ---
 
@@ -358,7 +358,7 @@ Mortgages from UAE banks are permitted, provided the initial equity paid meets t
 ## 5. Ecosystem & Related Real Estate Links
 
 Explore high-yield property investment portfolios and advisory services:
-- **Explore 360Castle Advisory:** [View 360Castle Real Estate](/ventures/360castle)
+- **Explore 360Castle Advisory:** [View 360Castle Real Estate](/ventures/beinseo-dubai)
 - **Read Off-Plan vs Ready Financial Model:** [Dubai Off-Plan Financial Model](/insights/dubai-off-plan-vs-ready-villas-financial-model)
 - **Read Market Expansion Guide:** [Start Business in Dubai](/start-business-in-dubai)
 - **Schedule Property Briefing:** [Book Private Consultation](/contact?category=real_estate)
@@ -379,7 +379,7 @@ MARKDOWN
 > - **Ultimate Mountain Experience:** Experience Mount Everest (8,848m) and the Khumbu Glacier in a single day via private Airbus AS350 B3e helicopter charter.
 > - **High-Altitude Landing:** Touch down at **Kala Patthar (5,545m)** for high-resolution panoramic photography facing Everest's South Face.
 > - **Gourmet Breakfast:** Enjoy a 1-hour champagne breakfast at **Hotel Everest View (3,880m)**, the highest 5-star hotel in the world.
-> - **VIP Logistics:** Fully operated by [Nepal Trip Packages](/ventures/nepaltrippackages) with luxury private transfers, pre-cleared permits, and supplementary medical oxygen.
+> - **VIP Logistics:** Fully operated by [Nepal Trip Packages](/travel) with luxury private transfers, pre-cleared permits, and supplementary medical oxygen.
 
 ---
 
@@ -417,7 +417,7 @@ Designed for discerning international travelers, corporate executives, and adven
 ## 4. Book Your VIP Expedition
 
 Ready to experience Mount Everest in comfort and style?
-- **Explore Nepal Trip Packages:** [View Travel Venture](/ventures/nepaltrippackages)
+- **Explore Nepal Trip Packages:** [View Travel Venture](/travel)
 - **Read Aviation Safety Blueprint:** [Himalayan Flight Safety Blueprint](/insights/nepal-helicopter-expedition-aviation-safety-blueprint)
 - **Read Market Entry Blueprint:** [Start Business in Nepal](/start-business-in-nepal)
 - **Book Private Helicopter Charter:** [Request VIP Charter](/contact?category=travel)
@@ -499,7 +499,7 @@ MARKDOWN
 
 ## 2. Related Growth & Marketing Links
 
-- **Explore Digital Terai Services:** [View Growth Services](/ventures/digitalterai)
+- **Explore Digital Terai Services:** [View Growth Services](/ventures/digital-terai)
 - **Read AEO Playbook:** [AEO Implementation Blueprint](/insights/answer-engine-optimization-aeo-playbook-2026)
 - **Read Dubai Market Guide:** [Start Business in Dubai](/start-business-in-dubai)
 - **Schedule an Audit:** [Request Growth Consultation](/contact?category=digital_growth)
@@ -576,7 +576,7 @@ MARKDOWN
 > **Executive Summary & Key Takeaways:**
 > - **Off-Plan IRR Advantage:** High-growth off-plan projects deliver **18% to 24% Internal Rate of Return (IRR)** over a 3-year construction cycle with structured 50/50 payment plans.
 > - **Ready Villa Cash-Flow:** Ready luxury villas provide immediate gross rental yields of **6.5% to 8.5%** and instant 10-Year Golden Visa eligibility (AED 2M+ threshold).
-> - **Advisory Integration:** [360Castle](/ventures/360castle) provides full portfolio modeling, developer vetting (Emaar, Nakheel, Sobha), and title deed registration.
+> - **Advisory Integration:** [360Castle](/ventures/beinseo-dubai) provides full portfolio modeling, developer vetting (Emaar, Nakheel, Sobha), and title deed registration.
 
 ---
 
@@ -594,7 +594,7 @@ MARKDOWN
 
 ## 2. Related Real Estate Links
 
-- **Explore 360Castle Advisory:** [View 360Castle Real Estate](/ventures/360castle)
+- **Explore 360Castle Advisory:** [View 360Castle Real Estate](/ventures/beinseo-dubai)
 - **Read Dubai Investment Guide:** [Dubai Real Estate Investment Guide for Founders](/insights/dubai-real-estate-investment-guide-for-founders)
 - **Read Market Expansion Guide:** [Start Business in Dubai](/start-business-in-dubai)
 - **Schedule Property Briefing:** [Book Private Consultation](/contact?category=real_estate)

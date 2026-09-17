@@ -117,7 +117,7 @@ Explore technical blueprints and market entry strategies within our network:
             ],
             [
                 'name' => 'Digital Terai',
-                'slug' => 'digitalterai',
+                'slug' => 'digital-terai',
                 'tagline' => 'Data-Driven Search Engine & Performance Growth Agency',
                 'category' => 'digital_growth',
                 'logo' => '/assets/images/companies/digitalterai.png',
@@ -202,7 +202,7 @@ Explore our detailed growth frameworks and strategy guides:
             ],
             [
                 'name' => 'Nepal Trip Packages',
-                'slug' => 'nepaltrippackages',
+                'slug' => 'thoplo-machine',
                 'tagline' => 'Bespoke Luxury Expeditions, Private Everest Helicopter Tours & Adventure Operations',
                 'category' => 'travel',
                 'logo' => '/assets/images/companies/nepaltrippackages.png',
@@ -288,7 +288,7 @@ Explore our specialized travel guides and mountain expedition blueprints:
             ],
             [
                 'name' => '360Castle',
-                'slug' => '360castle',
+                'slug' => 'beinseo-dubai',
                 'tagline' => 'Dubai Real Estate & Premium Property Investment Advisory',
                 'category' => 'real_estate',
                 'logo' => '/assets/images/companies/360castle.png',

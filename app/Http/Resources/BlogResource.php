@@ -23,6 +23,7 @@ class BlogResource extends JsonResource
             'featured_image' => $this->featured_image,
             'featured_image_alt' => $this->featured_image_alt,
             'reading_time' => $this->reading_time,
+            'faqs' => $this->faqs ?? [],
             'category_id' => $this->category_id,
             'author_id' => $this->author_id,
             'is_published' => $this->is_published,

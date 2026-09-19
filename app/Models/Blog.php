@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
     'slug',
     'summary',
     'content',
+    'faqs',
     'featured_image',
     'featured_image_alt',
     'reading_time',
@@ -43,6 +44,7 @@ class Blog extends Model
         return [
             'is_published' => 'boolean',
             'published_at' => 'datetime',
+            'faqs' => 'array',
         ];
     }
 

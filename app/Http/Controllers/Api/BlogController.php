@@ -98,6 +98,7 @@ class BlogController extends Controller
             'is_published' => 'required|boolean',
             'reading_time' => 'nullable|integer',
             'tags' => 'nullable|array',
+            'faqs' => 'nullable|array',
             'seo' => 'nullable|array',
         ]);
 
@@ -126,12 +127,40 @@ class BlogController extends Controller
             $blog->tags()->sync($validated['tags']);
         }
 
-        if (!empty($validated['seo'])) {
+        // Auto-generate FAQ JSON-LD schema if FAQs are provided
+        $jsonLd = null;
+        if (!empty($validated['faqs']) && is_array($validated['faqs'])) {
+            $entities = [];
+            foreach ($validated['faqs'] as $faq) {
+                $q = trim($faq['question'] ?? $faq['q'] ?? '');
+                $a = trim($faq['answer'] ?? $faq['a'] ?? '');
+                if ($q !== '' && $a !== '') {
+                    $entities[] = [
+                        '@type' => 'Question',
+                        'name' => $q,
+                        'acceptedAnswer' => [
+                            '@type' => 'Answer',
+                            'text' => strip_tags($a)
+                        ]
+                    ];
+                }
+            }
+            if (!empty($entities)) {
+                $jsonLd = [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'FAQPage',
+                    'mainEntity' => $entities
+                ];
+            }
+        }
+
+        if (!empty($validated['seo']) || $jsonLd !== null) {
             $blog->seo()->create([
                 'meta_title' => $validated['seo']['meta_title'] ?? $blog->title,
                 'meta_description' => $validated['seo']['meta_description'] ?? $blog->summary,
                 'keywords' => $validated['seo']['keywords'] ?? '',
                 'canonical_url' => $validated['seo']['canonical_url'] ?? '',
+                'json_ld' => $jsonLd,
             ]);
         }
 
@@ -158,6 +187,7 @@ class BlogController extends Controller
             'is_published' => 'required|boolean',
             'reading_time' => 'nullable|integer',
             'tags' => 'nullable|array',
+            'faqs' => 'nullable|array',
             'seo' => 'nullable|array',
         ]);
 
@@ -191,7 +221,34 @@ class BlogController extends Controller
             $blog->tags()->sync($validated['tags']);
         }
 
-        if (!empty($validated['seo'])) {
+        // Auto-generate FAQ JSON-LD schema if FAQs are provided
+        $jsonLd = null;
+        if (!empty($validated['faqs']) && is_array($validated['faqs'])) {
+            $entities = [];
+            foreach ($validated['faqs'] as $faq) {
+                $q = trim($faq['question'] ?? $faq['q'] ?? '');
+                $a = trim($faq['answer'] ?? $faq['a'] ?? '');
+                if ($q !== '' && $a !== '') {
+                    $entities[] = [
+                        '@type' => 'Question',
+                        'name' => $q,
+                        'acceptedAnswer' => [
+                            '@type' => 'Answer',
+                            'text' => strip_tags($a)
+                        ]
+                    ];
+                }
+            }
+            if (!empty($entities)) {
+                $jsonLd = [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'FAQPage',
+                    'mainEntity' => $entities
+                ];
+            }
+        }
+
+        if (!empty($validated['seo']) || $jsonLd !== null) {
             $blog->seo()->updateOrCreate(
                 ['model_type' => Blog::class, 'model_id' => $blog->id],
                 [
@@ -199,6 +256,7 @@ class BlogController extends Controller
                     'meta_description' => $validated['seo']['meta_description'] ?? $blog->summary,
                     'keywords' => $validated['seo']['keywords'] ?? '',
                     'canonical_url' => $validated['seo']['canonical_url'] ?? '',
+                    'json_ld' => $jsonLd,
                 ]
             );
         }
